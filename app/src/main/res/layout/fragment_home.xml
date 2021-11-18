@@ -27,8 +27,8 @@
             android:id="@+id/constraintLayout2"
             android:layout_width="172dp"
             android:layout_height="141dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="27dp"
             android:background="@drawable/layout_bgmenu3"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +52,8 @@
             android:layout_width="172dp"
             android:layout_height="141dp"
             android:layout_marginTop="27dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/layout_bgmenu4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -75,8 +75,8 @@
             android:id="@+id/constraintLayout4"
             android:layout_width="172dp"
             android:layout_height="141dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/layout_bgmenu5"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,19 +88,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="105dp"
                 android:text="บล็อกเมล์"
-                android:textStyle="bold"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
             android:layout_width="172dp"
             android:layout_height="141dp"
             android:layout_marginTop="18dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/layout_bgmenu1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
@@ -111,8 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="105dp"
                 android:text="บล็อกเว็บ"
-                android:textStyle="bold"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -122,33 +123,43 @@
             android:id="@+id/imageView7"
             android:layout_width="102dp"
             android:layout_height="100dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/block"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="97dp"
+            android:layout_height="92dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/web1"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <ImageView
             android:id="@+id/imageView9"
             android:layout_width="102dp"
             android:layout_height="100dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:src="@drawable/email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
         <ImageView
             android:id="@+id/imageView8"
             android:layout_width="102dp"
             android:layout_height="100dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/mail"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+            app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
