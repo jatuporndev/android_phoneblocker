@@ -15,9 +15,9 @@
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/>
+
 
     <application
         android:allowBackup="true"
@@ -42,6 +42,8 @@
         </activity>
 
         <receiver android:name=".Detector.CallReciver"
+            android:enabled="true"
+            android:exported="true"
             tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
