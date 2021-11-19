@@ -25,7 +25,7 @@ class CallReciver : BroadcastReceiver() {
         val audioManager = context!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
-            if (incomingNumber == "0827893829") {
+            if (incomingNumber == "0957739456") {
                 Log.d("calling1", incomingNumber)
                 audioManager.setStreamMute(AudioManager.STREAM_RING, true)
                 val telecomManager = context.getSystemService(Context.TELECOM_SERVICE) as TelecomManager

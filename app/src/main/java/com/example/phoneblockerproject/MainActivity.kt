@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             var fm: Fragment = HomeFragment()
             when (it.itemId) {
                 R.id.nav_home -> fm = HomeFragment()
+                R.id.nav_his -> fm = HistoryFragment()
 
 
             }
