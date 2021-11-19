@@ -1,16 +1,26 @@
 package com.example.phoneblockerproject.Detector
 
+import android.Manifest
+import android.R.attr.phoneNumber
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.media.AudioManager
+import android.os.Build
+import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import android.util.Log
-import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.PackageManagerCompat.LOG_TAG
+import com.example.phoneblockerproject.MainActivity
+import java.lang.String
 
 
 class CallReciver : BroadcastReceiver() {
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onReceive(context: Context?, intent: Intent?) {
         val audioManager = context!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
@@ -18,6 +28,14 @@ class CallReciver : BroadcastReceiver() {
             if (incomingNumber == "0827893829") {
                 Log.d("calling1", incomingNumber)
                 audioManager.setStreamMute(AudioManager.STREAM_RING, true)
+                val telecomManager = context.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+                    if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ANSWER_PHONE_CALLS) != PackageManager.PERMISSION_GRANTED) {
+                        return
+                    }
+                    telecomManager.endCall()
+                }
 
             }
         }
@@ -27,8 +45,12 @@ class CallReciver : BroadcastReceiver() {
             audioManager.setStreamMute(AudioManager.STREAM_RING, false);
         }
 
+
+    }
+
+
     }
 
 
 
-}
+
