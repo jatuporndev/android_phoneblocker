@@ -8,6 +8,10 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="หน้าแรก" />
+        <item
+            android:id="@+id/nav_his"
+            android:icon="@drawable/ic_baseline_history_24"
+            android:title="ประวัติ" />
     </group>
 
 </menu>
