@@ -20,7 +20,4 @@ class PhoneFragment : Fragment() {
     }
 
 
-
-
-
 }
