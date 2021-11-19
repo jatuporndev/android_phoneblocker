@@ -1,16 +1,20 @@
 package com.example.phoneblockerproject
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 
 
 class HomeFragment : Fragment() {
     var conphone:ConstraintLayout?=null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +26,8 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         conphone = root.findViewById(R.id.conphone)
+
+
         conphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()

@@ -2,6 +2,7 @@ package com.example.phoneblockerproject
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -45,7 +46,9 @@ class MainActivity : AppCompatActivity() {
             transaction.commit()
             return@setOnNavigationItemSelectedListener true
         }
+
     }
+
 
 
 }
