@@ -1,5 +1,6 @@
 package com.example.phoneblockerproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,12 +11,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.phoneblockerproject.databass.DBHelper
 
 
 class HomeFragment : Fragment() {
     var conphone:ConstraintLayout?=null
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,7 +24,6 @@ class HomeFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         conphone = root.findViewById(R.id.conphone)
-
         conphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
@@ -35,5 +34,4 @@ class HomeFragment : Fragment() {
         return root
     }
 
-
-}
+    }
