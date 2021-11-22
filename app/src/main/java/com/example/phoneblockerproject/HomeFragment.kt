@@ -21,12 +21,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         conphone = root.findViewById(R.id.conphone)
-
 
         conphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
@@ -35,7 +32,6 @@ class HomeFragment : Fragment() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
-
         return root
     }
 

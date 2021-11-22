@@ -12,7 +12,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         private val TABLE_CONTACTS = "phonespam"
         private val KEY_ID = "id"
         private val KEY_NAME = "name"
-        private val KEY_PHONE = "phone"
+        private val KEY_PHONE = "phoneNumber"
     }
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_CONTACTS_TABLE = ("CREATE TABLE " + TABLE_CONTACTS + "("
