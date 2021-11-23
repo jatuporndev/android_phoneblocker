@@ -149,7 +149,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Message Blocking"
+                    android:text="WiFi Blocking"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="110dp"
-                    android:text="บล็อกเมล์"
+                    android:text="บล็อกไวไฟ"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,8 +220,8 @@
                 android:id="@+id/imageView9"
                 android:layout_width="106dp"
                 android:layout_height="105dp"
-                android:layout_marginTop="155dp"
-                android:src="@drawable/email"
+                android:layout_marginTop="170dp"
+                android:src="@drawable/hotspot"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
                 app:layout_constraintTop_toTopOf="@+id/conphone" />
 
