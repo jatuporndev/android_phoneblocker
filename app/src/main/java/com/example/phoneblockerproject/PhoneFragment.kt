@@ -1,8 +1,6 @@
 package com.example.phoneblockerproject
 
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,10 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.databass.DBHelper
-import kotlinx.coroutines.supervisorScope
 
 
 class PhoneFragment : Fragment() {
@@ -36,7 +32,7 @@ class PhoneFragment : Fragment() {
         recyclerView = root.findViewById(R.id.recyclerView)
         imgback = root.findViewById(R.id.imgback)
         searchView =root.findViewById(R.id.SearchView)
-        txtempty = root.findViewById(R.id.txtemtry)
+        txtempty = root.findViewById(R.id.txtempty)
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

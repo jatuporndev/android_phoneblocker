@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
 
         <TextView
-            android:id="@+id/txtemtry"
+            android:id="@+id/txtempty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ยังไม่มีข้อมูล!!!"
