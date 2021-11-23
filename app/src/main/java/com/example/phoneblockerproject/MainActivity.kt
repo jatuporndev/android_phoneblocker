@@ -4,8 +4,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.READ_PHONE_STATE,android.Manifest.permission.READ_CALL_LOG,android.Manifest.permission.ANSWER_PHONE_CALLS),1 )
         }
-
+        setTransparentStatusBar()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val transaction = supportFragmentManager.beginTransaction()
@@ -48,7 +51,12 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-
+    fun Activity.setTransparentStatusBar() {
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.statusBarColor = Color.TRANSPARENT
+        }
+    }
 
 }
