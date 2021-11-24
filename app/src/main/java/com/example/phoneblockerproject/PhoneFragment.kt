@@ -52,7 +52,7 @@ class PhoneFragment : Fragment() {
         recyclerView = root.findViewById(R.id.recyclerView)
         imgback = root.findViewById(R.id.imgback)
         searchView =root.findViewById(R.id.SearchView)
-        txtempty = root.findViewById(R.id.txtemtry)
+        txtempty = root.findViewById(R.id.txtempty)
        var a = getCalllog()
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
