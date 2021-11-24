@@ -51,7 +51,7 @@
                 android:layout_marginLeft="16dp"
 
                 android:layout_marginTop="45dp"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:src="@drawable/ic_baseline_arrow_back_ios_25"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -91,7 +91,7 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
 
         <TextView
-            android:id="@+id/txtemtry"
+            android:id="@+id/txtempty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ยังไม่มีข้อมูล!!!"
