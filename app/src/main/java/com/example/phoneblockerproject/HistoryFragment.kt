@@ -26,16 +26,38 @@ import kotlin.collections.ArrayList
 
 class HistoryFragment : Fragment() {
     var data = ArrayList<Data>()
+    var phoneblock = ArrayList<String>()
     var recyclerView: RecyclerView? = null
-
+    var btnhisphone:Button?=null
+    var btnhismessage:Button?=null
     //popupmenu
     var conDelete:ConstraintLayout?=null
+    var conBlock:ConstraintLayout?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_history, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)
+        btnhisphone = root.findViewById(R.id.btnhisphone)
+        btnhisphone?.setOnClickListener{
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, HistoryPhoneFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
+        btnhismessage = root.findViewById(R.id.btnhismessage)
+        btnhismessage?.setOnClickListener{
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, HistoryMessageFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        val db = DBHelper(requireContext())
+        phoneblock = db.getBlocknumber()
         getdata()
         return root
     }
@@ -72,6 +94,11 @@ class HistoryFragment : Fragment() {
                     DeleteCallById(data.id,data.number)
                     alertDialog.dismiss()
                 }
+                conBlock?.setOnClickListener {
+                    blockcall(data.name,data.number)
+                    alertDialog.dismiss()
+                }
+
                 return@setOnLongClickListener true
             }
             if(data.type=="MISSED"){
@@ -80,7 +107,11 @@ class HistoryFragment : Fragment() {
                 holder.txttype.text="ระยะเวลาโทร "+data.duration
             }
             holder.imgicon.visibility = View.GONE
-           // holder.imgicon2.visibility = View.GONE
+           if (data.number in phoneblock){
+              holder.imgpro.setImageResource(R.drawable.user_block);
+           }else{
+               holder.imgpro.setImageResource(R.drawable.user);
+           }
 
 
         }
@@ -101,6 +132,7 @@ class HistoryFragment : Fragment() {
             var imgicon: ImageView = itemView.findViewById(R.id.imgicon)
             var imgicon2: ImageView = itemView.findViewById(R.id.imgicon2)
             var txttype :TextView=itemView.findViewById(R.id.txtyype)
+            var imgpro :ImageView=itemView.findViewById(R.id.imageView2)
         }
     }
 
@@ -108,9 +140,9 @@ class HistoryFragment : Fragment() {
     fun showCustomDialog() {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
-         conDelete=dialogView.findViewById(R.id.constraintdelete)
+        conDelete=dialogView.findViewById(R.id.constraintdelete)
         var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
-        var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
+        conBlock=dialogView.findViewById(R.id.constraintgolist)
 
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
@@ -177,9 +209,30 @@ class HistoryFragment : Fragment() {
         return call
     }
 
+    fun blockcall(name:String,phone:String){
+
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("ต้องการที่จะบล็อกเบอร์ $phone หรือไม่?")
+            .setCancelable(false)
+            .setPositiveButton("ใช่") { dialog, id ->
+                val db = DBHelper(requireContext())
+                db.addPhone(name,phone)
+                Toast.makeText(context, "สำเร็จ", Toast.LENGTH_LONG).show()
+                phoneblock.clear()
+                phoneblock = db.getBlocknumber()
+                getdata()
+            }
+            .setNegativeButton("ยกเลิก") { dialog, id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+    }
+
     fun DeleteCallById(idd: String,phone:String) {
         val builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("ต้องการจะบกเลิกบล็อกเบอร์ $phone หรือไม่?")
+        builder.setMessage("ต้องการจะลบบันทึกเบอร์ $phone หรือไม่?")
                 .setCancelable(false)
                 .setPositiveButton("ใช่") { dialog, id ->
                     // Delete selected note from database
