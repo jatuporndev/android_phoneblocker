@@ -234,19 +234,19 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
-                android:src="@drawable/email"
+                android:src="@drawable/homewifi"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
                 app:layout_constraintTop_toBottomOf="@+id/conphone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imgsettings"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="45dp"

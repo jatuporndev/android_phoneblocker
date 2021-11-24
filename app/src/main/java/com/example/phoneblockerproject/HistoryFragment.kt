@@ -20,11 +20,31 @@ class HistoryFragment : Fragment() {
     val data = ArrayList<Data>()
     var recyclerView: RecyclerView? = null
     var imgback:ImageView?=null
+    var btnhisphone:Button?=null
+    var btnhismessage:Button?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_history, container, false)
         data.add((Data("1","โจร","5555","1","23/11/2564")))
+
+        btnhisphone = root.findViewById(R.id.btnhisphone)
+        btnhisphone?.setOnClickListener{
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, HistoryPhoneFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+
+        btnhismessage = root.findViewById(R.id.btnhismessage)
+        btnhismessage?.setOnClickListener{
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, HistoryMessageFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
         imgback = root.findViewById(R.id.imgback)
         imgback?.setOnClickListener{
