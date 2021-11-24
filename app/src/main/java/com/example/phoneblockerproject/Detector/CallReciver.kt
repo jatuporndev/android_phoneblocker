@@ -27,7 +27,6 @@ class CallReciver : BroadcastReceiver() {
     }
 
 
-
     fun callblocker(context: Context?, intent: Intent?){
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)

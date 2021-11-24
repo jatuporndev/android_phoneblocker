@@ -15,6 +15,7 @@
             android:id="@+id/txtdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="date"
@@ -30,7 +31,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="suwatnan"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/cardView4"
             app:layout_constraintTop_toTopOf="parent" />
@@ -92,6 +93,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtdate"
             app:srcCompat="@android:drawable/stat_sys_phone_call_forward" />
+
+        <TextView
+            android:id="@+id/txtyype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="8dp"
+            android:text="TextView"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardView4"
+            app:layout_constraintTop_toBottomOf="@+id/txtphone2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="5dp"
+            android:background="#DDDDDD"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtyype"
+            tools:layout_editor_absoluteX="100dp">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

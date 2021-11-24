@@ -20,18 +20,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imgback"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:layout_marginStart="16dp"
-
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="45dp"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
                 android:id="@+id/textView19"
                 android:layout_width="wrap_content"

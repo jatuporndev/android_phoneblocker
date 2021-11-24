@@ -134,7 +134,6 @@ class PhoneFragment : Fragment() {
             var id: String, var name: String, var phoneNumber: String
     )
 
-
     internal inner class DataAdapter(private val list: List<Data>) :
             RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
