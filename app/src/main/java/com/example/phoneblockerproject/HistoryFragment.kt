@@ -63,8 +63,9 @@ class HistoryFragment : Fragment() {
             holder.txtname2.text = data.name
             holder.txtphone2.text = data.phoneNumber
             holder.txtdate.text = data.date
-            holder.conmenu.setOnClickListener() {
+            holder.conmenu.setOnLongClickListener() {
                 showCustomDialog()
+                return@setOnLongClickListener true
             }
             if (data.statsu == "0") {
                 holder.imgicon.visibility = View.VISIBLE

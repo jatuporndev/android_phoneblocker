@@ -6,9 +6,10 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/white"
+        android:id="@+id/conme"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView4"
@@ -44,7 +45,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="suwatnan"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/cardView4"
             app:layout_constraintTop_toTopOf="parent" />

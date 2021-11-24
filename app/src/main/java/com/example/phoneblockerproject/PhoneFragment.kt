@@ -13,18 +13,19 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.CallLog
 import android.provider.ContactsContract
-import android.util.Log
 import android.view.*
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.databass.DBHelper
-import java.io.IOException
-import java.io.InputStream
 import java.lang.Long
+import java.text.SimpleDateFormat
+import java.time.Duration
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -42,9 +43,11 @@ class PhoneFragment : Fragment() {
     //box
     var editTextPhone :EditText?=null
     var editTextName:EditText?=null
+
+    var recyclerViewConract:RecyclerView?=null
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val root =inflater.inflate(R.layout.fragment_phone, container, false)
@@ -53,7 +56,7 @@ class PhoneFragment : Fragment() {
         imgback = root.findViewById(R.id.imgback)
         searchView =root.findViewById(R.id.SearchView)
         txtempty = root.findViewById(R.id.txtempty)
-       var a = getCalllog()
+
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
@@ -100,6 +103,7 @@ class PhoneFragment : Fragment() {
         imgphonehis.setOnClickListener {
 
             showCustomDialogCon()
+
         }
 
         btnConfirm.setOnClickListener {
@@ -127,7 +131,7 @@ class PhoneFragment : Fragment() {
 
 
     class Data(
-        var id: String, var name: String, var phoneNumber: String
+            var id: String, var name: String, var phoneNumber: String
     )
 
 
@@ -135,8 +139,8 @@ class PhoneFragment : Fragment() {
             RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view: View = LayoutInflater.from(parent.context).inflate(
-                R.layout.item_phone,
-                parent, false
+                    R.layout.item_phone,
+                    parent, false
             )
             return ViewHolder(view)
         }
@@ -150,6 +154,10 @@ class PhoneFragment : Fragment() {
             holder.delete.setOnClickListener {
                 deletePhone(data.phoneNumber, data.id)
             }
+            holder.con.setOnLongClickListener() {
+                Dialogmenu(data.phoneNumber,data.id)
+                return@setOnLongClickListener true
+            }
 
         }
 
@@ -161,6 +169,7 @@ class PhoneFragment : Fragment() {
                 RecyclerView.ViewHolder(itemView) {
 
             var data: Data? = null
+            var con:ConstraintLayout = itemView.findViewById(R.id.conme)
             var txtname: TextView = itemView.findViewById(R.id.txtname)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
             var delete:ImageButton = itemView.findViewById(R.id.deleteimgbuttom)
@@ -186,7 +195,7 @@ class PhoneFragment : Fragment() {
 
     fun deletePhone(phone: String, idp: String){
         val builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("ต้องการจะลบ เบอร์ $phone หรือไม่?")
+        builder.setMessage("ต้องการจะบกเลิกบล็อกเบอร์ $phone หรือไม่?")
             .setCancelable(false)
             .setPositiveButton("ใช่") { dialog, id ->
                 // Delete selected note from database
@@ -204,19 +213,19 @@ class PhoneFragment : Fragment() {
 
     fun requestPermission(){
         if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                android.Manifest.permission.READ_CONTACTS
-            ) != PackageManager.PERMISSION_GRANTED
+                        requireContext(),
+                        android.Manifest.permission.READ_CONTACTS
+                ) != PackageManager.PERMISSION_GRANTED
         ){
             ActivityCompat.requestPermissions(
-                requireActivity(),
-                arrayOf(android.Manifest.permission.READ_CONTACTS),
-                1
+                    requireActivity(),
+                    arrayOf(android.Manifest.permission.READ_CONTACTS),
+                    1
             )
         }else{
             val intent = Intent(
-                Intent.ACTION_PICK,
-                ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+                    Intent.ACTION_PICK,
+                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI
             )
             startActivityForResult(intent, 125)
 
@@ -229,11 +238,11 @@ class PhoneFragment : Fragment() {
             if (android.R.attr.data != null) {
                 val result: Uri = data!!.data!!
                 val c = requireContext().contentResolver.query(
-                    ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                    null,
-                    ContactsContract.CommonDataKinds.Phone._ID + "=?",
-                    arrayOf(result.lastPathSegment),
-                    null
+                        ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                        null,
+                        ContactsContract.CommonDataKinds.Phone._ID + "=?",
+                        arrayOf(result.lastPathSegment),
+                        null
                 )
                 if (c!!.count >= 1 && c!!.moveToFirst()) {
                     phonenumber = c!!.getString(c!!.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
@@ -250,12 +259,14 @@ class PhoneFragment : Fragment() {
         }
 
     }
-    class Call(number: String, type: String, date: String, duration: String,name:String)
+
+
+
     private fun getCalllog():ArrayList<Call> {
         var call= ArrayList<Call>()
         val cursor: Cursor? = requireContext().contentResolver.query(
-            CallLog.Calls.CONTENT_URI,
-            null, null, null, CallLog.Calls.DATE + " DESC"
+                CallLog.Calls.CONTENT_URI,
+                null, null, null, CallLog.Calls.DATE + " DESC"
         )
         val number: Int = cursor!!.getColumnIndex(CallLog.Calls.NUMBER)
         val type: Int = cursor.getColumnIndex(CallLog.Calls.TYPE)
@@ -269,11 +280,21 @@ class PhoneFragment : Fragment() {
                 val callType: String = cursor.getString(type)
                 val callDate: String = cursor.getString(date)
                 val callDayTime = Date(Long.valueOf(callDate))
+                val dateFormated = SimpleDateFormat("dd/MM/yyyy").format(callDayTime)
                 var name :String="ไม่มีชื่อ"
                 if (cursor.getString(Name)!=null){
                      name  = cursor.getString(Name)
                 }
                 val callDuration: String = cursor.getString(duration)
+                var second = callDuration.toLong()
+                var  minutes = (second % 3600) / 60;
+                var seconds = second % 60;
+                var fomat:String=""
+                if(second<60){
+                    fomat = seconds.toString()+ "วินาที "
+                }else if(second>60){
+                    fomat = minutes.toString()+ "นาที "+seconds.toString()+" วินาที"
+                }
                 var dir: String? = null
                 val dircode = callType.toInt()
                 when (dircode) {
@@ -283,7 +304,7 @@ class PhoneFragment : Fragment() {
                 }
                 if (i==100){break}
 
-                 call.add(Call(phNumber, dir.toString(), callDate, callDuration,name))
+                 call.add(Call(phNumber, dir.toString(), dateFormated.toString(), fomat, name))
                 i++
 
             }
@@ -293,23 +314,98 @@ class PhoneFragment : Fragment() {
         return call
     }
 
+
+    var dialogCon: Dialog? =null
     @SuppressLint("ResourceAsColor")
     fun showCustomDialogCon() {
-        var view: View = layoutInflater.inflate(R.layout.fragment_read_contact,null)
+        var view: View = layoutInflater.inflate(R.layout.fragment_read_contact, null)
         var back:ImageView = view.findViewById(R.id.imgbackc)
-
-        var dialog = Dialog(requireContext(),android.R.style.ThemeOverlay_DeviceDefault_Accent_DayNight)
-        dialog.setContentView(view)
+        recyclerViewConract=view.findViewById(R.id.recyview)
+        dialogCon = Dialog(requireContext(), android.R.style.ThemeOverlay_DeviceDefault_Accent_DayNight)
+        dialogCon!!.setContentView(view)
         back?.setOnClickListener {
-            Log.d("testt","testt")
-            dialog.dismiss()
+            dialogCon!!.dismiss()
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            dialog.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            dialog.window?.statusBarColor = R.color.purple_500;
+            dialogCon!!.window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            dialogCon!!.window?.statusBarColor = R.color.purple_500;
         }
-        dialog.show()
-
+        dialogCon!!.show()
+        var data = getCalllog()
+        recyclerViewConract!!.adapter = DataAdapter2(data)
     }
+
+
+
+    class Call(var number: String, var type: String, var date: String, var duration: String, var name: String)
+    internal inner class DataAdapter2(private val list: ArrayList<Call>) :
+            RecyclerView.Adapter<DataAdapter2.ViewHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view: View = LayoutInflater.from(parent.context).inflate(
+                    R.layout.item_contact,
+                    parent, false
+            )
+            return ViewHolder(view)
+        }
+
+        @RequiresApi(31)
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+            val data = list[position]
+            holder.data = data
+            holder.txtname.text = data.name
+            holder.txtphone.text=data.number
+            holder.date.text=data.date
+            if(data.type=="MISSED"){
+                holder.txttype.text="สายที่ไม่ได้รับ"
+            }else{
+              holder.txttype.text="ระยะเวลาโทร "+data.duration
+            }
+            holder.con.setOnClickListener {
+                editTextName?.setText(data.name)
+                editTextPhone?.setText(data.number)
+                dialogCon!!.dismiss()
+            }
+
+        }
+
+        override fun getItemCount(): Int {
+            return list.size
+        }
+
+        internal inner class ViewHolder(itemView: View) :
+                RecyclerView.ViewHolder(itemView) {
+
+            var data: Call? = null
+            var con :ConstraintLayout = itemView.findViewById(R.id.conmenu)
+            var txtname: TextView = itemView.findViewById(R.id.txtname2)
+            var txtphone: TextView = itemView.findViewById(R.id.txtphone2)
+            var date:TextView = itemView.findViewById(R.id.txtdate)
+            var txttype:TextView = itemView.findViewById(R.id.txtype)
+
+        }
+    }
+    private lateinit var alertDialomenug: AlertDialog
+    fun Dialogmenu(phoneNumber:String,id:String) {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
+        var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
+        var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
+        var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
+
+        conGolist.visibility=View.GONE
+        conDelete.setOnClickListener {
+            deletePhone(phoneNumber, id)
+            alertDialomenug.dismiss()
+        }
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialomenug = dialogBuilder.create();
+        alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug.show()
+    }
+
 
 }
