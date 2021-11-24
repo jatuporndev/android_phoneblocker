@@ -13,7 +13,7 @@
     <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -32,6 +32,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhoneBlockerProject">
+
         <service
             android:name=".MyService"
             android:enabled="true"
@@ -52,6 +53,7 @@
             android:name=".Detector.CallReciver"
             android:enabled="true"
             android:exported="true"
+            android:priority="999"
             tools:ignore="Instantiatable">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />

@@ -6,18 +6,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.AudioManager
 import android.os.Build
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import android.util.Log
-import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.example.phoneblockerproject.MyService
-import com.example.phoneblockerproject.PhoneFragment
 import com.example.phoneblockerproject.databass.DBHelper
+
 
 class CallReciver : BroadcastReceiver() {
     val data = ArrayList<Data>()
@@ -34,19 +31,21 @@ class CallReciver : BroadcastReceiver() {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     if (ActivityCompat.checkSelfPermission(
-                                    context,
-                                    Manifest.permission.ANSWER_PHONE_CALLS
-                            ) != PackageManager.PERMISSION_GRANTED) {
+                            context,
+                            Manifest.permission.ANSWER_PHONE_CALLS
+                        ) != PackageManager.PERMISSION_GRANTED) {
                         return
                     }
+                    //Toast.makeText(context, "ระบุเบอร์!!", Toast.LENGTH_LONG).show()
                     telecomManager.endCall()
+
                 }
 
             }
         }
     }
 
-    class Data(var id: String,  var name: String,  var phoneNumber: String)
+    class Data(var id: String, var name: String, var phoneNumber: String)
     @SuppressLint("Range")
     fun allPhone(context: Context?){
         data.clear()
@@ -56,8 +55,9 @@ class CallReciver : BroadcastReceiver() {
             data.add(Data(cur.getString(0), cur.getString(1), cur.getString(2)))
 
         }
-
     }
+
+
 
     }
 

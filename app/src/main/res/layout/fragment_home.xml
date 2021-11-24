@@ -13,8 +13,6 @@
         android:background="@drawable/screen_3"
         >
 
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
