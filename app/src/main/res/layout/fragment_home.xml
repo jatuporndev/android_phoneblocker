@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout5"
+                android:id="@+id/conmessage"
                 android:layout_width="165dp"
                 android:layout_height="165dp"
                 android:layout_marginTop="32dp"
@@ -68,7 +68,7 @@
                 android:layout_height="165dp"
                 android:layout_marginTop="32dp"
                 android:background="@drawable/layout_bgmenu3"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout5"
+                app:layout_constraintEnd_toStartOf="@+id/conmessage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
 
@@ -112,7 +112,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5"
+                app:layout_constraintTop_toBottomOf="@+id/conmessage"
                 app:layout_constraintVertical_bias="1.0">
 
                 <TextView
@@ -218,7 +218,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:src="@drawable/mail"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
+                app:layout_constraintStart_toStartOf="@+id/conmessage"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <ImageView
@@ -230,7 +230,7 @@
                 android:layout_marginTop="8dp"
                 android:src="@drawable/web1"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+                app:layout_constraintTop_toBottomOf="@+id/conmessage" />
 
             <ImageView
                 android:id="@+id/imageView9"

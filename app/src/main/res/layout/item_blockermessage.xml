@@ -10,7 +10,17 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView36"
+            android:id="@+id/txtphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="phone"
+            app:layout_constraintStart_toEndOf="@+id/cardView4"
+            app:layout_constraintTop_toBottomOf="@+id/txtname" />
+
+        <TextView
+            android:id="@+id/txtmessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -18,10 +28,10 @@
             android:text="Message"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/cardView4"
-            app:layout_constraintTop_toBottomOf="@+id/textView35" />
+            app:layout_constraintTop_toBottomOf="@+id/txtphone" />
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/txtdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -32,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView35"
+            android:id="@+id/txtname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
