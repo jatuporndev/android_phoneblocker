@@ -14,18 +14,20 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import com.example.phoneblockerproject.databass.DBHelper
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class CallReciver : BroadcastReceiver() {
     val data = ArrayList<Data>()
 
     override fun onReceive(context: Context?, intent: Intent?) {
-
+        //abortBroadcast();
         allPhone(context)
         callblocker(context,intent)
 
     }
-
 
     fun callblocker(context: Context?, intent: Intent?){
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
@@ -42,14 +44,13 @@ class CallReciver : BroadcastReceiver() {
                         return
                     }
                     telecomManager.endCall()
+                    addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber,context)
 
                 }
 
             }
         }
     }
-
-
 
 
     class Data(var id: String, var name: String, var phoneNumber: String)
@@ -62,6 +63,16 @@ class CallReciver : BroadcastReceiver() {
             data.add(Data(cur.getString(0), cur.getString(1), cur.getString(2)))
 
         }
+    }
+    @SuppressLint("SimpleDateFormat")
+    fun addhistoryphone(name: String, phoneNumber: String, context: Context?){
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
+        val currentDate = sdf.format(Date())
+        Log.d("Testt",currentDate)
+        val db= DBHelper(context!!)
+        db.addhistory(name,phoneNumber,currentDate.toString(),"0")
+
+
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.phoneblockerproject
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.util.Log
@@ -12,6 +13,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.Detector.CallReciver
+import com.example.phoneblockerproject.databass.DBHelper
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -26,10 +28,8 @@ class HistoryPhoneFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var root = inflater.inflate(R.layout.fragment_history_phone, container, false)
-        data.add((Data("1","man","095-773-9456","0","25/11/2564" )))
         recyclerView = root.findViewById(R.id.recyclerView)
-        recyclerView!!.adapter = DataAdapter(data)
-
+        allHistory()
         imgbackc = root.findViewById(R.id.imgbackc)
         imgbackc?.setOnClickListener {
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
@@ -46,8 +46,8 @@ class HistoryPhoneFragment : Fragment() {
             var id: String,
             var name: String,
             var phonenember: String,
-            var status: String,
-            var date: String
+            var date: String,
+            var status: String
     )
     internal inner class DataAdapter(private val list: List<Data>) :
             RecyclerView.Adapter<DataAdapter.ViewHolder>() {
@@ -65,7 +65,7 @@ class HistoryPhoneFragment : Fragment() {
             holder.data = data
             holder.txtname.text = data.name
             holder.txtphone.text = data.phonenember
-            holder.txtdate.text = data.date
+            holder.txtdate.text = "บล็อกเมื่อ "+ data.date
 
 
         }
@@ -84,5 +84,15 @@ class HistoryPhoneFragment : Fragment() {
             var txtdate: TextView = itemView.findViewById(R.id.txtdate)
 
         }
+    }
+    @SuppressLint("Range")
+    fun allHistory(){
+        data.clear()
+        val db = DBHelper(requireContext())
+        val cur =db.gethistory("0")
+        while (cur!!.moveToNext()) {
+            data.add(Data(cur.getString(0), cur.getString(1), cur.getString(2),cur.getString(3),cur.getString(4)))
+        }
+        recyclerView!!.adapter = DataAdapter(data)
     }
 }

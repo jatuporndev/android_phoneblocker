@@ -24,12 +24,13 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val PHONESPAMER_NAME = "name"
         val PHONESPAMER_PHONE = "phoneNumber"
 
-        //Table Phone history
-        val TABLE_PHONEHISTORY = "phones_blockhistory"
-        val PHONEHISTORY_ID = "id"
-        val PHONEHISTORY_NAME = "name"
-        val PHONEHISTORY_PHONE = "phoneNumber"
-        val PHONEHISTORY_datetime = "datetime"
+        //Table  history block
+        val TABLE_BLOCKEHISTORY = "phones_blockhistory"
+        val BLOCKHISTORY_ID = "id"
+        val BLOCKHISTORY_NAME = "name"
+        val BLOCKHISTORY_PHONE = "phoneNumber"
+        val BLOCKHISTORY_datetime = "datetime"
+        val BLOCKHISTORY_status = "status" //0 = phone || 1 = sms
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -39,9 +40,9 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
                 + PHONEBLOCKER_PHONE + " TEXT" + ")")
         db?.execSQL(CREATE_CONTACTS_TABLE)
 
-        val CREATE_HISTORY_TABLE = ("CREATE TABLE " + TABLE_PHONEHISTORY + "("
-                + PHONEHISTORY_ID + " INTEGER PRIMARY KEY," + PHONEHISTORY_NAME + " TEXT,"
-                + PHONEHISTORY_PHONE + " TEXT,"+ PHONEHISTORY_datetime+" TEXT" + ")")
+        val CREATE_HISTORY_TABLE = ("CREATE TABLE " + TABLE_BLOCKEHISTORY + "("
+                + BLOCKHISTORY_ID + " INTEGER PRIMARY KEY," + BLOCKHISTORY_NAME + " TEXT,"
+                + BLOCKHISTORY_PHONE + " TEXT,"+ BLOCKHISTORY_datetime+" TEXT," + BLOCKHISTORY_status+" TEXT" +")")
         db?.execSQL(CREATE_HISTORY_TABLE)
 
     }
@@ -59,9 +60,9 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         values.put(PHONEBLOCKER_NAME, name)
         values.put(PHONEBLOCKER_PHONE, phone)
         val db = this.writableDatabase
-
         db.insert(TABLE_PHONEBLOCKER, null, values)
         db.close()
+
     }
     fun deletePhone(id:String){
 
@@ -88,9 +89,24 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         return  phone
     }
 
-
     //historyphone
+    fun addhistory(name: String,phone:String,date:String,status:String){
+        val values = ContentValues()
 
+        values.put(BLOCKHISTORY_NAME, name)
+        values.put(BLOCKHISTORY_PHONE, phone)
+        values.put(BLOCKHISTORY_datetime, date)
+        values.put(BLOCKHISTORY_status, status)
+        val db = this.writableDatabase
+        db.insert(TABLE_BLOCKEHISTORY, null, values)
+        db.close()
+    }
+
+
+    fun gethistory(status: String): Cursor?{
+        val db = this.readableDatabase
+        return db.rawQuery("SELECT * FROM "+TABLE_BLOCKEHISTORY+" WHERE "+BLOCKHISTORY_status+" ="+status, null)
+    }
 
 
 }
