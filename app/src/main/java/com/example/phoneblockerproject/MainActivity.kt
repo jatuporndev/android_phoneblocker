@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 when (it.itemId) {
                     R.id.nav_home -> fm = HomeFragment()
                     R.id.nav_his -> fm = HistoryFragment()
+                    R.id.nav_sms ->fm=SMSFragment()
 
                 }
                 //this.supportActionBar!!.title = "Home"
@@ -65,14 +66,16 @@ class MainActivity : AppCompatActivity() {
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.SYSTEM_ALERT_WINDOW) != PackageManager.PERMISSION_GRANTED||
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.ANSWER_PHONE_CALLS) != PackageManager.PERMISSION_GRANTED||
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_CALL_LOG) != PackageManager.PERMISSION_GRANTED||
-            ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
+            ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED||
+                ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
         ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)&&
                 ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CALL_LOG)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SYSTEM_ALERT_WINDOW)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ANSWER_PHONE_CALLS)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_CALL_LOG)&&
-                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)
+                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)&&
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_SMS)
             ) {
 
         } else {
@@ -82,7 +85,8 @@ class MainActivity : AppCompatActivity() {
                     android.Manifest.permission.READ_CALL_LOG,
                     android.Manifest.permission.ANSWER_PHONE_CALLS,
                     android.Manifest.permission.WRITE_CALL_LOG,
-                    android.Manifest.permission.READ_CONTACTS
+                    android.Manifest.permission.READ_CONTACTS,
+                    android.Manifest.permission.READ_SMS
                 ), REQUEST_PERMISSION
             )
         }

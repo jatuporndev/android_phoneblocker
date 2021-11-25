@@ -50,6 +50,9 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONEBLOCKER)
         onCreate(db)
     }
+
+
+    // add phone
     fun addPhone(name : String, phone : String ){
 
         val values = ContentValues()
@@ -84,6 +87,10 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
             }
         return  phone
     }
+
+
+    //historyphone
+
 
 
 }
