@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.nav_home -> fm = HomeFragment()
                 R.id.nav_his -> fm = HistoryFragment()
-
+                R.id.nav_his -> fm = HistoryFragment()
 
             }
             //this.supportActionBar!!.title = "Home"
