@@ -211,7 +211,6 @@ class HistoryFragment : Fragment() {
 
     fun blockcall(name:String,phone:String){
 
-
         val builder = AlertDialog.Builder(requireContext())
         builder.setMessage("ต้องการที่จะบล็อกเบอร์ $phone หรือไม่?")
             .setCancelable(false)

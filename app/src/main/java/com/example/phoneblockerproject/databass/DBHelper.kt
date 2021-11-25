@@ -25,17 +25,25 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val PHONESPAMER_PHONE = "phoneNumber"
 
         //Table Phone history
-        val TABLE_PHONEHISTORY = "phonespamer"
+        val TABLE_PHONEHISTORY = "phones_blockhistory"
         val PHONEHISTORY_ID = "id"
         val PHONEHISTORY_NAME = "name"
         val PHONEHISTORY_PHONE = "phoneNumber"
+        val PHONEHISTORY_datetime = "datetime"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+        //Table Phone adding
         val CREATE_CONTACTS_TABLE = ("CREATE TABLE " + TABLE_PHONEBLOCKER + "("
                 + PHONEBLOCKER_ID + " INTEGER PRIMARY KEY," + PHONEBLOCKER_NAME + " TEXT,"
                 + PHONEBLOCKER_PHONE + " TEXT" + ")")
         db?.execSQL(CREATE_CONTACTS_TABLE)
+
+        val CREATE_HISTORY_TABLE = ("CREATE TABLE " + TABLE_PHONEHISTORY + "("
+                + PHONEHISTORY_ID + " INTEGER PRIMARY KEY," + PHONEHISTORY_NAME + " TEXT,"
+                + PHONEHISTORY_PHONE + " TEXT,"+ PHONEHISTORY_datetime+" TEXT" + ")")
+        db?.execSQL(CREATE_HISTORY_TABLE)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
