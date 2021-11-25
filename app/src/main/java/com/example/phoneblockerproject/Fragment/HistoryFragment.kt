@@ -1,6 +1,5 @@
-package com.example.phoneblockerproject
+package com.example.phoneblockerproject.Fragment
 
-import android.content.pm.PackageManager
 import android.database.Cursor
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,10 +12,9 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
 import java.lang.Long
 import java.text.SimpleDateFormat
@@ -75,7 +73,7 @@ class HistoryFragment : Fragment() {
             RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view: View = LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_history,
+                R.layout.item_history,
                     parent, false
             )
             return ViewHolder(view)

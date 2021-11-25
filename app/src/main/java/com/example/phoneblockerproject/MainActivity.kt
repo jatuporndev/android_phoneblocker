@@ -3,8 +3,6 @@ package com.example.phoneblockerproject
 import android.Manifest
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
@@ -16,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.phoneblockerproject.Fragment.HistoryFragment
+import com.example.phoneblockerproject.Fragment.HomeFragment
+import com.example.phoneblockerproject.Fragment.SMSFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 when (it.itemId) {
                     R.id.nav_home -> fm = HomeFragment()
                     R.id.nav_his -> fm = HistoryFragment()
-                    R.id.nav_sms ->fm=SMSFragment()
+                    R.id.nav_sms ->fm= SMSFragment()
 
                 }
                 //this.supportActionBar!!.title = "Home"

@@ -37,7 +37,8 @@
 
         <activity android:name=".SplashScreenActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar">
+            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

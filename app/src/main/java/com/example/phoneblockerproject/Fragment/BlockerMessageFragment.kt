@@ -1,4 +1,4 @@
-package com.example.phoneblockerproject
+package com.example.phoneblockerproject.Fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.behavior.HideBottomViewOnScrollBehavior
+import com.example.phoneblockerproject.R
 
 class BlockerMessageFragment : Fragment() {
     var data = ArrayList<Data>()
@@ -70,7 +70,7 @@ class BlockerMessageFragment : Fragment() {
         internal inner class ViewHolder(itemView: View) :
             RecyclerView.ViewHolder(itemView) {
 
-            var data:Data? = null
+            var data: Data? = null
             var txtname: TextView = itemView.findViewById(R.id.txtname)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
             var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)

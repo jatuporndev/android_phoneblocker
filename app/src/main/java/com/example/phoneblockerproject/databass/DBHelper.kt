@@ -105,7 +105,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
 
     fun gethistory(status: String): Cursor?{
         val db = this.readableDatabase
-        return db.rawQuery("SELECT * FROM "+TABLE_BLOCKEHISTORY+" WHERE "+BLOCKHISTORY_status+" ="+status, null)
+        return db.rawQuery("SELECT * FROM "+TABLE_BLOCKEHISTORY+" WHERE "+BLOCKHISTORY_status+" ="+status +" ORDER BY "+ BLOCKHISTORY_ID +" DESC" , null)
     }
 
 

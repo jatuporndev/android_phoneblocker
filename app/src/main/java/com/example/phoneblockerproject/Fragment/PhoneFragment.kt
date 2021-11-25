@@ -1,4 +1,4 @@
-package com.example.phoneblockerproject
+package com.example.phoneblockerproject.Fragment
 
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
@@ -22,10 +22,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
 import java.lang.Long
 import java.text.SimpleDateFormat
-import java.time.Duration
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -138,7 +138,7 @@ class PhoneFragment : Fragment() {
             RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view: View = LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_phone,
+                R.layout.item_phone,
                     parent, false
             )
             return ViewHolder(view)
@@ -341,7 +341,7 @@ class PhoneFragment : Fragment() {
             RecyclerView.Adapter<DataAdapter2.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view: View = LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_contact,
+                R.layout.item_contact,
                     parent, false
             )
             return ViewHolder(view)

@@ -1,20 +1,16 @@
-package com.example.phoneblockerproject
+package com.example.phoneblockerproject.Fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.example.phoneblockerproject.Detector.CallReciver
+import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -32,6 +28,7 @@ class HistoryPhoneFragment : Fragment() {
         allHistory()
         imgbackc = root.findViewById(R.id.imgbackc)
         imgbackc?.setOnClickListener {
+
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.nav_host_fragment, HistoryFragment())
             fragmentTransaction.addToBackStack(null)
@@ -53,14 +50,13 @@ class HistoryPhoneFragment : Fragment() {
             RecyclerView.Adapter<DataAdapter.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view: View = LayoutInflater.from(parent.context).inflate(
-                    R.layout.item_blockphone,
+                R.layout.item_blockphone,
                     parent, false
             )
             return ViewHolder(view)
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Log.d("txt", "x3")
             val data = list[position]
             holder.data = data
             holder.txtname.text = data.name
