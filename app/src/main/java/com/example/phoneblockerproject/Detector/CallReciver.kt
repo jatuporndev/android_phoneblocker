@@ -6,26 +6,28 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.AudioManager
 import android.os.Build
 import android.telecom.TelecomManager
 import android.telephony.TelephonyManager
 import android.util.Log
-import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
-import com.example.phoneblockerproject.MyService
-import com.example.phoneblockerproject.PhoneFragment
 import com.example.phoneblockerproject.databass.DBHelper
 
+@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class CallReciver : BroadcastReceiver() {
     val data = ArrayList<Data>()
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
     override fun onReceive(context: Context?, intent: Intent?) {
 
         allPhone(context)
+        callblocker(context,intent)
 
+    }
+
+
+    fun callblocker(context: Context?, intent: Intent?){
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
             if (data.any { it.phoneNumber == incomingNumber }) {
@@ -40,13 +42,17 @@ class CallReciver : BroadcastReceiver() {
                         return
                     }
                     telecomManager.endCall()
+
                 }
 
             }
         }
     }
 
-    class Data(var id: String,  var name: String,  var phoneNumber: String)
+
+
+
+    class Data(var id: String, var name: String, var phoneNumber: String)
     @SuppressLint("Range")
     fun allPhone(context: Context?){
         data.clear()
@@ -56,8 +62,9 @@ class CallReciver : BroadcastReceiver() {
             data.add(Data(cur.getString(0), cur.getString(1), cur.getString(2)))
 
         }
-
     }
+
+
 
     }
 

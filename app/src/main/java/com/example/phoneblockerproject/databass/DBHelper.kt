@@ -67,4 +67,15 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         }
     }
 
+    fun getBlocknumber():ArrayList<String>{
+        val db = this.readableDatabase
+        var phone = ArrayList<String>()
+        var i = db.rawQuery("SELECT * FROM "+TABLE_PHONEBLOCKER, null)
+            while (i.moveToNext()){
+                phone.add(i.getString(2))
+            }
+        return  phone
+    }
+
+
 }

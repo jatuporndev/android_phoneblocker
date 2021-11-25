@@ -13,8 +13,6 @@
         android:background="@drawable/screen_3"
         >
 
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
@@ -164,7 +162,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Message Blocking"
+                    android:text="WIFI Blocking"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -178,7 +176,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="110dp"
-                    android:text="บล็อกเมล์"
+                    android:text="บล็อกไวไฟ"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -236,19 +234,18 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/email"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/wifi"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
                 app:layout_constraintTop_toBottomOf="@+id/conphone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/imgsettings"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="45dp"
