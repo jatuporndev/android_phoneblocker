@@ -23,18 +23,18 @@ import kotlin.collections.ArrayList
 
 
 class HistoryFragment : Fragment() {
-    var data = ArrayList<Data>()
+    private var data = ArrayList<Data>()
     var phoneblock = ArrayList<String>()
     var recyclerView: RecyclerView? = null
-    var btnhisphone:Button?=null
-    var btnhismessage:Button?=null
+    private var btnhisphone:Button?=null
+    private var btnhismessage:Button?=null
     //popupmenu
     var conDelete:ConstraintLayout?=null
     var conBlock:ConstraintLayout?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var root =  inflater.inflate(R.layout.fragment_history, container, false)
+        val root =  inflater.inflate(R.layout.fragment_history, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)
         btnhisphone = root.findViewById(R.id.btnhisphone)
         btnhisphone?.setOnClickListener{
@@ -60,7 +60,7 @@ class HistoryFragment : Fragment() {
         return root
     }
 
-    fun getdata(){
+    private fun getdata(){
         data.clear()
         data = getCalllog()
         recyclerView!!.adapter = DataAdapter(data)
@@ -86,7 +86,7 @@ class HistoryFragment : Fragment() {
             holder.txtname2.text = data.name
             holder.txtphone2.text = data.number
             holder.txtdate.text = data.date
-            holder.conmenu.setOnLongClickListener() {
+            holder.conmenu.setOnLongClickListener {
                 showCustomDialog()
                 conDelete?.setOnClickListener {
                     DeleteCallById(data.id,data.number)
@@ -136,7 +136,7 @@ class HistoryFragment : Fragment() {
 
     private lateinit var alertDialog: AlertDialog
     fun showCustomDialog() {
-        val inflater: LayoutInflater = this.getLayoutInflater()
+        val inflater: LayoutInflater = this.layoutInflater
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         conDelete=dialogView.findViewById(R.id.constraintdelete)
         var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
@@ -163,7 +163,7 @@ class HistoryFragment : Fragment() {
         val type: Int = cursor.getColumnIndex(CallLog.Calls.TYPE)
         val date: Int = cursor.getColumnIndex(CallLog.Calls.DATE)
         val duration: Int = cursor.getColumnIndex(CallLog.Calls.DURATION)
-        val Name: Int = cursor.getColumnIndex(CallLog.Calls.CACHED_NAME)
+        val name: Int = cursor.getColumnIndex(CallLog.Calls.CACHED_NAME)
         val id: Int = cursor.getColumnIndex(CallLog.Calls._ID)
         var i=0
 
@@ -174,9 +174,9 @@ class HistoryFragment : Fragment() {
             val callid: String = cursor.getString(id)
             val callDayTime = Date(Long.valueOf(callDate))
             val dateFormated = SimpleDateFormat("dd/MM/yyyy HH:mm").format(callDayTime)
-            var name :String="ไม่มีชื่อ"
-            if (cursor.getString(Name)!=null){
-                name  = cursor.getString(Name)
+            var name1 :String="ไม่มีชื่อ"
+            if (cursor.getString(name)!=null){
+                name1  = cursor.getString(name)
             }
             val callDuration: String = cursor.getString(duration)
             var second = callDuration.toLong()
@@ -189,15 +189,14 @@ class HistoryFragment : Fragment() {
                 fomat = minutes.toString()+ "นาที "+seconds.toString()+" วินาที"
             }
             var dir: String? = null
-            val dircode = callType.toInt()
-            when (dircode) {
+            when (callType.toInt()) {
                 CallLog.Calls.OUTGOING_TYPE -> dir = "OUTGOING"
                 CallLog.Calls.INCOMING_TYPE -> dir = "INCOMING"
                 CallLog.Calls.MISSED_TYPE -> dir = "MISSED"
             }
             if (i==100){break}
 
-            call.add(Data(callid,phNumber, dir.toString(), dateFormated.toString(), fomat, name))
+            call.add(Data(callid,phNumber, dir.toString(), dateFormated.toString(), fomat, name1))
             i++
 
         }
@@ -212,7 +211,7 @@ class HistoryFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setMessage("ต้องการที่จะบล็อกเบอร์ $phone หรือไม่?")
             .setCancelable(false)
-            .setPositiveButton("ใช่") { dialog, id ->
+            .setPositiveButton("ใช่") { _, _ ->
                 val db = DBHelper(requireContext())
                 db.addPhone(name,phone)
                 Toast.makeText(context, "สำเร็จ", Toast.LENGTH_LONG).show()
@@ -220,7 +219,7 @@ class HistoryFragment : Fragment() {
                 phoneblock = db.getBlocknumber()
                 getdata()
             }
-            .setNegativeButton("ยกเลิก") { dialog, id ->
+            .setNegativeButton("ยกเลิก") { dialog, _ ->
                 dialog.dismiss()
             }
         val alert = builder.create()
@@ -231,7 +230,7 @@ class HistoryFragment : Fragment() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setMessage("ต้องการจะลบบันทึกเบอร์ $phone หรือไม่?")
                 .setCancelable(false)
-                .setPositiveButton("ใช่") { dialog, id ->
+                .setPositiveButton("ใช่") { _, _ ->
                     // Delete selected note from database
                     requireContext().contentResolver.delete(CallLog.Calls.CONTENT_URI, CallLog.Calls._ID + " = ? ", arrayOf(idd))
                     Toast.makeText(context, "สำเร็จ", Toast.LENGTH_LONG).show()
