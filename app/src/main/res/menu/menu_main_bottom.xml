@@ -10,8 +10,12 @@
             android:title="หน้าแรก" />
         <item
             android:id="@+id/nav_his"
-            android:icon="@drawable/ic_baseline_history_24"
-            android:title="ประวัติ" />
+            android:icon="@drawable/ic_baseline_settings_phone_24"
+            android:title="ประวัติการโทร" />
+        <item
+            android:id="@+id/nav_sms"
+            android:icon="@drawable/ic_baseline_sms_24"
+            android:title="ประวัติข้อความ" />
     </group>
 
 </menu>

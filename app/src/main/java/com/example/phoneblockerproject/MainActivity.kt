@@ -3,12 +3,11 @@ package com.example.phoneblockerproject
 import android.Manifest
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -16,17 +15,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.phoneblockerproject.Fragment.HistoryFragment
+import com.example.phoneblockerproject.Fragment.HomeFragment
+import com.example.phoneblockerproject.Fragment.SMSFragment
+import com.example.phoneblockerproject.Fragment.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     var REQUEST_PERMISSION = 255
+    companion object {
+         var data = ArrayList<Data>()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Permission()
         permission_fn();
-
         setTransparentStatusBar()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
@@ -39,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 when (it.itemId) {
                     R.id.nav_home -> fm = HomeFragment()
                     R.id.nav_his -> fm = HistoryFragment()
+                    R.id.nav_sms ->fm= SMSFragment()
 
                 }
                 //this.supportActionBar!!.title = "Home"
@@ -65,14 +71,16 @@ class MainActivity : AppCompatActivity() {
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.SYSTEM_ALERT_WINDOW) != PackageManager.PERMISSION_GRANTED||
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.ANSWER_PHONE_CALLS) != PackageManager.PERMISSION_GRANTED||
         ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_CALL_LOG) != PackageManager.PERMISSION_GRANTED||
-            ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
+            ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED||
+                ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
         ) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_PHONE_STATE)&&
                 ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CALL_LOG)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SYSTEM_ALERT_WINDOW)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ANSWER_PHONE_CALLS)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_CALL_LOG)&&
-                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)
+                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)&&
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_SMS)
             ) {
 
         } else {
@@ -82,7 +90,8 @@ class MainActivity : AppCompatActivity() {
                     android.Manifest.permission.READ_CALL_LOG,
                     android.Manifest.permission.ANSWER_PHONE_CALLS,
                     android.Manifest.permission.WRITE_CALL_LOG,
-                    android.Manifest.permission.READ_CONTACTS
+                    android.Manifest.permission.READ_CONTACTS,
+                    android.Manifest.permission.READ_SMS
                 ), REQUEST_PERMISSION
             )
         }
@@ -110,14 +119,18 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-
             }
 
         }
     }
 
+    class Data(var id:String,var name:String,var phone:String)
+    fun dataServer(){
+      val sf = SettingsFragment()
+      val  data =  sf.dataServer()
 
 
+    }
 
 
 }

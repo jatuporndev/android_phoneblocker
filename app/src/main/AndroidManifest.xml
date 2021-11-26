@@ -12,9 +12,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  />
     <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
@@ -37,7 +37,8 @@
 
         <activity android:name=".SplashScreenActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar">
+            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

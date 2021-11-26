@@ -14,24 +14,27 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import com.example.phoneblockerproject.databass.DBHelper
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class CallReciver : BroadcastReceiver() {
     val data = ArrayList<Data>()
 
     override fun onReceive(context: Context?, intent: Intent?) {
-
+        //abortBroadcast();
         allPhone(context)
         callblocker(context,intent)
 
     }
 
-
     fun callblocker(context: Context?, intent: Intent?){
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
             if (data.any { it.phoneNumber == incomingNumber }) {
-                Log.d("calling1", incomingNumber!!)
+
+
                 val telecomManager = context!!.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -41,15 +44,21 @@ class CallReciver : BroadcastReceiver() {
                             ) != PackageManager.PERMISSION_GRANTED) {
                         return
                     }
-                    telecomManager.endCall()
+                    telecomManager.endCall()//ตัดสาย
+                    addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber!!,context)
+
+                    Log.d("calling1", incomingNumber!!)//เบอร์
+                   if((data.find { it.phoneNumber == incomingNumber }?.name!!)!=null){
+
+                   }
+
+                    Log.d("calling1", (data.find { it.phoneNumber == incomingNumber}?.name!!))//ชื่อ
 
                 }
 
             }
         }
     }
-
-
 
 
     class Data(var id: String, var name: String, var phoneNumber: String)
@@ -62,6 +71,16 @@ class CallReciver : BroadcastReceiver() {
             data.add(Data(cur.getString(0), cur.getString(1), cur.getString(2)))
 
         }
+    }
+    @SuppressLint("SimpleDateFormat")
+    fun addhistoryphone(name: String, phoneNumber: String, context: Context?){
+        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
+        val currentDate = sdf.format(Date())
+        Log.d("Testt",currentDate)
+        val db= DBHelper(context!!)
+        db.addhistory(name,phoneNumber,currentDate.toString(),"0")
+
+
     }
 
 

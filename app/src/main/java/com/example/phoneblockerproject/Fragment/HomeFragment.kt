@@ -1,4 +1,4 @@
-package com.example.phoneblockerproject
+package com.example.phoneblockerproject.Fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.phoneblockerproject.R
 
 
 class HomeFragment : Fragment() {
     var conphone:ConstraintLayout?=null
+    var conmessage:ConstraintLayout?=null
     var imgsettings:ImageView?=null
 
     override fun onCreateView(
@@ -34,6 +36,14 @@ class HomeFragment : Fragment() {
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.nav_host_fragment, PhoneFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+        conmessage = root.findViewById(R.id.conmessage)
+        conmessage?.setOnClickListener{
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, BlockerMessageFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
