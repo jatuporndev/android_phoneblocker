@@ -33,7 +33,8 @@ class CallReciver : BroadcastReceiver() {
         if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE)!! == TelephonyManager.EXTRA_STATE_RINGING) {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
             if (data.any { it.phoneNumber == incomingNumber }) {
-                Log.d("calling1", incomingNumber!!)
+
+
                 val telecomManager = context!!.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -43,8 +44,10 @@ class CallReciver : BroadcastReceiver() {
                             ) != PackageManager.PERMISSION_GRANTED) {
                         return
                     }
-                    telecomManager.endCall()
-                    addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber,context)
+                    telecomManager.endCall()//ตัดสาย
+                    addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber!!,context)
+                    Log.d("calling1", incomingNumber!!)//เบอร์
+                    Log.d("calling1", (data.find { it.phoneNumber == incomingNumber}?.name!!))//ชื่อ
 
                 }
 

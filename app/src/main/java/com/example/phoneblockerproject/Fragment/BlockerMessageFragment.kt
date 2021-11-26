@@ -15,6 +15,7 @@ class BlockerMessageFragment : Fragment() {
     var data = ArrayList<Data>()
     var recyclerView: RecyclerView? = null
     var imgback: ImageView? = null
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment

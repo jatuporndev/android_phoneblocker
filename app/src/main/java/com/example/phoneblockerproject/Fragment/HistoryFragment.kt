@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
 import java.lang.Long
@@ -25,6 +26,7 @@ import kotlin.collections.ArrayList
 class HistoryFragment : Fragment() {
     private var data = ArrayList<Data>()
     var phoneblock = ArrayList<String>()
+    private var dataServer = ArrayList<Data>()
     var recyclerView: RecyclerView? = null
     private var btnhisphone:Button?=null
     private var btnhismessage:Button?=null
@@ -53,6 +55,10 @@ class HistoryFragment : Fragment() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
+
+        var a =MainActivity.data
+
+
 
         val db = DBHelper(requireContext())
         phoneblock = db.getBlocknumber()
@@ -237,6 +243,7 @@ class HistoryFragment : Fragment() {
                     getdata()
                 }
                 .setNegativeButton("ยกเลิก") { dialog, id ->
+
                     dialog.dismiss()
                 }
         val alert = builder.create()

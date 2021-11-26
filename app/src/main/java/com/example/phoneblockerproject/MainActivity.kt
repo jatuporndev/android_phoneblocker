@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -17,17 +18,20 @@ import androidx.fragment.app.Fragment
 import com.example.phoneblockerproject.Fragment.HistoryFragment
 import com.example.phoneblockerproject.Fragment.HomeFragment
 import com.example.phoneblockerproject.Fragment.SMSFragment
+import com.example.phoneblockerproject.Fragment.SettingsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     var REQUEST_PERMISSION = 255
+    companion object {
+         var data = ArrayList<Data>()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //Permission()
         permission_fn();
-
         setTransparentStatusBar()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
@@ -115,14 +119,18 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-
             }
 
         }
     }
 
+    class Data(var id:String,var name:String,var phone:String)
+    fun dataServer(){
+      val sf = SettingsFragment()
+      val  data =  sf.dataServer()
 
 
+    }
 
 
 }
