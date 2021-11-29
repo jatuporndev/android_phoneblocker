@@ -29,7 +29,7 @@ class HistoryFragment : Fragment() {
     var serverData = ArrayList<MainActivity.Data>()
     var recyclerView: RecyclerView? = null
     private var btnhisphone:Button?=null
-    private var btnhismessage:Button?=null
+
     //popupmenu
     var conDelete:ConstraintLayout?=null
     var conBlock:ConstraintLayout?=null
@@ -43,15 +43,6 @@ class HistoryFragment : Fragment() {
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.nav_host_fragment, HistoryPhoneFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        }
-
-        btnhismessage = root.findViewById(R.id.btnhismessage)
-        btnhismessage?.setOnClickListener{
-            val fragmentTransaction = requireActivity().
-            supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, HistoryMessageFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
