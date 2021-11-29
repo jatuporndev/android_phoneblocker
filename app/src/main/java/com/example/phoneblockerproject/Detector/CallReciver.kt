@@ -80,7 +80,6 @@ class CallReciver : BroadcastReceiver() {
         val db= DBHelper(context!!)
         db.addhistory(name,phoneNumber,currentDate.toString(),"0")
 
-
     }
 
 
