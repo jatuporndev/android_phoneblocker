@@ -169,7 +169,7 @@ class PhoneFragment : Fragment() {
 
             var data: Data? = null
             var con:ConstraintLayout = itemView.findViewById(R.id.conme)
-            var txtname: TextView = itemView.findViewById(R.id.txtname1)
+            var txtname: TextView = itemView.findViewById(R.id.txtname)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
             var delete:ImageButton = itemView.findViewById(R.id.deleteimgbuttom)
 
