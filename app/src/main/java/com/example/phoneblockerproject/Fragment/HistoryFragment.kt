@@ -26,7 +26,7 @@ import kotlin.collections.ArrayList
 class HistoryFragment : Fragment() {
     private var data = ArrayList<Data>()
     var phoneblock = ArrayList<String>()
-    private var dataServer = ArrayList<Data>()
+    var serverData = ArrayList<MainActivity.Data>()
     var recyclerView: RecyclerView? = null
     private var btnhisphone:Button?=null
     private var btnhismessage:Button?=null
@@ -56,14 +56,11 @@ class HistoryFragment : Fragment() {
             fragmentTransaction.commit()
         }
 
-        var serverData =MainActivity.data
-        serverData.forEach {
-          //  Log.d("Mainactivity",it.id+it.name+it.phone)
-        }
 
 
 
 
+        serverData = MainActivity.data
         val db = DBHelper(requireContext())
         phoneblock = db.getBlocknumber()
         getdata()
@@ -90,10 +87,16 @@ class HistoryFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Log.d("txt", "x3")
             val data = list[position]
             holder.data = data
             holder.txtname2.text = data.name
+
+            if (serverData.any{it.phone == data.number}){
+                if (data.number != "ไม่มีชื่อ"){
+                    holder.txtname2.text = serverData.find { it.phone == data.number }!!.name
+                }
+            }
+
             holder.txtphone2.text = data.number
             holder.txtdate.text = data.date
             holder.conmenu.setOnLongClickListener {
