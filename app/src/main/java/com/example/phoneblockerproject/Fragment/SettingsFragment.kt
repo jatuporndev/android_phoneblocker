@@ -50,7 +50,6 @@ class SettingsFragment : Fragment() {
     }
 
 
-
     private fun addDataServer() {
         val db = DBHelper(requireContext())
         val url: String = getString(R.string.root_url) + getString(R.string.getphone_url)

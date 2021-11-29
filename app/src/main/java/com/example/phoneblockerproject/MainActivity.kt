@@ -141,7 +141,6 @@ class MainActivity : AppCompatActivity() {
             val name = datasql.getString(datasql.getColumnIndex("name"))
             val phone = datasql.getString(datasql.getColumnIndex("phoneNumber"))
             data.add(Data(id,name,phone))
-            Log.d("Mainactivity",id+name+phone)
         }
 
          }
