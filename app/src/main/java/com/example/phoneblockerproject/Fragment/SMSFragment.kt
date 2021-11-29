@@ -16,9 +16,14 @@ import kotlin.collections.ArrayList
 import android.provider.Telephony.Sms
 
 import android.content.ContentResolver
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.phoneblockerproject.databass.DBHelper
 
 class SMSFragment : Fragment() {
     var data = ArrayList<Data>()
@@ -60,6 +65,10 @@ class SMSFragment : Fragment() {
             holder.txtdate.text = data.date
             holder.txtmessage.text = data.message
 
+            holder.consms.setOnLongClickListener() {
+                Dialogmenu(data.thread_id,data.phonenember)
+                return@setOnLongClickListener true
+            }
         }
 //
 
@@ -75,8 +84,7 @@ class SMSFragment : Fragment() {
             var txtphone: TextView = itemView.findViewById(R.id.txtphonesms)
             var txtmessage: TextView = itemView.findViewById(R.id.txtmassms)
             var txtdate: TextView = itemView.findViewById(R.id.txtdatesms)
-
-
+            var consms: ConstraintLayout = itemView.findViewById(R.id.consms)
         }
     }
 
@@ -99,5 +107,33 @@ class SMSFragment : Fragment() {
 
         c.close()
         return lstSms
+    }
+
+    private lateinit var alertDialomenug: AlertDialog
+    fun Dialogmenu(thread_id:String,address:String) {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
+        var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
+        var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
+        var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
+
+        conGolist.setOnClickListener {
+            val db = DBHelper(requireContext())
+            db.addsms(thread_id,address)
+            Log.d("addsms","sms1")
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, BlockerMessageFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+            alertDialomenug.dismiss()
+        }
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialomenug = dialogBuilder.create();
+        alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug.show()
     }
 }
