@@ -27,13 +27,12 @@ class BlockerMessageFragment : Fragment() {
     var editTextPhone :EditText?=null
     var editTextName:EditText?=null
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_blocker_message, container, false)
-        data.add((Data("1", "man", "0957739456", "ดีจ้า", "25/11/2564")))
         recyclerView = root.findViewById(R.id.recyclerView)
-        recyclerView!!.adapter = DataAdapter(data)
 
         imgback = root.findViewById(R.id.imgback)
         imgback?.setOnClickListener{
@@ -47,8 +46,29 @@ class BlockerMessageFragment : Fragment() {
         imgsms?.setOnClickListener{
             showCustomDialog()
         }
+        getdata()
+
+
+
         return root
     }
+
+
+    @SuppressLint("Range")
+    fun getdata(){
+        data.clear()
+        val db=DBHelper(requireContext())
+        val datatest =db.datafromTest()
+        while (datatest.moveToNext()){
+            val name = datatest.getString(datatest.getColumnIndex("name"))
+            val id = datatest.getString(datatest.getColumnIndex("id"))
+            data.add((Data(id , name, "0957739456", "ดีจ้า", "25/11/2564")))
+
+        }
+        recyclerView!!.adapter = DataAdapter(data)
+    }
+
+
 
     class Data(
         var id: String,
@@ -75,6 +95,12 @@ class BlockerMessageFragment : Fragment() {
             holder.txtphone.text = data.phonenember
             holder.txtdate.text = data.date
             holder.txtmessage.text = data.message
+            holder.delete.setOnClickListener {
+                val db = DBHelper(requireContext())
+                db.deleteTest(data.id)
+                getdata()
+
+            }
 
         }
 
@@ -91,6 +117,7 @@ class BlockerMessageFragment : Fragment() {
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
             var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)
             var txtdate: TextView = itemView.findViewById(R.id.txtdate)
+            var delete:Button = itemView.findViewById(R.id.button)
 
         }
     }
@@ -101,7 +128,7 @@ class BlockerMessageFragment : Fragment() {
         val dialogView: View = inflater.inflate(R.layout.popup_add_sms, null)
         editTextPhone = dialogView.findViewById(R.id.editTextPhone)
         editTextName = dialogView.findViewById(R.id.editTextName)
-        var btncancel : Button =dialogView.findViewById(R.id.btnConfirm2)
+        var btnConfirm : Button =dialogView.findViewById(R.id.btnConfirm)
         var imghis : ImageButton =dialogView.findViewById(R.id.imghis)
 
         imghis.setOnClickListener {
@@ -109,11 +136,19 @@ class BlockerMessageFragment : Fragment() {
             showCustomDialogCon()
 
         }
+        //
+        btnConfirm.setOnClickListener {
+            //con
+            //ประกาศทุกครั้งที่จะใช้
+            val db = DBHelper(requireContext())
+            db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
 
-
-        btncancel.setOnClickListener {
-            alertDialog.dismiss()
         }
+
+
+       // btncancel.setOnClickListener {
+         //   alertDialog.dismiss()
+       // }
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         dialogBuilder.setOnDismissListener { }
         dialogBuilder.setView(dialogView)
