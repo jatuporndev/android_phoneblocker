@@ -1,20 +1,31 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.annotation.SuppressLint
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.WindowManager
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.R
+import com.example.phoneblockerproject.databass.DBHelper
 
 class BlockerMessageFragment : Fragment() {
     var data = ArrayList<Data>()
     var recyclerView: RecyclerView? = null
     var imgback: ImageView? = null
+    var imgsms: ImageView?=null
+    //box
+    var editTextPhone :EditText?=null
+    var editTextName:EditText?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -31,6 +42,10 @@ class BlockerMessageFragment : Fragment() {
             fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
+        }
+        imgsms = root.findViewById(R.id.imgsms)
+        imgsms?.setOnClickListener{
+            showCustomDialog()
         }
         return root
     }
@@ -78,5 +93,47 @@ class BlockerMessageFragment : Fragment() {
             var txtdate: TextView = itemView.findViewById(R.id.txtdate)
 
         }
+    }
+
+    private lateinit var alertDialog: AlertDialog
+    fun showCustomDialog() {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_add_sms, null)
+        editTextPhone = dialogView.findViewById(R.id.editTextPhone)
+        editTextName = dialogView.findViewById(R.id.editTextName)
+        var btncancel : Button =dialogView.findViewById(R.id.btnConfirm2)
+        var imghis : ImageButton =dialogView.findViewById(R.id.imghis)
+
+        imghis.setOnClickListener {
+
+            showCustomDialogCon()
+
+        }
+
+
+        btncancel.setOnClickListener {
+            alertDialog.dismiss()
+        }
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialog = dialogBuilder.create();
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.show()
+    }
+
+    var dialogCon: Dialog? =null
+    @SuppressLint("ResourceAsColor")
+    fun showCustomDialogCon() {
+        var view: View = layoutInflater.inflate(R.layout.fragment_history_message, null)
+        var back:ImageView = view.findViewById(R.id.imgbackc)
+        dialogCon = Dialog(requireContext(), android.R.style.ThemeOverlay_DeviceDefault_Accent_DayNight)
+        dialogCon!!.setContentView(view)
+        back?.setOnClickListener {
+            dialogCon!!.dismiss()
+        }
+        dialogCon!!.show()
+
     }
 }
