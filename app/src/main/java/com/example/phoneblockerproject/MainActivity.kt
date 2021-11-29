@@ -1,12 +1,14 @@
 package com.example.phoneblockerproject
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.StrictMode
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -19,6 +21,7 @@ import com.example.phoneblockerproject.Fragment.HistoryFragment
 import com.example.phoneblockerproject.Fragment.HomeFragment
 import com.example.phoneblockerproject.Fragment.SMSFragment
 import com.example.phoneblockerproject.Fragment.SettingsFragment
+import com.example.phoneblockerproject.databass.DBHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -30,7 +33,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //Permission()
+        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+        StrictMode.setThreadPolicy(policy)
+
+        dataServer()
         permission_fn();
         setTransparentStatusBar()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -125,12 +131,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     class Data(var id:String,var name:String,var phone:String)
+    @SuppressLint("Range")
     fun dataServer(){
-      val sf = SettingsFragment()
-      val  data =  sf.dataServer()
+      val db = DBHelper(this)
+       val datasql = db.getAllphonespam()
+        data.clear()
+        while(datasql.moveToNext()){
+            val id = datasql.getString(datasql.getColumnIndex("id"))
+            val name = datasql.getString(datasql.getColumnIndex("name"))
+            val phone = datasql.getString(datasql.getColumnIndex("phoneNumber"))
+            data.add(Data(id,name,phone))
+            Log.d("Mainactivity",id+name+phone)
+        }
 
-
-    }
+         }
 
 
 }

@@ -34,7 +34,6 @@ class CallReciver : BroadcastReceiver() {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
             if (data.any { it.phoneNumber == incomingNumber }) {
 
-
                 val telecomManager = context!!.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -46,7 +45,12 @@ class CallReciver : BroadcastReceiver() {
                     }
                     telecomManager.endCall()//ตัดสาย
                     addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber!!,context)
+
                     Log.d("calling1", incomingNumber!!)//เบอร์
+                   if((data.find { it.phoneNumber == incomingNumber }?.name!!)!=null){
+
+                   }
+
                     Log.d("calling1", (data.find { it.phoneNumber == incomingNumber}?.name!!))//ชื่อ
 
                 }
@@ -67,6 +71,7 @@ class CallReciver : BroadcastReceiver() {
 
         }
     }
+
     @SuppressLint("SimpleDateFormat")
     fun addhistoryphone(name: String, phoneNumber: String, context: Context?){
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
