@@ -61,7 +61,7 @@ class SMSFragment : Fragment() {
             holder.txtmessage.text = data.message
 
         }
-
+//
 
         override fun getItemCount(): Int {
             return list.size
@@ -96,7 +96,6 @@ class SMSFragment : Fragment() {
             Log.d("Mainactivity",address+"||"+thread_id)
             lstSms.add(Data(id,address,body,dateFormated,thread_id ))
         }
-
 
         c.close()
         return lstSms
