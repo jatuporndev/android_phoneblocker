@@ -34,7 +34,6 @@ class CallReciver : BroadcastReceiver() {
             var incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER)
             if (data.any { it.phoneNumber == incomingNumber }) {
 
-
                 val telecomManager = context!!.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -72,6 +71,7 @@ class CallReciver : BroadcastReceiver() {
 
         }
     }
+
     @SuppressLint("SimpleDateFormat")
     fun addhistoryphone(name: String, phoneNumber: String, context: Context?){
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")

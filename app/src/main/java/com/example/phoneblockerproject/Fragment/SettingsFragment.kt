@@ -9,13 +9,21 @@ import android.widget.Button
 import android.widget.ImageView
 import com.example.phoneblockerproject.R
 import android.content.Intent
+import android.util.Log
+import android.widget.Toast
 import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.SplashScreenActivity
+import com.example.phoneblockerproject.databass.DBHelper
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 
 class SettingsFragment : Fragment() {
     var imgbackc:ImageView?=null
-    var data = ArrayList<Data>()
     var btnupdate:Button?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -34,21 +42,48 @@ class SettingsFragment : Fragment() {
         }
 
         btnupdate?.setOnClickListener {
-            val intent = Intent(requireContext(), SplashScreenActivity::class.java)
-            requireActivity().startActivity(intent)
-            requireActivity().finishAffinity()
+            addDataServer()
+
         }
 
         return  root
     }
 
-    class Data(var id:String,var name:String,var phone:String)
-    fun dataServer():ArrayList<Data>{
-        var array = ArrayList<Data>()
-      //  data.add(Data("1","test","name"))
-        return array
-    }
 
+
+    private fun addDataServer() {
+        val db = DBHelper(requireContext())
+        val url: String = getString(R.string.root_url) + getString(R.string.getphone_url)
+        Log.d("Mainactivity",url)
+        val okHttpClient = OkHttpClient()
+        val request: Request = Request.Builder().url(url).get().build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                Log.d("Mainactivity","x1")
+                try {
+                    val res = JSONArray(response.body!!.string())
+                    if (res.length() > 0) {
+                        db.deletePhoneSpamer()
+                        for (i in 0 until res.length()) {
+                            val item: JSONObject = res.getJSONObject(i)
+                            db.addPhoneSpam(item.getString("name"),item.getString("phonenumber"))
+                        }
+
+                        val intent = Intent(requireContext(), SplashScreenActivity::class.java)
+                        requireActivity().startActivity(intent)
+                        requireActivity().finishAffinity()
+                    }
+                } catch (e: JSONException) {
+                    Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: IOException) {
+            Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+        }
+    }
 
 
 }

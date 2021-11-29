@@ -66,7 +66,6 @@ class HistoryPhoneFragment : Fragment() {
 
         }
 
-
         override fun getItemCount(): Int {
             return list.size
         }
@@ -91,4 +90,6 @@ class HistoryPhoneFragment : Fragment() {
         }
         recyclerView!!.adapter = DataAdapter(data)
     }
+
+
 }

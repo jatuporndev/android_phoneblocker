@@ -56,7 +56,11 @@ class HistoryFragment : Fragment() {
             fragmentTransaction.commit()
         }
 
-        var a =MainActivity.data
+        var serverData =MainActivity.data
+        serverData.forEach {
+          //  Log.d("Mainactivity",it.id+it.name+it.phone)
+        }
+
 
 
 
@@ -120,11 +124,9 @@ class HistoryFragment : Fragment() {
 
         }
 
-
         override fun getItemCount(): Int {
             return list.size
         }
-
         internal inner class ViewHolder(itemView: View) :
                 RecyclerView.ViewHolder(itemView) {
 

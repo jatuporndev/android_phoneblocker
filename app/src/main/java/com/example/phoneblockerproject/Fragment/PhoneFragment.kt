@@ -230,6 +230,7 @@ class PhoneFragment : Fragment() {
 
         }
     }
+
     @SuppressLint("Range")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -333,8 +334,6 @@ class PhoneFragment : Fragment() {
         var data = getCalllog()
         recyclerViewConract!!.adapter = DataAdapter2(data)
     }
-
-
 
     class Call(var number: String, var type: String, var date: String, var duration: String, var name: String)
     internal inner class DataAdapter2(private val list: ArrayList<Call>) :
