@@ -260,8 +260,6 @@ class PhoneFragment : Fragment() {
 
     }
 
-
-
     private fun getCalllog():ArrayList<Call> {
         var call= ArrayList<Call>()
         val cursor: Cursor? = requireContext().contentResolver.query(
