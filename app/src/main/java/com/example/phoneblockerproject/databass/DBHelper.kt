@@ -33,6 +33,8 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val BLOCKHISTORY_status = "status" //0 = phone || 1 = sms
     }
 
+
+
     override fun onCreate(db: SQLiteDatabase?) {
         //Table Phone adding
         val CREATE_CONTACTS_TABLE = ("CREATE TABLE " + TABLE_PHONEBLOCKER + "("
@@ -40,15 +42,24 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
                 + PHONEBLOCKER_PHONE + " TEXT" + ")")
         db?.execSQL(CREATE_CONTACTS_TABLE)
 
+        //Table history
         val CREATE_HISTORY_TABLE = ("CREATE TABLE " + TABLE_BLOCKEHISTORY + "("
                 + BLOCKHISTORY_ID + " INTEGER PRIMARY KEY," + BLOCKHISTORY_NAME + " TEXT,"
                 + BLOCKHISTORY_PHONE + " TEXT,"+ BLOCKHISTORY_datetime+" TEXT," + BLOCKHISTORY_status+" TEXT" +")")
         db?.execSQL(CREATE_HISTORY_TABLE)
 
+        //Table data from server
+        val CREATE_PHONESPAM_TABLE = ("CREATE TABLE " + TABLE_PHONESPAMER + "("
+                + PHONESPAMER_ID + " INTEGER PRIMARY KEY," + PHONESPAMER_NAME + " TEXT,"
+                + PHONESPAMER_PHONE + " TEXT" + ")")
+        db?.execSQL(CREATE_PHONESPAM_TABLE)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONEBLOCKER)
+        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOCKEHISTORY)
+        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONESPAMER)
         onCreate(db)
     }
 
@@ -92,7 +103,6 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
     //historyphone
     fun addhistory(name: String,phone:String,date:String,status:String){
         val values = ContentValues()
-
         values.put(BLOCKHISTORY_NAME, name)
         values.put(BLOCKHISTORY_PHONE, phone)
         values.put(BLOCKHISTORY_datetime, date)
@@ -108,5 +118,28 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         return db.rawQuery("SELECT * FROM "+TABLE_BLOCKEHISTORY+" WHERE "+BLOCKHISTORY_status+" ="+status +" ORDER BY "+ BLOCKHISTORY_ID +" DESC" , null)
     }
 
+
+    //phonespamer data from server
+    fun getAllphonespam():Cursor{
+        val db= this.readableDatabase
+        var sql ="SELECT * FROM "+TABLE_PHONESPAMER
+        return  db.rawQuery(sql,null)
+    }
+
+    fun addPhoneSpam(name:String,phone:String){
+
+        val values = ContentValues()
+        val db = this.writableDatabase
+        values.put(PHONESPAMER_NAME,name)
+        values.put(PHONESPAMER_PHONE,phone)
+
+        db.insert(TABLE_PHONESPAMER, null, values)
+        db.close()
+    }
+
+    fun deletePhoneSpamer(){
+        val db = this.writableDatabase
+        db.execSQL("delete from "+ TABLE_PHONESPAMER )
+    }
 
 }
