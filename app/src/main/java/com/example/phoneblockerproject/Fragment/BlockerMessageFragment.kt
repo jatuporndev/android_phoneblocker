@@ -72,7 +72,7 @@ class BlockerMessageFragment : Fragment() {
             RecyclerView.ViewHolder(itemView) {
 
             var data: Data? = null
-            var txtname: TextView = itemView.findViewById(R.id.txtname)
+            var txtname: TextView = itemView.findViewById(R.id.txtname1)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
             var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)
             var txtdate: TextView = itemView.findViewById(R.id.txtdate)
