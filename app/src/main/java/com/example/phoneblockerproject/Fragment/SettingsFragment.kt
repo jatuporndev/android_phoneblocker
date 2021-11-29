@@ -15,6 +15,8 @@ import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.SplashScreenActivity
 import com.example.phoneblockerproject.databass.DBHelper
 import org.json.JSONArray
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
