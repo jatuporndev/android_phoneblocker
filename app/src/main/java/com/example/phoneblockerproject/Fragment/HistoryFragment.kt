@@ -50,7 +50,6 @@ class HistoryFragment : Fragment() {
 
 
 
-
         serverData = MainActivity.data
         val db = DBHelper(requireContext())
         phoneblock = db.getBlocknumber()

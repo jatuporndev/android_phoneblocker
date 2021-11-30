@@ -2,10 +2,7 @@ package com.example.phoneblockerproject.Detector
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.TaskStackBuilder
+import android.app.*
 import android.app.TaskStackBuilder.create
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -29,10 +26,15 @@ import androidx.core.content.ContextCompat.getSystemService
 import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
+import com.google.android.material.internal.ContextUtils.getActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import com.tapadoo.alerter.Alerter
+
+
+
+
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class CallReciver : BroadcastReceiver() {
@@ -41,6 +43,7 @@ class CallReciver : BroadcastReceiver() {
     val CHANNEL_ID = "channelID"
     val CHANNEL_NAME = "channelName"
     val NOTIFICATION_ID = 0
+    var ma: MainActivity? = null
 
 
     override fun onReceive(context: Context?, intent: Intent?) {
@@ -71,13 +74,10 @@ class CallReciver : BroadcastReceiver() {
                     addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber!!,context)
 
                     Log.d("calling1", incomingNumber!!)//เบอร์
-                   if((data.find { it.phoneNumber == incomingNumber }?.name!!)!=null){
-
-                   }
-
+                    noti(context,intent,incomingNumber,data.find { it.phoneNumber == incomingNumber}?.name!!)
                     Log.d("calling1", (data.find { it.phoneNumber == incomingNumber}?.name!!))//ชื่อ
                     createNotificationChannel(context)
-                    noti(context,intent)
+
                 }
 
             }
@@ -105,13 +105,13 @@ class CallReciver : BroadcastReceiver() {
         val db= DBHelper(context!!)
         db.addhistory(name,phoneNumber,currentDate.toString(),"0")
 
-
     }
 
 
-    fun noti(context: Context?, intent: Intent?){
+    @SuppressLint("RestrictedApi")
+    fun noti(context: Context?, intent: Intent?,phoneNumber: String,name: String){
 
-        val intent = Intent(context, CallReciver::class.java)
+        val intent = Intent(context, MainActivity::class.java)
         val pendingIntent = TaskStackBuilder.create(context).run {
             addNextIntentWithParentStack(intent)
             getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
@@ -119,27 +119,16 @@ class CallReciver : BroadcastReceiver() {
 
         val notification = NotificationCompat.Builder(context!!, CHANNEL_ID)
             .setContentTitle("บล็อกเบอร์")
-            .setContentText("คุณได้ทำการบล็อกเบอร์นี้แล้ว")
+            .setContentText("คุณได้ทำการบล็อกเบอร์ $phoneNumber($name) แล้ว")
             .setSmallIcon(R.drawable.ic_baseline_notification_important_24)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setContentIntent(pendingIntent)
             .build()
 
+
         val notificationManager = NotificationManagerCompat.from(context)
-
         //Code แจ้งเตือนด้านหน้า
-
         notificationManager.notify(NOTIFICATION_ID, notification)
-        Alerter.create(null)
-            .setTitle("บล็อกเบอร์")
-            .setText("คุณได้ทำการบล็อกเบอร์นี้แล้ว")
-            .setIcon(R.drawable.ic_baseline_notification_important_24)
-            //.setBackgroundColorInt(R.color.colorAccent)
-            .setDuration(4000)
-            // .setOnClickListener(View.OnClickListener {
-            //  Toast.makeText(applicationContext, "บล็อกแล้ว", Toast.LENGTH_SHORT).show()
-            // })
-            .show()
+
 
     }
     fun createNotificationChannel(context: Context?) {
