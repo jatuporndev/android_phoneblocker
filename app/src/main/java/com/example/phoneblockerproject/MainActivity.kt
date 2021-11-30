@@ -23,6 +23,7 @@ import com.example.phoneblockerproject.Fragment.SMSFragment
 import com.example.phoneblockerproject.Fragment.SettingsFragment
 import com.example.phoneblockerproject.databass.DBHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.tapadoo.alerter.Alerter
 
 
 class MainActivity : AppCompatActivity() {
@@ -145,5 +146,17 @@ class MainActivity : AppCompatActivity() {
 
          }
 
+    fun ma(){
+        Alerter.create(this)
+            .setTitle("บล็อกเบอร์")
+            .setText("คุณได้ทำการบล็อกเบอร์นี้แล้ว")
+            .setIcon(R.drawable.ic_baseline_notification_important_24)
+            //.setBackgroundColorInt(R.color.colorAccent)
+            .setDuration(4000)
+            // .setOnClickListener(View.OnClickListener {
+            //  Toast.makeText(applicationContext, "บล็อกแล้ว", Toast.LENGTH_SHORT).show()
+            // })
+            .show()
+    }
 
 }
