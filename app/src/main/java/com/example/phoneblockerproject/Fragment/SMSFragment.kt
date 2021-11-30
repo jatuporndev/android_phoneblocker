@@ -66,7 +66,7 @@ class SMSFragment : Fragment() {
             holder.txtmessage.text = data.message
 
             holder.consms.setOnLongClickListener() {
-                Dialogmenu(data.thread_id,data.phonenember)
+                Dialogmenu(data.thread_id,data.phonenember,data.message)
                 return@setOnLongClickListener true
             }
         }
@@ -110,7 +110,7 @@ class SMSFragment : Fragment() {
     }
 
     private lateinit var alertDialomenug: AlertDialog
-    fun Dialogmenu(thread_id:String,address:String) {
+    fun Dialogmenu(thread_id:String,address:String,body:String) {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
@@ -119,7 +119,7 @@ class SMSFragment : Fragment() {
 
         conGolist.setOnClickListener {
             val db = DBHelper(requireContext())
-            db.addsms(thread_id,address)
+            db.addsms(thread_id,address,body)
             Log.d("addsms","sms1")
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
