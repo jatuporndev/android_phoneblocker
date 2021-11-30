@@ -54,7 +54,7 @@ class BlockerMessageFragment : Fragment() {
     }
 
 
-    @SuppressLint("Range")
+    /*@SuppressLint("Range")
     fun getdata(){
         data.clear()
         val db=DBHelper(requireContext())
@@ -66,7 +66,22 @@ class BlockerMessageFragment : Fragment() {
 
         }
         recyclerView!!.adapter = DataAdapter(data)
-    }
+    }*/
+
+    @SuppressLint("Range")
+   fun getdata(){
+       data.clear()
+       val db=DBHelper(requireContext())
+       val datasms =db.selectsms()
+       while (datasms.moveToNext()){
+           val id = datasms.getString(datasms.getColumnIndex("id"))
+           val thread_id = datasms.getString(datasms.getColumnIndex("thread_id"))
+           val address = datasms.getString(datasms.getColumnIndex("address"))
+           data.add((Data(id,thread_id,address)))
+
+       }
+       recyclerView!!.adapter = DataAdapter(data)
+   }
 
 
 
@@ -74,8 +89,8 @@ class BlockerMessageFragment : Fragment() {
         var id: String,
         var name: String,
         var phonenember: String,
-        var message: String,
-        var date: String
+        //var message: String,
+        //var date: String
     )
     internal inner class DataAdapter(private val list: List<Data>) :
         RecyclerView.Adapter<DataAdapter.ViewHolder>() {
@@ -93,11 +108,11 @@ class BlockerMessageFragment : Fragment() {
             holder.data = data
             holder.txtname.text = data.name
             holder.txtphone.text = data.phonenember
-            holder.txtdate.text = data.date
-            holder.txtmessage.text = data.message
+           // holder.txtdate.text = data.date
+           // holder.txtmessage.text = data.message
             holder.delete.setOnClickListener {
                 val db = DBHelper(requireContext())
-                db.deleteTest(data.id)
+                db.deletesmsblock(data.id)
                 getdata()
 
             }
@@ -115,8 +130,8 @@ class BlockerMessageFragment : Fragment() {
             var data: Data? = null
             var txtname: TextView = itemView.findViewById(R.id.txtname)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
-            var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)
-            var txtdate: TextView = itemView.findViewById(R.id.txtdate)
+           // var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)
+            //var txtdate: TextView = itemView.findViewById(R.id.txtdate)
             var delete:Button = itemView.findViewById(R.id.button)
 
         }
