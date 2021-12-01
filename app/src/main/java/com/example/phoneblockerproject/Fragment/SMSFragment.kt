@@ -1,8 +1,6 @@
 package com.example.phoneblockerproject.Fragment
 
-import android.database.Cursor
 import android.os.Bundle
-import android.provider.CallLog
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,6 @@ import java.lang.Long
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import android.provider.Telephony.Sms
 
 import android.content.ContentResolver
 import android.graphics.Color
@@ -114,7 +111,7 @@ class SMSFragment : Fragment() {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
-        var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
+        var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
 
         conGolist.setOnClickListener {
@@ -128,6 +125,12 @@ class SMSFragment : Fragment() {
             fragmentTransaction.commit()
             alertDialomenug.dismiss()
         }
+        conReport.setOnClickListener{
+            Dialogreport()
+
+        }
+
+
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         dialogBuilder.setOnDismissListener { }
         dialogBuilder.setView(dialogView)
@@ -135,5 +138,19 @@ class SMSFragment : Fragment() {
         alertDialomenug = dialogBuilder.create();
         alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialomenug.show()
+    }
+
+    private lateinit var alertDialomenug2: AlertDialog
+    fun Dialogreport() {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_report_sms, null)
+
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialomenug2 = dialogBuilder.create();
+        alertDialomenug2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug2.show()
     }
 }

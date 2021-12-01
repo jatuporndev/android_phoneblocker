@@ -386,7 +386,7 @@ class PhoneFragment : Fragment() {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
-        var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
+        var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
 
         conGolist.visibility=View.GONE

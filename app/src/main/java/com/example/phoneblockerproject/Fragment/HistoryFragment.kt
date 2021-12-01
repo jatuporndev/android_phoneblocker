@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.CallLog
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -140,7 +139,7 @@ class HistoryFragment : Fragment() {
         val inflater: LayoutInflater = this.layoutInflater
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         conDelete=dialogView.findViewById(R.id.constraintdelete)
-        var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
+        var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         conBlock=dialogView.findViewById(R.id.constraintgolist)
 
 
