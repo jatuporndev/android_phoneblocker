@@ -17,7 +17,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.util.Log
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.phoneblockerproject.databass.DBHelper
@@ -126,7 +126,8 @@ class SMSFragment : Fragment() {
             alertDialomenug.dismiss()
         }
         conReport.setOnClickListener{
-            Dialogreport()
+
+            Dialogreport(address)
 
         }
 
@@ -141,9 +142,27 @@ class SMSFragment : Fragment() {
     }
 
     private lateinit var alertDialomenug2: AlertDialog
-    fun Dialogreport() {
+    fun Dialogreport(address: String) {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_report_sms, null)
+        var txtname:TextView=dialogView.findViewById(R.id.txtname)
+        var spinner:Spinner=dialogView.findViewById(R.id.spinner)
+        var btncon:Button=dialogView.findViewById(R.id.btncon)
+        txtname.setText(address)
+
+        val adapter = ArrayAdapter.createFromResource(requireContext(),
+            R.array.city_list, android.R.layout.simple_spinner_item)
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item)
+        // Apply the adapter to the spinner
+        spinner.adapter = adapter
+
+        btncon.setOnClickListener {
+            val db = DBHelper(requireContext())
+            db.addreportsms(address,spinner.toString())
+            Log.d("addreport","report")
+        }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         dialogBuilder.setOnDismissListener { }
