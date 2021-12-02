@@ -23,6 +23,13 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.phoneblockerproject.databass.DBHelper
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 class SMSFragment : Fragment() {
     var data = ArrayList<Data>()
@@ -174,14 +181,15 @@ class SMSFragment : Fragment() {
 
         val adapter = ArrayAdapter.createFromResource(requireContext(),
             R.array.city_list, android.R.layout.simple_spinner_item)
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(
             android.R.layout.simple_spinner_dropdown_item)
-        // Apply the adapter to the spinner
+
         spinner.adapter = adapter
 
-        btncon.setOnClickListener {
 
+        btncon.setOnClickListener {
+            val text: String = spinner.getSelectedItem().toString()
+                addreport(address,text)
         }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
@@ -192,4 +200,47 @@ class SMSFragment : Fragment() {
         alertDialomenug2.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialomenug2.show()
     }
+
+    private fun addreport(address: String,text:String)
+    {
+        var url: String = getString(R.string.root_url) + getString(R.string.AddReport_url)
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .add("address",address)
+            .add("detail",text)
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Toast.makeText(context, "รายงานสำเร็จ", Toast.LENGTH_LONG).show()
+                        response.code
+
+                    }
+                    else{
+
+                    }
+
+                } catch (e: JSONException) {
+
+                    e.printStackTrace()
+                }
+            } else {
+
+                response.code
+            }
+        } catch (e: IOException) {
+
+            e.printStackTrace()
+        }
+
+    }
+
 }

@@ -16,6 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 import java.lang.Long
 import java.text.SimpleDateFormat
 import java.util.*
@@ -89,7 +96,7 @@ class HistoryFragment : Fragment() {
             holder.txtphone2.text = data.number
             holder.txtdate.text = data.date
             holder.conmenu.setOnLongClickListener {
-                showCustomDialog()
+                showCustomDialog(data.number,data.name)
                 conDelete?.setOnClickListener {
                     DeleteCallById(data.id,data.number)
                     alertDialog.dismiss()
@@ -135,13 +142,17 @@ class HistoryFragment : Fragment() {
     }
 
     private lateinit var alertDialog: AlertDialog
-    fun showCustomDialog() {
+    fun showCustomDialog(number: String,name: String) {
         val inflater: LayoutInflater = this.layoutInflater
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         conDelete=dialogView.findViewById(R.id.constraintdelete)
         var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         conBlock=dialogView.findViewById(R.id.constraintgolist)
 
+
+        conReport.setOnClickListener {
+            addnumber(number,name)
+        }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         dialogBuilder.setOnDismissListener { }
@@ -151,6 +162,48 @@ class HistoryFragment : Fragment() {
         alertDialog = dialogBuilder.create();
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
+    }
+
+    private fun addnumber(number:String,name: String)
+    {
+        var url: String = getString(R.string.root_url) + getString(R.string.AddNumber_url)
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .add("address",number)
+            .add("detail",name)
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Toast.makeText(context, "รายงานสำเร็จ", Toast.LENGTH_LONG).show()
+                        response.code
+
+                    }
+                    else{
+
+                    }
+
+                } catch (e: JSONException) {
+
+                    e.printStackTrace()
+                }
+            } else {
+
+                response.code
+            }
+        } catch (e: IOException) {
+
+            e.printStackTrace()
+        }
+
     }
 
     private fun getCalllog():ArrayList<Data> {
