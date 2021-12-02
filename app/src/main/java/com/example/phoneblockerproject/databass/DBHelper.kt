@@ -44,6 +44,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val TABLE_SMSBLOCK_id ="id"
         val TABLE_SMSBLOCK_thread_id ="thread_id"
         val TABLE_SMSBLOCK_address="address"
+        val TABLE_SMSBLOCK_body="body"
     }
 
 
@@ -76,7 +77,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         //Table smsblock
         val CREATE_SMSBLOCK_TABLE = ("CREATE TABLE " + TABLE_SMSBLOCK + "("
                 + TABLE_SMSBLOCK_id + " INTEGER PRIMARY KEY," + TABLE_SMSBLOCK_thread_id + " TEXT,"
-                + TABLE_SMSBLOCK_address + " TEXT" + ")")
+                + TABLE_SMSBLOCK_address + " TEXT," + TABLE_SMSBLOCK_body+" TEXT" +")")
         db?.execSQL(CREATE_SMSBLOCK_TABLE)
 
 
@@ -194,11 +195,12 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
     }
 
     //เพิ่มข้อมูล
-    fun addsms(thread_id:String,address:String){
+    fun addsms(thread_id:String,address:String,body:String){
         val values = ContentValues()
         val db = this.writableDatabase
         values.put(TABLE_SMSBLOCK_thread_id,thread_id)
         values.put(TABLE_SMSBLOCK_address,address)
+        values.put(TABLE_SMSBLOCK_body,body)
         //ชื่อ ตาราง
         db.insert(TABLE_SMSBLOCK, null, values)
         db.close()
