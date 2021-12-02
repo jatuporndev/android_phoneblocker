@@ -13,9 +13,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 import android.content.ContentResolver
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.text.InputType
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -63,7 +65,8 @@ class SMSFragment : Fragment() {
             holder.txtmessage.text = data.message
 
             holder.consms.setOnLongClickListener() {
-                Dialogmenu(data.thread_id,data.phonenember,data.message)
+
+                Dialogmenu(data.thread_id,data.phonenember)
                 return@setOnLongClickListener true
             }
         }
@@ -107,7 +110,7 @@ class SMSFragment : Fragment() {
     }
 
     private lateinit var alertDialomenug: AlertDialog
-    fun Dialogmenu(thread_id:String,address:String,body:String) {
+    fun Dialogmenu(thread_id:String,address:String) {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
@@ -115,15 +118,34 @@ class SMSFragment : Fragment() {
         var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
 
         conGolist.setOnClickListener {
-            val db = DBHelper(requireContext())
-            db.addsms(thread_id,address,body)
-            Log.d("addsms","sms1")
-            val fragmentTransaction = requireActivity().
-            supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, BlockerMessageFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-            alertDialomenug.dismiss()
+
+            val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(requireContext())
+            builder.setTitle("ระบุชื่อ")
+            val input = EditText(requireContext())
+            input.setHint("ระบุชื่อ")
+            input.inputType = InputType.TYPE_CLASS_TEXT
+            builder.setView(input)
+
+            builder.setPositiveButton("ตกลง", DialogInterface.OnClickListener { dialog, which ->
+                var name = ""
+                if(!name.isNullOrEmpty()){
+                    name=input.text.toString()
+                }else{
+                    name="ไม่มีชื่อ"
+                }
+                val db = DBHelper(requireContext())
+                db.addsms(thread_id,address,name)
+                val fragmentTransaction = requireActivity().
+                supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.nav_host_fragment, BlockerMessageFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+                alertDialomenug.dismiss()
+
+            })
+            builder.setNegativeButton("ยกเลิก") { dialog, which -> dialog.cancel() }
+            builder.show()
+
         }
         conReport.setOnClickListener{
 
@@ -159,9 +181,7 @@ class SMSFragment : Fragment() {
         spinner.adapter = adapter
 
         btncon.setOnClickListener {
-            val db = DBHelper(requireContext())
-            db.addreportsms(address,spinner.toString())
-            Log.d("addreport","report")
+
         }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())

@@ -87,7 +87,8 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ANSWER_PHONE_CALLS)&&
             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_CALL_LOG)&&
                 ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)&&
-                    ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_SMS)
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_SMS)&&
+                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECEIVE_SMS)
             ) {
 
         } else {
@@ -98,7 +99,8 @@ class MainActivity : AppCompatActivity() {
                     android.Manifest.permission.ANSWER_PHONE_CALLS,
                     android.Manifest.permission.WRITE_CALL_LOG,
                     android.Manifest.permission.READ_CONTACTS,
-                    android.Manifest.permission.READ_SMS
+                    android.Manifest.permission.READ_SMS,
+                    android.Manifest.permission.RECEIVE_SMS
                 ), REQUEST_PERMISSION
             )
         }
@@ -125,7 +127,6 @@ class MainActivity : AppCompatActivity() {
                         .clearApplicationUserData() // note: it has a return value!
 
                 }
-
             }
 
         }
@@ -146,17 +147,5 @@ class MainActivity : AppCompatActivity() {
 
          }
 
-    fun ma(){
-        Alerter.create(this)
-            .setTitle("บล็อกเบอร์")
-            .setText("คุณได้ทำการบล็อกเบอร์นี้แล้ว")
-            .setIcon(R.drawable.ic_baseline_notification_important_24)
-            //.setBackgroundColorInt(R.color.colorAccent)
-            .setDuration(4000)
-            // .setOnClickListener(View.OnClickListener {
-            //  Toast.makeText(applicationContext, "บล็อกแล้ว", Toast.LENGTH_SHORT).show()
-            // })
-            .show()
-    }
 
 }

@@ -81,8 +81,8 @@ class BlockerMessageFragment : Fragment() {
            val id = datasms.getString(datasms.getColumnIndex("id"))
            val thread_id = datasms.getString(datasms.getColumnIndex("thread_id"))
            val address = datasms.getString(datasms.getColumnIndex("address"))
-           val body = datasms.getString(datasms.getColumnIndex("body"))
-           data.add((Data(id,thread_id,address,body)))
+           val name = datasms.getString(datasms.getColumnIndex("name"))
+           data.add((Data(id,name,address,thread_id)))
 
        }
        recyclerView!!.adapter = DataAdapter(data)
@@ -114,7 +114,6 @@ class BlockerMessageFragment : Fragment() {
             holder.txtname.text = data.name
             holder.txtphone.text = data.phonenember
            // holder.txtdate.text = data.date
-           holder.txtmessage.text = data.message
             holder.delete.setOnClickListener {
                 val db = DBHelper(requireContext())
                 db.deletesmsblock(data.id)
@@ -135,7 +134,6 @@ class BlockerMessageFragment : Fragment() {
             var data: Data? = null
             var txtname: TextView = itemView.findViewById(R.id.txtname)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
-           var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)
             //var txtdate: TextView = itemView.findViewById(R.id.txtdate)
             var delete:ImageButton = itemView.findViewById(R.id.imgsms)
 
@@ -161,7 +159,7 @@ class BlockerMessageFragment : Fragment() {
             //con
             //ประกาศทุกครั้งที่จะใช้
             val db = DBHelper(requireContext())
-            db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
+          //  db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
 
         }
 
