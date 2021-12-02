@@ -31,8 +31,30 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import com.tapadoo.alerter.Alerter
+import android.os.Bundle
+import android.telephony.SmsManager
+import okhttp3.internal.notify
+import android.app.Activity
+import android.telephony.SmsMessage
+import androidx.core.content.res.ResourcesCompat.FontCallback.getHandler
 
+import android.os.UserHandle
 
+import android.Manifest.permission
+import androidx.core.content.res.ResourcesCompat.FontCallback
+import android.content.Context.ALARM_SERVICE
+
+import androidx.core.content.ContextCompat.getSystemService
+
+import android.app.AlarmManager
+
+import android.app.PendingIntent
+import android.app.NotificationManager
+import android.content.ContentResolver
+import android.database.Cursor
+import android.net.Uri
+import java.lang.Exception
+import android.provider.Telephony.Sms
 
 
 
@@ -43,17 +65,20 @@ class CallReciver : BroadcastReceiver() {
     val CHANNEL_ID = "channelID"
     val CHANNEL_NAME = "channelName"
     val NOTIFICATION_ID = 0
-    var ma: MainActivity? = null
 
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        //abortBroadcast();
+
         allPhone(context)
-        callblocker(context, intent)
+        if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE) != null){
+            callblocker(context, intent)
+        }else{
+
+
+        }
 
 
     }
-
 
 
     fun callblocker(context: Context?, intent: Intent?){
@@ -63,6 +88,7 @@ class CallReciver : BroadcastReceiver() {
 
                 val telecomManager = context!!.getSystemService(Context.TELECOM_SERVICE) as TelecomManager
 
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     if (ActivityCompat.checkSelfPermission(
                                     context,
@@ -70,10 +96,11 @@ class CallReciver : BroadcastReceiver() {
                             ) != PackageManager.PERMISSION_GRANTED) {
                         return
                     }
+
                     telecomManager.endCall()//ตัดสาย
                     addhistoryphone(data.find { it.phoneNumber == incomingNumber}?.name!!,incomingNumber!!,context)
 
-                    Log.d("calling1", incomingNumber!!)//เบอร์
+
                     noti(context,intent,incomingNumber,data.find { it.phoneNumber == incomingNumber}?.name!!)
                     Log.d("calling1", (data.find { it.phoneNumber == incomingNumber}?.name!!))//ชื่อ
                     createNotificationChannel(context)
@@ -83,7 +110,6 @@ class CallReciver : BroadcastReceiver() {
             }
         }
     }
-
 
     class Data(var id: String, var name: String, var phoneNumber: String)
     @SuppressLint("Range")
@@ -142,6 +168,9 @@ class CallReciver : BroadcastReceiver() {
             manager.createNotificationChannel(channel)
         }
     }
+
+
+
     }
 
 

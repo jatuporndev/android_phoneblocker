@@ -156,7 +156,7 @@ class BlockerMessageFragment : Fragment() {
             //con
             //ประกาศทุกครั้งที่จะใช้
             val db = DBHelper(requireContext())
-            db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
+          //  db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
 
         }
 
