@@ -44,7 +44,11 @@ class BlockerMessageFragment : Fragment() {
         }
         imgsms = root.findViewById(R.id.imgsms)
         imgsms?.setOnClickListener{
-            showCustomDialog()
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, SMSFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
         getdata()
 
