@@ -38,13 +38,8 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val TABLE_SMSBLOCK_id ="id"
         val TABLE_SMSBLOCK_thread_id ="thread_id"
         val TABLE_SMSBLOCK_address="address"
-        val TABLE_SMSBLOCK_body="body"
+        val TABLE_SMSBLOCK_name="name"
 
-        //Table reportsms
-        val TABLE_REPORTSMS = "reportsms"
-        val TABLE_REPORTSMS_id ="id"
-        val TABLE_REPORTSMS_address="address"
-        val TABLE_REPORTSMS_reason="reason"
     }
 
 
@@ -71,14 +66,10 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         //Table smsblock
         val CREATE_SMSBLOCK_TABLE = ("CREATE TABLE " + TABLE_SMSBLOCK + "("
                 + TABLE_SMSBLOCK_id + " INTEGER PRIMARY KEY," + TABLE_SMSBLOCK_thread_id + " TEXT,"
-                + TABLE_SMSBLOCK_address + " TEXT," + TABLE_SMSBLOCK_body+" TEXT" +")")
+                + TABLE_SMSBLOCK_address + " TEXT," + TABLE_SMSBLOCK_name+" TEXT" +")")
         db?.execSQL(CREATE_SMSBLOCK_TABLE)
 
-        //Table reportsms
-        val CREATE_REPORTSMS_TABLE = ("CREATE TABLE " + TABLE_REPORTSMS + "("
-                + TABLE_REPORTSMS_id + " INTEGER PRIMARY KEY," + TABLE_REPORTSMS_address
-                + " TEXT," + TABLE_REPORTSMS_reason+" TEXT" +")")
-        db?.execSQL(CREATE_REPORTSMS_TABLE)
+
 
     }
 
@@ -87,7 +78,6 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOCKEHISTORY)
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONESPAMER)
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_SMSBLOCK)
-        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_REPORTSMS)
         onCreate(db)
     }
 
@@ -173,12 +163,13 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
 
 
     //เพิ่มข้อมูล
-    fun addsms(thread_id:String,address:String,body:String){
+    fun addsms(thread_id:String,address:String,name:String){
+        Log.d("sms",thread_id+address+name)
         val values = ContentValues()
         val db = this.writableDatabase
         values.put(TABLE_SMSBLOCK_thread_id,thread_id)
         values.put(TABLE_SMSBLOCK_address,address)
-        values.put(TABLE_SMSBLOCK_body,body)
+        values.put(TABLE_SMSBLOCK_name,name)
         //ชื่อ ตาราง
         db.insert(TABLE_SMSBLOCK, null, values)
         db.close()
@@ -194,18 +185,8 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val db = this.writableDatabase
         db.execSQL("delete from "+ TABLE_SMSBLOCK+" WHERE id = "+ id )
 
-
     }
 
-    //เพิ่มข้อมูล
-    fun addreportsms(address:String,reason:String){
-        val values = ContentValues()
-        val db = this.writableDatabase
-        values.put(TABLE_REPORTSMS_address,address)
-        values.put(TABLE_REPORTSMS_reason,reason)
-        //ชื่อ ตาราง
-        db.insert(TABLE_REPORTSMS, null, values)
-        db.close()
-    }
+
 
 }
