@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.CallLog
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 import java.lang.Long
 import java.text.SimpleDateFormat
 import java.util.*
@@ -50,8 +56,7 @@ class HistoryFragment : Fragment() {
 
 
 
-
-        serverData = MainActivity.data
+        serverData = MainActivity.dataphone
         val db = DBHelper(requireContext())
         phoneblock = db.getBlocknumber()
         getdata()
@@ -91,7 +96,7 @@ class HistoryFragment : Fragment() {
             holder.txtphone2.text = data.number
             holder.txtdate.text = data.date
             holder.conmenu.setOnLongClickListener {
-                showCustomDialog()
+                showCustomDialog(data.number,data.name)
                 conDelete?.setOnClickListener {
                     DeleteCallById(data.id,data.number)
                     alertDialog.dismiss()
@@ -137,13 +142,18 @@ class HistoryFragment : Fragment() {
     }
 
     private lateinit var alertDialog: AlertDialog
-    fun showCustomDialog() {
+    fun showCustomDialog(number: String,name: String) {
         val inflater: LayoutInflater = this.layoutInflater
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         conDelete=dialogView.findViewById(R.id.constraintdelete)
-        var conReport:ConstraintLayout=dialogView.findViewById(R.id.constraintreport)
+        var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         conBlock=dialogView.findViewById(R.id.constraintgolist)
 
+
+        conReport.setOnClickListener {
+            Dialogreport(number,name)
+            //addnumber(number,name)
+        }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         dialogBuilder.setOnDismissListener { }
@@ -153,6 +163,86 @@ class HistoryFragment : Fragment() {
         alertDialog = dialogBuilder.create();
         alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
+    }
+
+    private lateinit var alertDialomenug: AlertDialog
+    fun Dialogreport(number: String,name: String) {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_report_phone, null)
+        var txtname:TextView=dialogView.findViewById(R.id.txtname)
+        var txtnumber:TextView=dialogView.findViewById(R.id.txtnumber)
+        var spinner:Spinner=dialogView.findViewById(R.id.spinner)
+        var btncon:Button=dialogView.findViewById(R.id.btncon)
+        var btnback:Button=dialogView.findViewById(R.id.btnback)
+        txtname.setText(name)
+        txtnumber.setText(number)
+
+        val adapter = ArrayAdapter.createFromResource(requireContext(),
+            R.array.city_list, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item)
+
+        spinner.adapter = adapter
+
+
+        btncon.setOnClickListener {
+            val text: String = spinner.getSelectedItem().toString()
+            addnumber(number,text)
+            alertDialomenug.dismiss()
+        }
+        btnback.setOnClickListener {
+            alertDialomenug.dismiss()
+        }
+
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialomenug = dialogBuilder.create();
+        alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug.show()
+    }
+
+    private fun addnumber(number:String,text: String)
+    {
+        var url: String = getString(R.string.root_url) + getString(R.string.AddNumber_url)
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .add("address",number)
+            .add("detail",text)
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Toast.makeText(context, "รายงานสำเร็จ", Toast.LENGTH_LONG).show()
+                        response.code
+
+                    }
+                    else{
+
+                    }
+
+                } catch (e: JSONException) {
+
+                    e.printStackTrace()
+                }
+            } else {
+                Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+                response.code
+            }
+        } catch (e: IOException) {
+            Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+        }
+
     }
 
     private fun getCalllog():ArrayList<Data> {

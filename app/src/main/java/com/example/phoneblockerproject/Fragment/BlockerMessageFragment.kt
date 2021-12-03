@@ -44,7 +44,11 @@ class BlockerMessageFragment : Fragment() {
         }
         imgsms = root.findViewById(R.id.imgsms)
         imgsms?.setOnClickListener{
-            showCustomDialog()
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, SMSFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
         getdata()
 
@@ -53,20 +57,22 @@ class BlockerMessageFragment : Fragment() {
         return root
     }
 
-
     @SuppressLint("Range")
-    fun getdata(){
-        data.clear()
-        val db=DBHelper(requireContext())
-        val datatest =db.datafromTest()
-        while (datatest.moveToNext()){
-            val name = datatest.getString(datatest.getColumnIndex("name"))
-            val id = datatest.getString(datatest.getColumnIndex("id"))
-            data.add((Data(id , name, "0957739456", "ดีจ้า", "25/11/2564")))
+   fun getdata(){
+       data.clear()
+       val db=DBHelper(requireContext())
+       val datasms =db.selectsms()
+       while (datasms.moveToNext()){
+           val id = datasms.getString(datasms.getColumnIndex("id"))
+           val thread_id = datasms.getString(datasms.getColumnIndex("thread_id"))
+           val address = datasms.getString(datasms.getColumnIndex("address"))
+           val name = datasms.getString(datasms.getColumnIndex("name"))
+           Log.d("txt", name+address+thread_id+id)
+           data.add((Data(id,name,address,thread_id)))
 
-        }
-        recyclerView!!.adapter = DataAdapter(data)
-    }
+       }
+       recyclerView!!.adapter = DataAdapter(data)
+   }
 
 
 
@@ -75,7 +81,7 @@ class BlockerMessageFragment : Fragment() {
         var name: String,
         var phonenember: String,
         var message: String,
-        var date: String
+        //var date: String
     )
     internal inner class DataAdapter(private val list: List<Data>) :
         RecyclerView.Adapter<DataAdapter.ViewHolder>() {
@@ -88,16 +94,15 @@ class BlockerMessageFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Log.d("txt", "x3")
+
             val data = list[position]
             holder.data = data
             holder.txtname.text = data.name
             holder.txtphone.text = data.phonenember
-            holder.txtdate.text = data.date
-            holder.txtmessage.text = data.message
+           // holder.txtdate.text = data.date
             holder.delete.setOnClickListener {
                 val db = DBHelper(requireContext())
-                db.deleteTest(data.id)
+                db.deletesmsblock(data.id)
                 getdata()
 
             }
@@ -115,9 +120,8 @@ class BlockerMessageFragment : Fragment() {
             var data: Data? = null
             var txtname: TextView = itemView.findViewById(R.id.txtname)
             var txtphone: TextView = itemView.findViewById(R.id.txtphone)
-            var txtmessage: TextView = itemView.findViewById(R.id.txtmessage)
-            var txtdate: TextView = itemView.findViewById(R.id.txtdate)
-            var delete:Button = itemView.findViewById(R.id.button)
+            //var txtdate: TextView = itemView.findViewById(R.id.txtdate)
+            var delete:ImageButton = itemView.findViewById(R.id.imgsms)
 
         }
     }
@@ -141,7 +145,7 @@ class BlockerMessageFragment : Fragment() {
             //con
             //ประกาศทุกครั้งที่จะใช้
             val db = DBHelper(requireContext())
-            db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
+          //  db.adddataTable_Test(editTextName!!.text.toString(),"test@test")
 
         }
 
