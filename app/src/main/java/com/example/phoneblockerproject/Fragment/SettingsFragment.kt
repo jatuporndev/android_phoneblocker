@@ -68,6 +68,34 @@ class SettingsFragment : Fragment() {
                             val item: JSONObject = res.getJSONObject(i)
                             db.addPhoneSpam(item.getString("name"),item.getString("phonenumber"))
                         }
+                        addMailServer()
+                    }
+                } catch (e: JSONException) {
+                    Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+                }
+            } else {
+                Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+            }
+        } catch (e: IOException) {
+            Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+        }
+    }
+    private fun addMailServer() {
+        val db = DBHelper(requireContext())
+        val url: String = getString(R.string.root_url) + getString(R.string.getsms_url)
+        val okHttpClient = OkHttpClient()
+        val request: Request = Request.Builder().url(url).get().build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val res = JSONArray(response.body!!.string())
+                    if (res.length() > 0) {
+                        db.deleteSMSSpamer()
+                        for (i in 0 until res.length()) {
+                            val item: JSONObject = res.getJSONObject(i)
+                            db.addSmsSpam(item.getString("name"),item.getString("addressmessage"))
+                        }
 
                         val intent = Intent(requireContext(), SplashScreenActivity::class.java)
                         requireActivity().startActivity(intent)
@@ -83,6 +111,5 @@ class SettingsFragment : Fragment() {
             Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
         }
     }
-
 
 }

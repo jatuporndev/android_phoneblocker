@@ -57,21 +57,6 @@ class BlockerMessageFragment : Fragment() {
         return root
     }
 
-
-    /*@SuppressLint("Range")
-    fun getdata(){
-        data.clear()
-        val db=DBHelper(requireContext())
-        val datatest =db.datafromTest()
-        while (datatest.moveToNext()){
-            val name = datatest.getString(datatest.getColumnIndex("name"))
-            val id = datatest.getString(datatest.getColumnIndex("id"))
-            data.add((Data(id , name, "0957739456", "ดีจ้า", "25/11/2564")))
-
-        }
-        recyclerView!!.adapter = DataAdapter(data)
-    }*/
-
     @SuppressLint("Range")
    fun getdata(){
        data.clear()
@@ -82,6 +67,7 @@ class BlockerMessageFragment : Fragment() {
            val thread_id = datasms.getString(datasms.getColumnIndex("thread_id"))
            val address = datasms.getString(datasms.getColumnIndex("address"))
            val name = datasms.getString(datasms.getColumnIndex("name"))
+           Log.d("txt", name+address+thread_id+id)
            data.add((Data(id,name,address,thread_id)))
 
        }
@@ -108,7 +94,7 @@ class BlockerMessageFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            Log.d("txt", "x3")
+
             val data = list[position]
             holder.data = data
             holder.txtname.text = data.name

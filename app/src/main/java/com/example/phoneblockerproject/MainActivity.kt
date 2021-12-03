@@ -24,12 +24,14 @@ import com.example.phoneblockerproject.Fragment.SettingsFragment
 import com.example.phoneblockerproject.databass.DBHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tapadoo.alerter.Alerter
+import java.net.Inet4Address
 
 
 class MainActivity : AppCompatActivity() {
     var REQUEST_PERMISSION = 255
     companion object {
-         var data = ArrayList<Data>()
+         var dataphone = ArrayList<Data>()
+        var datasms = ArrayList<DataSms>()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         StrictMode.setThreadPolicy(policy)
 
         dataServer()
+        dataSmsServer()
         permission_fn();
         setTransparentStatusBar()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
@@ -137,15 +140,29 @@ class MainActivity : AppCompatActivity() {
     fun dataServer(){
       val db = DBHelper(this)
        val datasql = db.getAllphonespam()
-        data.clear()
+        dataphone.clear()
         while(datasql.moveToNext()){
             val id = datasql.getString(datasql.getColumnIndex("id"))
             val name = datasql.getString(datasql.getColumnIndex("name"))
             val phone = datasql.getString(datasql.getColumnIndex("phoneNumber"))
-            data.add(Data(id,name,phone))
+            dataphone.add(Data(id,name,phone))
         }
 
          }
+    class DataSms(var id:String,var name:String,var address:String)
+    @SuppressLint("Range")
+    fun dataSmsServer(){
+        val db = DBHelper(this)
+        val datasql = db.getAllsmspam()
+        datasms.clear()
+        while(datasql.moveToNext()){
+            val id = datasql.getString(datasql.getColumnIndex("id"))
+            val name = datasql.getString(datasql.getColumnIndex("name"))
+            val phone = datasql.getString(datasql.getColumnIndex("address"))
+            datasms.add(DataSms(id,name,phone))
+            Log.d("main2",id+phone+name)
+        }
 
+    }
 
 }

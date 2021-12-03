@@ -56,7 +56,7 @@ class HistoryFragment : Fragment() {
 
 
 
-        serverData = MainActivity.data
+        serverData = MainActivity.dataphone
         val db = DBHelper(requireContext())
         phoneblock = db.getBlocknumber()
         getdata()
@@ -196,11 +196,11 @@ class HistoryFragment : Fragment() {
                     e.printStackTrace()
                 }
             } else {
-
+                Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
                 response.code
             }
         } catch (e: IOException) {
-
+            Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
             e.printStackTrace()
         }
 

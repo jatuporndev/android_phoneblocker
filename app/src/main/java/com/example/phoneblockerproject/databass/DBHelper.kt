@@ -40,6 +40,12 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val TABLE_SMSBLOCK_address="address"
         val TABLE_SMSBLOCK_name="name"
 
+        //Table smsspam
+        val TABLE_SMSSPAM = "sms_spam"
+        val TABLE_SMSSPAM_id ="id"
+        val TABLE_SMSSPAM_name ="name"
+        val TABLE_SMSSPAM_address="address"
+
     }
 
 
@@ -63,6 +69,11 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
                 + PHONESPAMER_PHONE + " TEXT" + ")")
         db?.execSQL(CREATE_PHONESPAM_TABLE)
 
+        val CREATE_SMSSPAM_TABLE = ("CREATE TABLE " + TABLE_SMSSPAM + "("
+                + TABLE_SMSSPAM_id + " INTEGER PRIMARY KEY," + TABLE_SMSSPAM_name + " TEXT,"
+                + TABLE_SMSSPAM_address + " TEXT" + ")")
+        db?.execSQL(CREATE_SMSSPAM_TABLE)
+
         //Table smsblock
         val CREATE_SMSBLOCK_TABLE = ("CREATE TABLE " + TABLE_SMSBLOCK + "("
                 + TABLE_SMSBLOCK_id + " INTEGER PRIMARY KEY," + TABLE_SMSBLOCK_thread_id + " TEXT,"
@@ -78,6 +89,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_BLOCKEHISTORY)
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONESPAMER)
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_SMSBLOCK)
+        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_SMSSPAM)
         onCreate(db)
     }
 
@@ -153,10 +165,32 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         db.insert(TABLE_PHONESPAMER, null, values)
         db.close()
     }
+    //smsspamer data from server
+    fun getAllsmspam():Cursor{
+        val db= this.readableDatabase
+        var sql ="SELECT * FROM "+ TABLE_SMSSPAM
+        return  db.rawQuery(sql,null)
+    }
+
+    fun addSmsSpam(name:String,address:String){
+
+        val values = ContentValues()
+        val db = this.writableDatabase
+        values.put(TABLE_SMSSPAM_name,name)
+        values.put(TABLE_SMSSPAM_address,address)
+
+        db.insert(TABLE_SMSSPAM, null, values)
+        db.close()
+    }
+
 
     fun deletePhoneSpamer(){
         val db = this.writableDatabase
         db.execSQL("delete from "+ TABLE_PHONESPAMER )
+    }
+    fun deleteSMSSpamer(){
+        val db = this.writableDatabase
+        db.execSQL("delete from "+ TABLE_SMSSPAM )
     }
 
     //เพิ่มข้อมูล
