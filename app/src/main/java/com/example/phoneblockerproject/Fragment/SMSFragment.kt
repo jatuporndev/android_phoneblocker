@@ -209,6 +209,7 @@ class SMSFragment : Fragment() {
         var txtname:TextView=dialogView.findViewById(R.id.txtname)
         var spinner:Spinner=dialogView.findViewById(R.id.spinner)
         var btncon:Button=dialogView.findViewById(R.id.btncon)
+        var btnback:Button=dialogView.findViewById(R.id.btnback)
         txtname.setText(address)
 
         val adapter = ArrayAdapter.createFromResource(requireContext(),
@@ -222,6 +223,12 @@ class SMSFragment : Fragment() {
         btncon.setOnClickListener {
             val text: String = spinner.getSelectedItem().toString()
                 addreport(address,text)
+            alertDialomenug2.dismiss()
+
+        }
+        btnback.setOnClickListener {
+            alertDialomenug2.dismiss()
+
         }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())

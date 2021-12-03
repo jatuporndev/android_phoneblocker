@@ -151,7 +151,8 @@ class HistoryFragment : Fragment() {
 
 
         conReport.setOnClickListener {
-            addnumber(number,name)
+            Dialogreport(number,name)
+            //addnumber(number,name)
         }
 
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
@@ -164,13 +165,51 @@ class HistoryFragment : Fragment() {
         alertDialog.show()
     }
 
-    private fun addnumber(number:String,name: String)
+    private lateinit var alertDialomenug: AlertDialog
+    fun Dialogreport(number: String,name: String) {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_report_phone, null)
+        var txtname:TextView=dialogView.findViewById(R.id.txtname)
+        var txtnumber:TextView=dialogView.findViewById(R.id.txtnumber)
+        var spinner:Spinner=dialogView.findViewById(R.id.spinner)
+        var btncon:Button=dialogView.findViewById(R.id.btncon)
+        var btnback:Button=dialogView.findViewById(R.id.btnback)
+        txtname.setText(name)
+        txtnumber.setText(number)
+
+        val adapter = ArrayAdapter.createFromResource(requireContext(),
+            R.array.city_list, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item)
+
+        spinner.adapter = adapter
+
+
+        btncon.setOnClickListener {
+            val text: String = spinner.getSelectedItem().toString()
+            addnumber(number,text)
+            alertDialomenug.dismiss()
+        }
+        btnback.setOnClickListener {
+            alertDialomenug.dismiss()
+        }
+
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialomenug = dialogBuilder.create();
+        alertDialomenug.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug.show()
+    }
+
+    private fun addnumber(number:String,text: String)
     {
         var url: String = getString(R.string.root_url) + getString(R.string.AddNumber_url)
         val okHttpClient = OkHttpClient()
         val formBody: RequestBody = FormBody.Builder()
             .add("address",number)
-            .add("detail",name)
+            .add("detail",text)
             .build()
 
         val request: Request = Request.Builder()
