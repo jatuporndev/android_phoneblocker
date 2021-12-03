@@ -8,6 +8,7 @@
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_s_m_s.xml" value="0.11822916666666666" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_settings.xml" value="0.11822916666666666" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_blockermessage.xml" value="0.4" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_blockphone.xml" value="0.22708333333333333" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_history_sms.xml" value="0.228125" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/popup_add_sms.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2546875" />
@@ -37,8 +38,6 @@
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_add_phone.xml" value="0.2" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_add_sms.xml" value="0.264" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_menu_history.xml" value="0.16032608695652173" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_report_phone.xml" value="0.2115036231884058" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_report_sms.xml" value="0.2115036231884058" />
       </map>
     </option>
   </component>
