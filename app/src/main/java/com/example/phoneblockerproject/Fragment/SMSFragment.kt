@@ -22,6 +22,7 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.databass.DBHelper
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -33,6 +34,7 @@ import java.io.IOException
 
 class SMSFragment : Fragment() {
     var data = ArrayList<Data>()
+    var serverData = ArrayList<MainActivity.DataSms>()
     var recyclerView: RecyclerView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -42,7 +44,11 @@ class SMSFragment : Fragment() {
         data =getAllSms()
         recyclerView = root.findViewById(R.id.recyclerView)
         recyclerView!!.adapter = DataAdapter(data)
+        serverData = MainActivity.datasms
 
+        serverData.forEach{
+            Log.d("main2",it.id+it.address+it.name)
+        }
 
         return root
     }
@@ -123,7 +129,8 @@ class SMSFragment : Fragment() {
         var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
         var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
-
+        var name = ""
+        conDelete.visibility = View.GONE
         conGolist.setOnClickListener {
 
             val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(requireContext())
@@ -132,13 +139,12 @@ class SMSFragment : Fragment() {
             input.setHint("ระบุชื่อ")
             input.inputType = InputType.TYPE_CLASS_TEXT
             builder.setView(input)
-
             builder.setPositiveButton("ตกลง", DialogInterface.OnClickListener { dialog, which ->
-                var name = ""
-                if(!name.isNullOrEmpty()){
-                    name=input.text.toString()
-                }else{
+                name=input.text.toString()
+                if(name.isEmpty()){
                     name="ไม่มีชื่อ"
+                }else{
+                    name=input.text.toString()
                 }
                 val db = DBHelper(requireContext())
                 db.addsms(thread_id,address,name)
@@ -240,11 +246,11 @@ class SMSFragment : Fragment() {
                     e.printStackTrace()
                 }
             } else {
-
+                Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
                 response.code
             }
         } catch (e: IOException) {
-
+            Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
             e.printStackTrace()
         }
 
