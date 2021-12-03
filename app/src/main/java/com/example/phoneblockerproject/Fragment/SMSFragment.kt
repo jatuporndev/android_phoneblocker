@@ -1,5 +1,6 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,30 +35,46 @@ import java.io.IOException
 
 class SMSFragment : Fragment() {
     var data = ArrayList<Data>()
+    var datablock = ArrayList<DataBlock>()
     var serverData = ArrayList<MainActivity.DataSms>()
     var recyclerView: RecyclerView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_s_m_s, container, false)
-       // data.add((Data("1", "man", "0957739456", "ดีจ้า", "25/11/2564")))
         data =getAllSms()
         recyclerView = root.findViewById(R.id.recyclerView)
         recyclerView!!.adapter = DataAdapter(data)
         serverData = MainActivity.datasms
-
-        serverData.forEach{
-            Log.d("main2",it.id+it.address+it.name)
-        }
-
+        getdata()
         return root
     }
+
+    @SuppressLint("Range")
+    fun getdata(){
+        datablock.clear()
+        val db=DBHelper(requireContext())
+        val datasms =db.selectsms()
+        while (datasms.moveToNext()){
+            val id = datasms.getString(datasms.getColumnIndex("id"))
+            val address = datasms.getString(datasms.getColumnIndex("address"))
+            val name = datasms.getString(datasms.getColumnIndex("name"))
+            datablock.add(DataBlock(id,address,name))
+        }
+    }
+
     class Data(
         var id: String,
         var phonenember: String,
         var message: String,
         var date: String,
         var thread_id:String
+    )
+    class DataBlock(
+        var id: String,
+        var address: String,
+        var name: String
+
     )
     internal inner class DataAdapter(private val list: List<Data>) :
         RecyclerView.Adapter<DataAdapter.ViewHolder>() {
@@ -69,6 +86,7 @@ class SMSFragment : Fragment() {
             return ViewHolder(view)
         }
 
+        @SuppressLint("SetTextI18n")
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
             val data = list[position]
@@ -76,6 +94,14 @@ class SMSFragment : Fragment() {
             holder.txtphone.text = data.phonenember
             holder.txtdate.text = data.date
             holder.txtmessage.text = data.message
+            if (datablock.any { it.address == data.phonenember }){
+                holder.txtphone.text = datablock.find { it.address ==data.phonenember}!!.name+" (${data.phonenember})"
+            }else{
+                if (serverData.any {it.address ==data.phonenember  }){
+                    holder.txtphone.text = serverData.find { it.address ==data.phonenember}!!.name+" (${data.phonenember})"
+                }
+            }
+
 
             holder.consms.setOnLongClickListener() {
 

@@ -25,18 +25,6 @@
             app:layout_constraintTop_toBottomOf="@+id/txtname" />
 
         <TextView
-            android:id="@+id/txtdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="date"
-            android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/txtname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,7 +67,7 @@
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtdate"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
