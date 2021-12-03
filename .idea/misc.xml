@@ -37,6 +37,8 @@
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_add_phone.xml" value="0.2" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_add_sms.xml" value="0.264" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_menu_history.xml" value="0.16032608695652173" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_report_phone.xml" value="0.2115036231884058" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_report_sms.xml" value="0.2115036231884058" />
       </map>
     </option>
   </component>
