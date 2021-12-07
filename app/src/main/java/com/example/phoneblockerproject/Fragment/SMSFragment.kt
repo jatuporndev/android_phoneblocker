@@ -38,10 +38,28 @@ class SMSFragment : Fragment() {
     var datablock = ArrayList<DataBlock>()
     var serverData = ArrayList<MainActivity.DataSms>()
     var recyclerView: RecyclerView? = null
+    var search:SearchView?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_s_m_s, container, false)
+
+        search = root.findViewById(R.id.search)
+        search?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                var title = newText//คำที่ค้นหา
+                if (!title.isNullOrEmpty()){
+                    recyclerView!!.adapter = DataAdapter(data.filter { it.phonenember.contains(title) || it.message.contains(title)} )
+                }else{
+                    recyclerView!!.adapter = DataAdapter(data)
+                }
+                return false
+            }
+        })
         data =getAllSms()
         recyclerView = root.findViewById(R.id.recyclerView)
         recyclerView!!.adapter = DataAdapter(data)
