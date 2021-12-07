@@ -35,6 +35,7 @@ class HistoryFragment : Fragment() {
     var serverData = ArrayList<MainActivity.Data>()
     var recyclerView: RecyclerView? = null
     private var btnhisphone:Button?=null
+    var search:SearchView?=null
 
     //popupmenu
     var conDelete:ConstraintLayout?=null
@@ -45,6 +46,7 @@ class HistoryFragment : Fragment() {
         val root =  inflater.inflate(R.layout.fragment_history, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)
         btnhisphone = root.findViewById(R.id.btnhisphone)
+        search = root.findViewById(R.id.searchView)
         btnhisphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
@@ -52,7 +54,21 @@ class HistoryFragment : Fragment() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
+        search?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String): Boolean {
+                var title = newText//คำที่ค้นหา
+                if (!title.isNullOrEmpty()){
+                    recyclerView!!.adapter = DataAdapter(data.filter { it.number.contains(title) || it.name.contains(title)} )
+                }else{
+                    recyclerView!!.adapter = DataAdapter(data)
+                }
+                return false
+            }
+        })
 
 
 
