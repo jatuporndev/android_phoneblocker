@@ -46,7 +46,7 @@ class HistoryFragment : Fragment() {
         val root =  inflater.inflate(R.layout.fragment_history, container, false)
         recyclerView = root.findViewById(R.id.recyclerView)
         btnhisphone = root.findViewById(R.id.btnhisphone)
-        search = root.findViewById(R.id.searchView)
+        search = root.findViewById(R.id.search)
         btnhisphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
