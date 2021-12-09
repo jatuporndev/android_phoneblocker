@@ -51,7 +51,6 @@ class BlockerMessageFragment : Fragment() {
         getdata()
 
 
-
         return root
     }
 
