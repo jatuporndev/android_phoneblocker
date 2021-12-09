@@ -76,11 +76,8 @@ class PhoneFragment : Fragment() {
         allPhone("")
 
         imgback?.setOnClickListener(){
-            val fragmentTransaction = requireActivity().
-            supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
         }
 
         return root

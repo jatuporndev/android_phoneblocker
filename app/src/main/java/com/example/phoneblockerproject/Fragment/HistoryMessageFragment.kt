@@ -23,11 +23,8 @@ class HistoryMessageFragment : Fragment() {
 
         imgbackc = root.findViewById(R.id.imgbackc)
         imgbackc?.setOnClickListener {
-            val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, SMSFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
         }
         return root
     }
