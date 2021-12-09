@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
@@ -36,11 +37,8 @@ class BlockerMessageFragment : Fragment() {
 
         imgback = root.findViewById(R.id.imgback)
         imgback?.setOnClickListener{
-            val fragmentTransaction = requireActivity().
-            supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
         }
         imgsms = root.findViewById(R.id.imgsms)
         imgsms?.setOnClickListener{

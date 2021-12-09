@@ -14,6 +14,7 @@ class HomeFragment : Fragment() {
     var conphone:ConstraintLayout?=null
     var conmessage:ConstraintLayout?=null
     var imgsettings:ImageView?=null
+    var conwifi:ConstraintLayout?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +47,14 @@ class HomeFragment : Fragment() {
             fragmentTransaction.replace(R.id.nav_host_fragment, BlockerMessageFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
+        }
+        conwifi=root.findViewById(R.id.conwifi)
+        conwifi?.setOnClickListener {
+            val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransient.replace(R.id.nav_host_fragment,WifiFragment())
+            fragmentTransient.addToBackStack(null)
+            fragmentTransient.commit()
+
         }
         return root
     }

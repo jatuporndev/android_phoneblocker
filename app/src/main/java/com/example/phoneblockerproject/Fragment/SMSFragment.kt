@@ -46,11 +46,11 @@ class SMSFragment : Fragment() {
 
         search = root.findViewById(R.id.search)
         search?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
+            override fun onQueryTextSubmit(query: String): Boolean {//กดปุ่มไปเพื่อค้นหา
                 return false
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
+            override fun onQueryTextChange(newText: String): Boolean {//คนหาทุกครั้งที่พิมพ์
                 var title = newText//คำที่ค้นหา
                 if (!title.isNullOrEmpty()){
                     recyclerView!!.adapter = DataAdapter(data.filter { it.phonenember.contains(title) || it.message.contains(title)} )
@@ -128,7 +128,6 @@ class SMSFragment : Fragment() {
             }
         }
 //
-
         override fun getItemCount(): Int {
             return list.size
         }

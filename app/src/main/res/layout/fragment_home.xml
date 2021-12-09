@@ -111,7 +111,7 @@
                 android:background="@drawable/layout_bgmenu1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                app:layout_constraintStart_toEndOf="@+id/conwifi"
                 app:layout_constraintTop_toBottomOf="@+id/conmessage"
                 app:layout_constraintVertical_bias="1.0">
 
@@ -144,7 +144,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+                android:id="@+id/conwifi"
                 android:layout_width="165dp"
                 android:layout_height="165dp"
                 android:layout_marginTop="16dp"
@@ -160,6 +160,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
+                    android:text="Wifi"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -173,6 +174,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="110dp"
+                    android:text="ไวฟไฟ"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -235,7 +237,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:src="@drawable/wifi"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+                app:layout_constraintStart_toStartOf="@+id/conwifi"
                 app:layout_constraintTop_toBottomOf="@+id/conphone" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
