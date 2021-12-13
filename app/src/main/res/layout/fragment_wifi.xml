@@ -73,19 +73,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtipv6"
-                android:layout_width="236dp"
-                android:layout_height="98dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="dataIPV6"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView41" />
-
-            <TextView
                 android:id="@+id/textView47"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -198,8 +185,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -209,8 +196,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtssid" />
@@ -220,8 +207,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txthidden" />
@@ -231,8 +218,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtsignal" />
@@ -242,8 +229,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtfrequency" />
@@ -253,8 +240,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtlink" />
@@ -264,8 +251,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtip" />
@@ -275,8 +262,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtnetwork" />
@@ -286,8 +273,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtgateway" />
@@ -297,8 +284,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtdns" />
@@ -308,8 +295,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtdomains" />
@@ -319,11 +306,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="220dp"
-                android:layout_marginRight="220dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txthttp" />
+
+            <TextView
+                android:id="@+id/txtipv6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="100dp"
+                android:text="TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtnetworkmet" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
