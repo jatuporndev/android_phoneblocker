@@ -138,11 +138,13 @@ class WifiFragment : Fragment() {
         txtdns?.text=dnsServers.toString()
 
         if (domains.isNullOrEmpty()){
-
-            Log.d("domains", "none")
+            txtdomains?.text="none"
+            //Log.d("domains", "none")
         }else{
-            Log.d("domains", domains[0])
+            txtdomains?.text=domains[0]
+           // Log.d("domains", domains[0])
         }
+
 
         txthttp?.text=httpProxy
         txtnetworkmet?.text=networkMetered
