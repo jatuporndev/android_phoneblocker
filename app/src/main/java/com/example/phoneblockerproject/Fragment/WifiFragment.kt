@@ -1,6 +1,7 @@
 package com.example.phoneblockerproject.Fragment
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -28,6 +29,7 @@ import android.net.LinkAddress
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -52,6 +54,7 @@ class WifiFragment : Fragment() {
     var txtnetworkmet: TextView?=null
     var txtipv6: TextView?=null
 
+    var back:ImageView?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,12 +76,19 @@ class WifiFragment : Fragment() {
         txtnetworkmet=root.findViewById(R.id.txtnetworkmet)
         txtipv6=root.findViewById(R.id.txtipv6)
 
+        back=root.findViewById(R.id.imageView14)
+        back?.setOnClickListener {
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
+        }
+
         onReviewPermissions()
 
         return root
     }
 
 
+    @SuppressLint("SetTextI18n")
     fun wifiinfo(){
         val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         var wifiinfo: WifiInfo? = wifiManager.connectionInfo
@@ -105,8 +115,8 @@ class WifiFragment : Fragment() {
         val Frequency = wifiinfo.frequency.toString()
         val linkSpeed = wifiinfo.linkSpeed.toString()
         val ipAddress = Formatter.formatIpAddress(wifiinfo.ipAddress)
-        val network_mask= getNetmask(linkProps?.linkAddresses!!.first { it.address is Inet4Address }).toString()
-        val gatewayAddress = defaultRoute!!.gateway.toString()
+        val network_mask= getNetmask(linkProps?.linkAddresses!!.first { it.address is Inet4Address })
+        val gatewayAddress = defaultRoute!!.gateway
         val dnsServers = linkProps.dnsServers
         val domains =
             if (linkProps.domains.isNullOrBlank()) Collections.emptyList<String>()
@@ -128,25 +138,29 @@ class WifiFragment : Fragment() {
         //Log.d("gatewayAddress", gatewayAddress)
         // Log.d("dnsServers", dnsServers.toString())
         txtssid?.text=ssid
-        txthidden?.text=hiden_ssidd
+        if (hiden_ssidd == "false"){ txthidden?.text="No"}else{ txthidden?.text="Yes"}
         txtsignal?.text=signal_level
-        txtfrequency?.text=Frequency
-        txtlink?.text=linkSpeed
+        txtfrequency?.text= "$Frequency MHz"
+        txtlink?.text= "$linkSpeed Mbps"
         txtip?.text=ipAddress
-        txtnetwork?.text=network_mask
-        txtgateway?.text=gatewayAddress
-        txtdns?.text=dnsServers.toString()
+        txtnetwork?.text=network_mask.hostAddress
+        txtgateway?.text=gatewayAddress!!.hostAddress
+      //  txtdns?.text=dnsServers.
+        if (dnsServers.size>1){txtdns?.text=dnsServers[0].hostAddress +"\n"+ dnsServers[1].hostAddress }
+        else{txtdns?.text=dnsServers[0].hostAddress }
 
         if (domains.isNullOrEmpty()){
-            txtdomains?.text="none"
-            //Log.d("domains", "none")
+            txtdomains?.text="None"
         }else{
             txtdomains?.text=domains[0]
-           // Log.d("domains", domains[0])
         }
 
+        if(httpProxy=="null"){
+            txthttp?.text="None"
+        }else{
+            txthttp?.text=httpProxy
+        }
 
-        txthttp?.text=httpProxy
         txtnetworkmet?.text=networkMetered
        // Log.d("httpProxy", httpProxy)
        // Log.d("networkMetered", networkMetered)
