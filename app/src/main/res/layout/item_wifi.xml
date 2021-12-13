@@ -58,7 +58,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/txtwifi14"
             android:layout_width="236dp"
             android:layout_height="98dp"
             android:layout_marginStart="5dp"
@@ -179,7 +179,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
         <TextView
-            android:id="@+id/textView55"
+            android:id="@+id/txtwifi1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -190,7 +190,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/txtwifi2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -198,10 +198,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView55" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi1" />
 
         <TextView
-            android:id="@+id/textView57"
+            android:id="@+id/txtwifi3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -209,10 +209,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView56" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi2" />
 
         <TextView
-            android:id="@+id/textView58"
+            android:id="@+id/txtwifi4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -220,10 +220,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView57" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi3" />
 
         <TextView
-            android:id="@+id/textView59"
+            android:id="@+id/txtwifi5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -231,10 +231,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView58" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi4" />
 
         <TextView
-            android:id="@+id/textView60"
+            android:id="@+id/txtwifi6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -242,10 +242,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView59" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi5" />
 
         <TextView
-            android:id="@+id/textView61"
+            android:id="@+id/txtwifi7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -253,10 +253,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView60" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi6" />
 
         <TextView
-            android:id="@+id/textView62"
+            android:id="@+id/txtwifi8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -264,10 +264,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView61" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi7" />
 
         <TextView
-            android:id="@+id/textView63"
+            android:id="@+id/txtwifi9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -275,10 +275,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView62" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi8" />
 
         <TextView
-            android:id="@+id/textView64"
+            android:id="@+id/txtwifi10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -286,10 +286,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView63" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi9" />
 
         <TextView
-            android:id="@+id/textView65"
+            android:id="@+id/txtwifi11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -297,10 +297,10 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView64" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi10" />
 
         <TextView
-            android:id="@+id/textView66"
+            android:id="@+id/txtwifi12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -308,7 +308,7 @@
             android:layout_marginRight="220dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView65" />
+            app:layout_constraintTop_toBottomOf="@+id/txtwifi11" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
