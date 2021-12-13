@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AppAndroid/android_phoneblocker/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/AppAndroid/android_phoneblocker/app/src/main/res/layout/fragment_phone.xml" value="0.2" />
+        <entry key="..\:/AppAndroid/android_phoneblocker/app/src/main/res/layout/fragment_wifi.xml" value="0.20520833333333333" />
+        <entry key="..\:/AppAndroid/android_phoneblocker/app/src/main/res/layout/item_wifi.xml" value="0.2" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_history.xml" value="0.20625" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_phone.xml" value="0.20625" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_s_m_s.xml" value="0.264" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_settings.xml" value="0.11822916666666666" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_wifi.xml" value="0.23854166666666668" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_blockermessage.xml" value="0.4" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_blockphone.xml" value="0.22708333333333333" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_history.xml" value="0.20625" />
@@ -25,30 +29,23 @@
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/drawable/ic_baseline_arrow_back_ios_25.xml" value="0.2546875" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/drawable/ic_baseline_contact_phone_24.xml" value="0.2546875" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/drawable/ic_baseline_message_24.xml" value="0.2546875" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/activity_main.xml" value="0.1897644927536232" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/activity_splash_screen.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_blocker_message.xml" value="0.2" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_history.xml" value="0.264" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_history_message.xml" value="0.264" />
+        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_history_message.xml" value="0.19202898550724637" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_history_phone.xml" value="0.1160081053698075" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_home.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_phone.xml" value="0.16032608695652173" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_read_contact.xml" value="0.16032608695652173" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_s_m_s.xml" value="0.19202898550724637" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_settings.xml" value="0.16032608695652173" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/fragment_wifi.xml" value="0.264" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_blockermessage.xml" value="0.264" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_blockphone.xml" value="0.19202898550724637" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_contact.xml" value="0.19202898550724637" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_history.xml" value="0.2" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_history_sms.xml" value="0.4" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_phone.xml" value="0.19791666666666666" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/item_wifi.xml" value="0.264" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_add_phone.xml" value="0.2" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_add_sms.xml" value="0.264" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_menu_history.xml" value="0.16032608695652173" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_report_phone.xml" value="0.1897644927536232" />
-        <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/layout/popup_report_sms.xml" value="0.1897644927536232" />
       </map>
     </option>
   </component>
