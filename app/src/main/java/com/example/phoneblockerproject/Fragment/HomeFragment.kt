@@ -1,11 +1,13 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.phoneblockerproject.R
 
@@ -16,6 +18,7 @@ class HomeFragment : Fragment() {
     var imgsettings:ImageView?=null
     var conwifi:ConstraintLayout?=null
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
