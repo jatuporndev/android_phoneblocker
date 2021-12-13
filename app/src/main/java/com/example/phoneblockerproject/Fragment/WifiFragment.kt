@@ -109,7 +109,7 @@ class WifiFragment : Fragment() {
         val defaultRoute = linkProps!!.routes.findLast { it.isDefaultRoute }
 
         //data here
-        val ssid = wifiinfo!!.ssid
+        val ssid = wifiinfo!!.ssid.toString().drop(1).dropLast(1)
         val hiden_ssidd =wifiinfo.hiddenSSID.toString()
         val signal_level = WifiManager.calculateSignalLevel(wifiinfo.rssi,10).toString()+"/10";
         val Frequency = wifiinfo.frequency.toString()
@@ -128,7 +128,7 @@ class WifiFragment : Fragment() {
             .sortedWith(InetAddressComparator).joinToString(separator = "\n") { it.format() }
 
         //ดูส่วนนี้ แล้วนำไปโชว์
-       // Log.d("ssid", ssid)
+      //  Log.d("ssid", ssid.toString())
         //Log.d("hiden_ssidd", hiden_ssidd)
         //Log.d("signal_level", signal_level)
         // Log.d("Frequency", Frequency)
@@ -161,7 +161,8 @@ class WifiFragment : Fragment() {
             txthttp?.text=httpProxy
         }
 
-        txtnetworkmet?.text=networkMetered
+
+        if (networkMetered=="false"){txtnetworkmet?.text="No"}else{ txtnetworkmet?.text="Yes"}
        // Log.d("httpProxy", httpProxy)
        // Log.d("networkMetered", networkMetered)
         txtipv6?.text=ipv6
