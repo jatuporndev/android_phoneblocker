@@ -2,6 +2,7 @@ package com.example.phoneblockerproject.Fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -29,9 +30,11 @@ import android.net.LinkAddress
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.provider.Settings
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import java.net.Inet4Address
 import java.net.Inet6Address
@@ -53,6 +56,7 @@ class WifiFragment : Fragment() {
     var txthttp: TextView?=null
     var txtnetworkmet: TextView?=null
     var txtipv6: TextView?=null
+    var conwifi:ConstraintLayout?=null
 
     var back:ImageView?=null
 
@@ -75,6 +79,8 @@ class WifiFragment : Fragment() {
         txthttp=root.findViewById(R.id.txthttp)
         txtnetworkmet=root.findViewById(R.id.txtnetworkmet)
         txtipv6=root.findViewById(R.id.txtipv6)
+        conwifi=root.findViewById(R.id.conwifi)
+        conwifi?.visibility=View.GONE
 
         back=root.findViewById(R.id.imageView14)
         back?.setOnClickListener {
@@ -82,7 +88,10 @@ class WifiFragment : Fragment() {
             fragmentTransaction.popBackStack()
         }
 
-        onReviewPermissions()
+        if(checkWifi()){
+            onReviewPermissions()
+        }
+
 
         return root
     }
@@ -173,6 +182,7 @@ class WifiFragment : Fragment() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 200)
         }else{
+            conwifi?.visibility=View.VISIBLE
             wifiinfo()
         }
         }
@@ -204,4 +214,30 @@ class WifiFragment : Fragment() {
             return 1
         }
     }
+
+    fun checkWifi():Boolean{
+        val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        if(!wifiManager.isWifiEnabled){
+            val dialogBuilder = AlertDialog.Builder(requireContext())
+            dialogBuilder.setMessage("Wifi ยังไม่ได้เปิด ต้องการเปิดหรือไหม่?")
+                .setCancelable(false)
+                .setPositiveButton("เปิด") { _, _ ->
+                    val intent = Intent(Settings.ACTION_WIFI_SETTINGS)
+                    startActivity(intent)
+                    val fragmentTransaction = requireActivity().supportFragmentManager
+                    fragmentTransaction.popBackStack()
+                }
+                .setNegativeButton("ยกเลิก") { dialog, _ ->
+                    dialog.cancel()
+                    val fragmentTransaction = requireActivity().supportFragmentManager
+                    fragmentTransaction.popBackStack()
+                }
+            val alert = dialogBuilder.create()
+            alert.setTitle("AlertDialogWifi")
+            alert.show()
+        }
+
+        return wifiManager.isWifiEnabled
+    }
+
 }
