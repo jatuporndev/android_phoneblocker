@@ -103,7 +103,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout3"
+                android:id="@+id/consecurity"
                 android:layout_width="165dp"
                 android:layout_height="165dp"
                 android:layout_marginTop="16dp"
@@ -122,6 +122,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="8dp"
+                    android:text="Developer"
                     android:textColor="#FFFFFF"
                     android:textSize="10sp"
                     android:textStyle="bold"
@@ -135,6 +136,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="110dp"
+                    android:text="ผู้พัฒนา"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
@@ -149,7 +151,7 @@
                 android:layout_height="165dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/layout_bgmenu5"
-                app:layout_constraintEnd_toStartOf="@+id/constraintLayout3"
+                app:layout_constraintEnd_toStartOf="@+id/consecurity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/conphone">
 
@@ -227,7 +229,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="8dp"
                 android:src="@drawable/web1"
-                app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
+                app:layout_constraintStart_toStartOf="@+id/consecurity"
                 app:layout_constraintTop_toBottomOf="@+id/conmessage" />
 
             <ImageView
