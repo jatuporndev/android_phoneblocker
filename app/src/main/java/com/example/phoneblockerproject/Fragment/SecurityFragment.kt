@@ -10,11 +10,12 @@ import com.example.phoneblockerproject.R
 import android.os.Build
 import android.provider.Settings.Secure
 import android.util.Log
+import android.widget.ImageView
 import java.io.File
 
 
 class SecurityFragment : Fragment() {
-
+    var imgback:ImageView?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,8 +23,13 @@ class SecurityFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_security, container, false)
-
         Log.d("root",isRooted().toString())
+
+        imgback = root.findViewById(R.id.imgback)
+                imgback?.setOnClickListener(){
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
+        }
         return root
     }
 

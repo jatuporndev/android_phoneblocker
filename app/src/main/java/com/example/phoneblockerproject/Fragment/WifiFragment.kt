@@ -31,6 +31,7 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -57,7 +58,7 @@ class WifiFragment : Fragment() {
     var txtnetworkmet: TextView?=null
     var txtipv6: TextView?=null
     var conwifi:ConstraintLayout?=null
-
+    var btnlist:Button?=null
     var back:ImageView?=null
 
     override fun onCreateView(
@@ -80,6 +81,14 @@ class WifiFragment : Fragment() {
         txtnetworkmet=root.findViewById(R.id.txtnetworkmet)
         txtipv6=root.findViewById(R.id.txtipv6)
         conwifi=root.findViewById(R.id.conwifi)
+        btnlist=root.findViewById(R.id.btnlist)
+        btnlist?.setOnClickListener {
+            val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransient.replace(R.id.nav_host_fragment,ListwifiFragment())
+            fragmentTransient.addToBackStack(null)
+            fragmentTransient.commit()
+
+        }
         conwifi?.visibility=View.GONE
 
         back=root.findViewById(R.id.imageView14)
