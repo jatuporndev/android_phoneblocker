@@ -17,6 +17,7 @@ class HomeFragment : Fragment() {
     var conmessage:ConstraintLayout?=null
     var imgsettings:ImageView?=null
     var conwifi:ConstraintLayout?=null
+    var consecurity:ConstraintLayout?=null
 
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreateView(
@@ -55,6 +56,14 @@ class HomeFragment : Fragment() {
         conwifi?.setOnClickListener {
             val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransient.replace(R.id.nav_host_fragment,WifiFragment())
+            fragmentTransient.addToBackStack(null)
+            fragmentTransient.commit()
+
+        }
+        consecurity=root.findViewById(R.id.consecurity)
+        consecurity?.setOnClickListener {
+            val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
+            fragmentTransient.replace(R.id.nav_host_fragment,SecurityFragment())
             fragmentTransient.addToBackStack(null)
             fragmentTransient.commit()
 
