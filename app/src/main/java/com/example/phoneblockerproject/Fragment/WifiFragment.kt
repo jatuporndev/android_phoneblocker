@@ -217,6 +217,7 @@ class WifiFragment : Fragment() {
 
     fun checkWifi():Boolean{
         val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
+        Log.d("wifi",wifiManager.startScan().toString())
         if(!wifiManager.isWifiEnabled){
             val dialogBuilder = AlertDialog.Builder(requireContext())
             dialogBuilder.setMessage("Wifi ยังไม่ได้เปิด ต้องการเปิดหรือไหม่?")
@@ -226,6 +227,7 @@ class WifiFragment : Fragment() {
                     startActivity(intent)
                     val fragmentTransaction = requireActivity().supportFragmentManager
                     fragmentTransaction.popBackStack()
+
                 }
                 .setNegativeButton("ยกเลิก") { dialog, _ ->
                     dialog.cancel()
