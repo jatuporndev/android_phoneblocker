@@ -38,11 +38,11 @@
                 android:layout_height="100dp"
                 android:src="@drawable/logoghome"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView18"
+                app:layout_constraintStart_toEndOf="@+id/imgback"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView18"
+                android:id="@+id/imgback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -62,9 +62,7 @@
             android:layout_marginBottom="320dp"
             android:background="#CCFFC7B4"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -72,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="300dp"
             android:layout_marginEnd="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/de"
@@ -85,7 +83,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout15"
+                    android:id="@+id/conmode"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
@@ -133,42 +131,31 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView29"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_baseline_back3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
                         android:id="@+id/imageView30"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginEnd="7dp"
-                        android:layout_marginRight="7dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:src="@drawable/cross"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView29"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout16"
+                    android:id="@+id/conusb"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/layout_sc"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout15">
+                    app:layout_constraintTop_toBottomOf="@+id/txtmode">
 
                     <TextView
                         android:id="@+id/textView66"
@@ -204,42 +191,31 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView24"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_baseline_back3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
                         android:id="@+id/imageView31"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginEnd="7dp"
-                        android:layout_marginRight="7dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:src="@drawable/cross"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView24"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintLayout17"
+                    android:id="@+id/conroot"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/layout_sc"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
+                    app:layout_constraintTop_toBottomOf="@+id/txtusb">
 
                     <TextView
                         android:id="@+id/textView68"
@@ -275,43 +251,31 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView25"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_baseline_back3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
                         android:id="@+id/imageView32"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginEnd="7dp"
-                        android:layout_marginRight="7dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:src="@drawable/cross"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView25"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/conlook"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/layout_sc"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout17">
+                    app:layout_constraintTop_toBottomOf="@+id/txtroot">
 
                     <TextView
                         android:id="@+id/textView69"
@@ -347,28 +311,69 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView26"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:id="@+id/imageView33"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_baseline_back3"
+                        android:src="@drawable/cross"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <ImageView
-                        android:id="@+id/imageView33"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="7dp"
-                        android:layout_marginRight="7dp"
-                        android:src="@drawable/cross"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/imageView26"
-                        app:layout_constraintTop_toTopOf="parent" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/txtmode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginRight="42dp"
+                    android:text="ไปที่ตั้งค่า >"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conmode"
+                    tools:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/txtusb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginRight="42dp"
+                    android:text="ไปที่ตั้งค่า >"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conusb"
+                    tools:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/txtroot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginRight="42dp"
+                    android:text="ไปที่ตั้งค่า >"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conroot"
+                    tools:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/txtlook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="42dp"
+                    android:layout_marginRight="42dp"
+                    android:text="ไปที่ตั้งค่า >"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/conlook"
+                    tools:visibility="invisible" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
