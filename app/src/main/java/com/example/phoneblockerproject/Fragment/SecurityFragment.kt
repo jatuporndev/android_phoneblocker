@@ -28,9 +28,6 @@ class SecurityFragment : Fragment() {
     }
 
 
-
-
-
     fun isRooted(): Boolean {
         val isEmulator: Boolean = isEmulator(requireContext())
         val buildTags = Build.TAGS
