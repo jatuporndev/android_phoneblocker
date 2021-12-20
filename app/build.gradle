@@ -55,5 +55,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.4.0'
 
     implementation 'com.tapadoo.android:alerter:6.1.0'
+    implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
 }
 

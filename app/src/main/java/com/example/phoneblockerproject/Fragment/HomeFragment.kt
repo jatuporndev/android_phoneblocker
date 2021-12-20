@@ -64,7 +64,7 @@ class HomeFragment : Fragment() {
         consecurity=root.findViewById(R.id.consecurity)
         consecurity?.setOnClickListener {
             val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
-            fragmentTransient.replace(R.id.nav_host_fragment,TestrootFragment())
+            fragmentTransient.replace(R.id.nav_host_fragment,SecurityFragment())
             fragmentTransient.addToBackStack(null)
             fragmentTransient.commit()
 
