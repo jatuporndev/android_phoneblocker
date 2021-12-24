@@ -32,6 +32,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -58,7 +59,7 @@ class WifiFragment : Fragment() {
     var txtnetworkmet: TextView?=null
     var txtipv6: TextView?=null
     var conwifi:ConstraintLayout?=null
-    var btnlist:Button?=null
+    var btnlist:ImageButton?=null
     var back:ImageView?=null
 
     override fun onCreateView(
