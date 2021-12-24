@@ -1,10 +1,12 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Context.WIFI_SERVICE
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.Color
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
@@ -19,16 +21,21 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
+import java.lang.Exception
+
 @RequiresApi(Build.VERSION_CODES.R)
 class ListwifiFragment : Fragment() {
     var data = ArrayList<Data>()
     var recyclerView:RecyclerView?=null
     var progressBar:ProgressBar?=null
     var swipe:SwipeRefreshLayout?=null
+    var ssid:String=""
+    var back:ImageView?=null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +46,15 @@ class ListwifiFragment : Fragment() {
         recyclerView = root.findViewById(R.id.recyclerView2)
         progressBar = root.findViewById(R.id.progressBar)
         swipe = root.findViewById(R.id.swipe)
+        back=root.findViewById(R.id.back)
+
+        back?.setOnClickListener {
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
+        }
+
+        val bundle = this.arguments
+        ssid =bundle?.get("ssid").toString()
 
         swipe?.setOnRefreshListener {
             scan()
@@ -68,17 +84,31 @@ class ListwifiFragment : Fragment() {
             return ViewHolder(view)
         }
 
+        @SuppressLint("ResourceAsColor")
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
             val data = list[position]
             holder.data = data
             holder.txtnamwifi.text = data.ssid
+            if (data.ssid == ssid){
+                holder.txtnamwifi.setTextColor(Color.parseColor("#FFC766"))
+            }
+
             when(data.siglevel){
                 1 -> holder.imgwifi.setImageResource(R.drawable.wifi1)
                 2 -> holder.imgwifi.setImageResource(R.drawable.wifi2)
                 3 -> holder.imgwifi.setImageResource(R.drawable.wifi3)
                 4 -> holder.imgwifi.setImageResource(R.drawable.wifi4)
                 else -> holder.imgwifi.setImageResource(R.drawable.wifi4)
+            }
+
+            if (data.capabilities.contains("none")){
+                holder.imglock.visibility =View.GONE
+            }
+            holder.comwifi.setOnClickListener {
+                addwifi(data.ssid,data.BSSID)
+                val fragmentTransaction = requireActivity().supportFragmentManager
+                fragmentTransaction.popBackStack()
             }
 
 
@@ -95,11 +125,15 @@ class ListwifiFragment : Fragment() {
             var data: Data? = null
             var txtnamwifi:TextView = itemView.findViewById(R.id.txtnamwifi)
             var imgwifi:ImageView = itemView.findViewById(R.id.imgwifi)
-
-
+            var comwifi:ConstraintLayout = itemView.findViewById(R.id.conwifi)
+            var imglock:ImageView = itemView.findViewById(R.id.imglock)
         }
     }
 
+        fun addwifi(ssid: String,bssid:String){
+            val db = DBHelper(requireContext())
+            db.addwifi(ssid,bssid)
+        }
 
         fun scan(){
             val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
@@ -125,23 +159,26 @@ class ListwifiFragment : Fragment() {
 
         }
     fun scanSuccess() {
+        try{
+
+
         data.clear()
         val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
-        var wifiinfo: WifiInfo? = wifiManager.connectionInfo
         val results = wifiManager.scanResults
-
 
         results.forEach {
             if (!it.SSID.isNullOrBlank()){
                 var lvls = wifiManager.calculateSignalLevel(it.level)
                     data.add((Data(it.SSID,it.BSSID,it.capabilities,lvls)))
 
-
             }
         }
         recyclerView!!.adapter = DataAdapter(data)
         progressBar?.visibility =View.GONE
 
+        }catch (ex:Exception){
+
+        }
     }
     fun scanFailure() {
         val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager

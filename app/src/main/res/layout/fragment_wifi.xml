@@ -434,12 +434,8 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView3"
                         android:layout_width="390dp"
-                        android:layout_height="101dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
                         android:nestedScrollingEnabled="false"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -448,7 +444,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView56"
+                        android:id="@+id/txtemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
