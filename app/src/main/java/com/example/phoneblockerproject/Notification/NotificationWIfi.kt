@@ -21,6 +21,10 @@ import androidx.core.content.ContextCompat
 import com.example.phoneblockerproject.Detector.CallReciver
 import com.example.phoneblockerproject.Fragment.WifiFragment
 import com.example.phoneblockerproject.databass.DBHelper
+import android.app.PendingIntent
+
+
+
 
 
 class NotificationWIfi {
@@ -36,7 +40,12 @@ class NotificationWIfi {
             lateinit var builder: Notification.Builder
             val channelId = "12345"
             val description = "Test Notification"
-
+            val notificationIntent = Intent(context, MainActivity::class.java)
+            val contentIntent = PendingIntent.getActivity(
+                context,
+                0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT
+            )
             var notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as
                     NotificationManager
             val intent = Intent(context, LauncherActivity::class.java)
@@ -49,7 +58,7 @@ class NotificationWIfi {
                 builder = Notification.Builder(context, channelId).setContentTitle(wifi(context)).setContentText("เครือข่าย $wifissid ไม่ได้อยู่ในรายการที่บันทึกไว้")
                     .setSmallIcon(com.example.phoneblockerproject.R.drawable.logoghome).setLargeIcon(
                         BitmapFactory.decodeResource(context.resources, com.example.phoneblockerproject.R.drawable
-                            .ic_launcher_background)).setContentIntent(pendingIntent)
+                            .ic_launcher_background)).setContentIntent(pendingIntent).setContentIntent(contentIntent)
             }
             notificationManager.notify(12345, builder.build())
         }
