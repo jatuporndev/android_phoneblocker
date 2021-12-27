@@ -4,8 +4,10 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ActivityManager
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.net.ConnectivityManager
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
@@ -17,18 +19,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.phoneblockerproject.Detector.WIfiReciver
 import com.example.phoneblockerproject.Fragment.HistoryFragment
 import com.example.phoneblockerproject.Fragment.HomeFragment
 import com.example.phoneblockerproject.Fragment.SMSFragment
-import com.example.phoneblockerproject.Fragment.SettingsFragment
+import com.example.phoneblockerproject.Notification.NotificationWIfi
 import com.example.phoneblockerproject.databass.DBHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.tapadoo.alerter.Alerter
-import java.net.Inet4Address
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), WIfiReciver.NetworkStateReceiverListener  {
     var REQUEST_PERMISSION = 255
+    private var networkStateReceiver: WIfiReciver? = null
+    private var noti:NotificationWIfi?=null
     companion object {
          var dataphone = ArrayList<Data>()
         var datasms = ArrayList<DataSms>()
@@ -38,10 +41,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
-
+        noti = NotificationWIfi()
         dataServer()
         dataSmsServer()
         permission_fn();
+        setNetworkStateReceiver()
         setTransparentStatusBar()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
@@ -164,5 +168,23 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    private fun setNetworkStateReceiver(){
+        networkStateReceiver = WIfiReciver(this)
+        networkStateReceiver!!.addListener(this)
+        applicationContext.registerReceiver(networkStateReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+
+    }
+
+    override fun onNetworkAvailable() {
+      //  Toast.makeText(this, "เปิด", Toast.LENGTH_SHORT).show()
+        noti?.Notify(this)
+
+    }
+
+    override fun onNetworkUnavailable() {
+       // Toast.makeText(this, "ปิด", Toast.LENGTH_SHORT).show()
+    }
+
+
 
 }
