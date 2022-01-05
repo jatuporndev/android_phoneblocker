@@ -181,11 +181,15 @@ class ListwifiFragment : Fragment() {
         }
     }
     fun scanFailure() {
+        try{
         val wifiManager = requireContext().applicationContext.getSystemService(WIFI_SERVICE) as WifiManager
         // handle failure: new scan did NOT succeed
         // consider using old scan results: these are the OLD results!
         val results = wifiManager.scanResults
 
+        }catch (ex:Exception){
+
+        }
     }
 
 }

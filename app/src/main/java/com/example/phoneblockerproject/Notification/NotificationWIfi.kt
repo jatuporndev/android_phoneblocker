@@ -64,8 +64,6 @@ class NotificationWIfi {
         }
 
 
-
-
     }
 
     fun wifi(context: Context):String{
