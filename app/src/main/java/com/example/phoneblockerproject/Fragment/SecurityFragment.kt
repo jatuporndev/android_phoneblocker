@@ -1,5 +1,6 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.Manifest
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.Intent
@@ -21,6 +22,18 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import java.io.File
+
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat
+
+import android.hardware.fingerprint.FingerprintManager
+
+import android.content.pm.PackageManager
+import androidx.biometric.BiometricManager
+
+import androidx.core.app.ActivityCompat
+
+
+
 
 
 class SecurityFragment : Fragment() {
@@ -53,28 +66,15 @@ class SecurityFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         var root =  inflater.inflate(R.layout.fragment_security, container, false)
-        statusDevMode=root.findViewById(R.id.statusdevmode)
-        statusUsbMode=root.findViewById(R.id.statususbmode)
-        statusRootMode=root.findViewById(R.id.statusrootmode)
-        statusLockMode=root.findViewById(R.id.statuslock)
+        handle(root)
 
-        txtdevmode = root.findViewById(R.id.txtdevmode)
-        txtusbmode=root.findViewById(R.id.txtusbmode)
-        txtrootmode = root.findViewById(R.id.txtrottmode)
-        txtlockmode = root.findViewById(R.id.txtlockmode)
 
-        chart=root.findViewById(R.id.circularProgressBar)
-        txtpro = root.findViewById(R.id.txtpro)
-        imgback = root.findViewById(R.id.imgback)
-                imgback?.setOnClickListener(){
+        imgback?.setOnClickListener(){
             val fragmentTransaction = requireActivity().supportFragmentManager
             fragmentTransaction.popBackStack()
         }
 
-
-        txtmode = root.findViewById(R.id.txtmode)
         txtmode?.visibility = View.GONE
-        conmode = root.findViewById(R.id.conmode)
         conmode?.setOnClickListener(){
             if(txtmode?.visibility == View.VISIBLE){
                 txtmode?.visibility = View.GONE
@@ -87,9 +87,7 @@ class SecurityFragment : Fragment() {
 
         }
 
-        txtusb = root.findViewById(R.id.txtusb)
         txtusb?.visibility = View.GONE
-        conusb = root.findViewById(R.id.conusb)
         conusb?.setOnClickListener(){
             if(txtusb?.visibility == View.VISIBLE){
                 txtusb?.visibility = View.GONE
@@ -104,9 +102,8 @@ class SecurityFragment : Fragment() {
 
         }
 
-        txtroot = root.findViewById(R.id.txtroot)
         txtroot?.visibility = View.GONE
-        conroot = root.findViewById(R.id.conroot)
+
       /*  conroot?.setOnClickListener(){
             txtusb?.visibility = View.GONE
             txtmode?.visibility = View.GONE
@@ -114,9 +111,7 @@ class SecurityFragment : Fragment() {
             txtroot?.visibility = View.VISIBLE
         }
 */
-        txtlook = root.findViewById(R.id.txtlook)
         txtlook?.visibility = View.GONE
-        conlook = root.findViewById(R.id.conlook)
         conlook?.setOnClickListener(){
             if(  txtlook?.visibility == View.VISIBLE){
                 txtlook?.visibility = View.GONE
@@ -126,14 +121,39 @@ class SecurityFragment : Fragment() {
                 txtmode?.visibility = View.GONE
                 txtlook?.visibility = View.VISIBLE
             }
-
-
         }
+
+        Log.d("test",isFingerprint().toString())
 
         check()
         setting()
         return root
     }
+    fun handle(root:View){
+        statusDevMode=root.findViewById(R.id.statusdevmode)
+        statusUsbMode=root.findViewById(R.id.statususbmode)
+        statusRootMode=root.findViewById(R.id.statusrootmode)
+        statusLockMode=root.findViewById(R.id.statuslock)
+
+        txtdevmode = root.findViewById(R.id.txtdevmode)
+        txtusbmode=root.findViewById(R.id.txtusbmode)
+        txtrootmode = root.findViewById(R.id.txtrottmode)
+        txtlockmode = root.findViewById(R.id.txtlockmode)
+
+        chart=root.findViewById(R.id.circularProgressBar)
+        txtpro = root.findViewById(R.id.txtpro)
+        imgback = root.findViewById(R.id.imgback)
+
+        conmode = root.findViewById(R.id.conmode)
+        txtmode = root.findViewById(R.id.txtmode)
+        conusb = root.findViewById(R.id.conusb)
+        txtusb = root.findViewById(R.id.txtusb)
+        conroot = root.findViewById(R.id.conroot)
+        txtroot = root.findViewById(R.id.txtroot)
+        conlook = root.findViewById(R.id.conlook)
+        txtlook = root.findViewById(R.id.txtlook)
+    }
+
     fun chartprocess(pro:Float){
         txtpro?.text="${pro.toInt()}/4"
         chart?.apply {
@@ -260,6 +280,11 @@ class SecurityFragment : Fragment() {
     fun isEmulator(context: Context): Boolean {
         val androidId = Settings.Secure.getString(context.contentResolver, "android_id")
         return "sdk" == Build.PRODUCT || "google_sdk" == Build.PRODUCT || androidId == null
+    }
+
+    fun isFingerprint():Boolean {
+        return BiometricManager.from(requireContext()).canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS
+
     }
 
 

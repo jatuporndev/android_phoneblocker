@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity(), WIfiReciver.NetworkStateReceiverListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
         noti = NotificationWIfi()
         dataServer()
         dataSmsServer()
