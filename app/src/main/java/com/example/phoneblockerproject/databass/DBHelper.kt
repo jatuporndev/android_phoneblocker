@@ -10,7 +10,7 @@ import android.util.Log
 
 class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION)  {
     companion object {
-         val DATABASE_VERSION = 1
+         val DATABASE_VERSION = 2
          val DATABASE_NAME = "Database"
 
         //Table Phone adding
@@ -46,6 +46,12 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         val TABLE_SMSSPAM_name ="name"
         val TABLE_SMSSPAM_address="address"
 
+        //Table Wifi
+        val TABLE_WIFI = "wifi_table"
+        val TABLE_WIFI_id ="id"
+        val TABLE_WIFI_ssid ="ssid"
+        val TABLE_WIFI_bssid="BSSID"
+
     }
 
 
@@ -80,6 +86,12 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
                 + TABLE_SMSBLOCK_address + " TEXT," + TABLE_SMSBLOCK_name+" TEXT" +")")
         db?.execSQL(CREATE_SMSBLOCK_TABLE)
 
+        //Table wifi
+        val CREATE_WIFI_TABLE = ("CREATE TABLE " + TABLE_WIFI + "("
+                + TABLE_WIFI_id + " INTEGER PRIMARY KEY," + TABLE_WIFI_ssid + " TEXT,"
+                + TABLE_WIFI_bssid + " TEXT" + ")")
+        db?.execSQL(CREATE_WIFI_TABLE)
+
 
 
     }
@@ -90,6 +102,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_PHONESPAMER)
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_SMSBLOCK)
         db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_SMSSPAM)
+        db!!.execSQL("DROP TABLE IF EXISTS " + TABLE_WIFI)
         onCreate(db)
     }
 
@@ -221,6 +234,22 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
 
     }
 
-
-
+    //wifi part
+    fun addwifi(ssid:String,bssid:String){
+        val values = ContentValues()
+        val db = this.writableDatabase
+        values.put(TABLE_WIFI_ssid,ssid)
+        values.put(TABLE_WIFI_bssid,bssid)
+        //ชื่อ ตาราง
+        db.insert(TABLE_WIFI, null, values)
+        db.close()
+    }
+    fun selectwifi():Cursor{
+        val db = this.readableDatabase
+        return  db.rawQuery("SELECT * FROM " +TABLE_WIFI,null)
+    }
+    fun deleteWIFI(ssid:String){
+        val db = this.writableDatabase
+        db.execSQL("delete from "+ TABLE_WIFI +" WHERE ssid = '"+ssid+"'" )
+    }
 }

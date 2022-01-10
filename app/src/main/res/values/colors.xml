@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="sms">#A5EBFF</color>
     <color name="lightGray">#E6E6E6</color>
+    <color name="wifi">#FFC766</color>
 </resources>

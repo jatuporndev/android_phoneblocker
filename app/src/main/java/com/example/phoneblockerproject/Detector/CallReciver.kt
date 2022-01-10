@@ -2,60 +2,40 @@ package com.example.phoneblockerproject.Detector
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.*
-import android.app.TaskStackBuilder.create
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.graphics.Typeface.create
-import android.media.MediaPlayer.create
+import android.net.wifi.WifiManager
 import android.os.Build
+import android.provider.Telephony.Sms
 import android.telecom.TelecomManager
-import android.telephony.MbmsDownloadSession.create
 import android.telephony.TelephonyManager
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
-import com.google.android.material.internal.ContextUtils.getActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import com.tapadoo.alerter.Alerter
-import android.os.Bundle
-import android.telephony.SmsManager
-import okhttp3.internal.notify
-import android.app.Activity
-import android.telephony.SmsMessage
-import androidx.core.content.res.ResourcesCompat.FontCallback.getHandler
+import android.net.wifi.WifiInfo
 
-import android.os.UserHandle
+import android.net.NetworkInfo
+import android.widget.Toast
 
-import android.Manifest.permission
-import androidx.core.content.res.ResourcesCompat.FontCallback
-import android.content.Context.ALARM_SERVICE
 
-import androidx.core.content.ContextCompat.getSystemService
 
-import android.app.AlarmManager
 
-import android.app.PendingIntent
-import android.app.NotificationManager
-import android.content.ContentResolver
-import android.database.Cursor
-import android.net.Uri
-import android.provider.Telephony
-import java.lang.Exception
-import android.provider.Telephony.Sms
+
 
 
 
@@ -77,6 +57,8 @@ class CallReciver : BroadcastReceiver() {
         }else{
             smsCheck(context,intent)
         }
+
+
 
     }
 
