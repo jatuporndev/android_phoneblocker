@@ -2,6 +2,7 @@ package com.example.phoneblockerproject.Fragment
 
 import android.Manifest
 import android.app.KeyguardManager
+import android.app.admin.DevicePolicyManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -31,9 +32,7 @@ import android.content.pm.PackageManager
 import androidx.biometric.BiometricManager
 
 import androidx.core.app.ActivityCompat
-
-
-
+import com.daasuu.cat.CountAnimationTextView
 
 
 class SecurityFragment : Fragment() {
@@ -42,22 +41,26 @@ class SecurityFragment : Fragment() {
     var txtusb: TextView?=null
     var txtroot: TextView?=null
     var txtlook: TextView?=null
+    var txtfig:TextView?=null
     var conmode:ConstraintLayout?=null
     var conusb:ConstraintLayout?=null
     var conroot:ConstraintLayout?=null
     var conlook:ConstraintLayout?=null
+    var config:ConstraintLayout?=null
     //img
     var statusDevMode:ImageView?=null
     var statusUsbMode:ImageView?=null
     var statusRootMode:ImageView?=null
     var statusLockMode:ImageView?=null
+    var statusFigMode:ImageView?=null
 
     var txtdevmode:TextView?=null
     var txtusbmode:TextView?=null
     var txtrootmode:TextView?=null
     var txtlockmode:TextView?=null
+    var txtfigmode:TextView?=null
 
-    var txtpro:TextView?=null
+    var txtpro: CountAnimationTextView?=null
     var chart: CircularProgressBar?=null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
@@ -82,6 +85,7 @@ class SecurityFragment : Fragment() {
                 txtusb?.visibility = View.GONE
                 txtroot?.visibility = View.GONE
                 txtlook?.visibility = View.GONE
+                txtfig?.visibility = View.GONE
                 txtmode?.visibility = View.VISIBLE
             }
 
@@ -95,10 +99,9 @@ class SecurityFragment : Fragment() {
                 txtmode?.visibility = View.GONE
                 txtroot?.visibility = View.GONE
                 txtlook?.visibility = View.GONE
+                txtfig?.visibility = View.GONE
                 txtusb?.visibility = View.VISIBLE
             }
-
-
 
         }
 
@@ -119,7 +122,21 @@ class SecurityFragment : Fragment() {
                 txtroot?.visibility = View.GONE
                 txtusb?.visibility = View.GONE
                 txtmode?.visibility = View.GONE
+                txtfig?.visibility = View.GONE
                 txtlook?.visibility = View.VISIBLE
+            }
+        }
+
+        txtfig?.visibility = View.GONE
+        config?.setOnClickListener(){
+            if(  txtfig?.visibility == View.VISIBLE){
+                txtfig?.visibility = View.GONE
+            }else{
+                txtroot?.visibility = View.GONE
+                txtusb?.visibility = View.GONE
+                txtmode?.visibility = View.GONE
+                txtlook?.visibility = View.GONE
+                txtfig?.visibility = View.VISIBLE
             }
         }
 
@@ -134,11 +151,13 @@ class SecurityFragment : Fragment() {
         statusUsbMode=root.findViewById(R.id.statususbmode)
         statusRootMode=root.findViewById(R.id.statusrootmode)
         statusLockMode=root.findViewById(R.id.statuslock)
+        statusFigMode=root.findViewById(R.id.statusscan)
 
         txtdevmode = root.findViewById(R.id.txtdevmode)
         txtusbmode=root.findViewById(R.id.txtusbmode)
         txtrootmode = root.findViewById(R.id.txtrottmode)
         txtlockmode = root.findViewById(R.id.txtlockmode)
+        txtfigmode = root.findViewById(R.id.txtfig)
 
         chart=root.findViewById(R.id.circularProgressBar)
         txtpro = root.findViewById(R.id.txtpro)
@@ -152,10 +171,13 @@ class SecurityFragment : Fragment() {
         txtroot = root.findViewById(R.id.txtroot)
         conlook = root.findViewById(R.id.conlook)
         txtlook = root.findViewById(R.id.txtlook)
+        txtfig = root.findViewById(R.id.txtscan)
+        config = root.findViewById(R.id.conprint)
     }
 
     fun chartprocess(pro:Float){
-        txtpro?.text="${pro.toInt()}/4"
+
+
         chart?.apply {
             // Set Progress
             progress = 0f
@@ -163,7 +185,7 @@ class SecurityFragment : Fragment() {
             setProgressWithAnimation(pro, 1000) // =1s
 
             // Set Progress Max
-            progressMax = 4f
+            progressMax = 5f
 
             // Set ProgressBar Color
             progressBarColor = Color.BLACK
@@ -188,6 +210,8 @@ class SecurityFragment : Fragment() {
             startAngle = 180f
             progressDirection = CircularProgressBar.ProgressDirection.TO_RIGHT
         }
+        txtpro?.setAnimationDuration(500)?.countAnimation(0, pro.toInt())
+
 
     }
 
@@ -214,6 +238,11 @@ class SecurityFragment : Fragment() {
             txtlockmode?.text="ล็อคหน้าจอแล้ว ปลอดภัยแล้ว!! "
             i+=1
         }
+        if(isFingerprint()){
+            statusFigMode?.setImageResource(R.drawable.correct)
+            txtfigmode?.text="สแกนลายนิ้วมือแล้ว ปลอดภัยแล้ว!! "
+            i+=1
+        }
         chartprocess(i)
     }
 
@@ -227,9 +256,13 @@ class SecurityFragment : Fragment() {
             startActivity(intent)
         }
         txtlook?.setOnClickListener {
-            val intent = Intent(Settings.ACTION_SECURITY_SETTINGS)
+            val intent = Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD)
             startActivity(intent)
 
+        }
+        txtfig?.setOnClickListener {
+            val intent = Intent(Settings.ACTION_SECURITY_SETTINGS)
+            startActivity(intent)
         }
     }
 

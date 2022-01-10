@@ -57,5 +57,6 @@ dependencies {
     implementation 'com.tapadoo.android:alerter:6.1.0'
     implementation 'com.mikhaellopez:circularprogressbar:3.1.0'
     implementation 'androidx.biometric:biometric:1.0.0-beta01'
+    implementation 'com.daasuu:CountAnimationTextView:0.1.2'
 }
 
