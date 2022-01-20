@@ -12,7 +12,7 @@
         android:background="#CC000000" >
 
         <ImageView
-            android:id="@+id/imageView16"
+            android:id="@+id/imgback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -36,14 +36,14 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout15"
+            android:id="@+id/conpackage"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_users"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout13">
+            app:layout_constraintTop_toBottomOf="@+id/consignin">
 
             <TextView
                 android:id="@+id/textView60"
@@ -72,10 +72,10 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout13"
+            android:id="@+id/consignin"
             android:layout_width="350dp"
             android:layout_height="40dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/bg_users"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,10 +143,10 @@
             android:textSize="25sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout15" />
+            app:layout_constraintTop_toBottomOf="@+id/conpackage" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout16"
+            android:id="@+id/condefense"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
@@ -175,21 +175,21 @@
                 android:layout_height="25dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/security"
+                android:src="@drawable/security2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout17"
+            android:id="@+id/conterms"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_users"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
+            app:layout_constraintTop_toBottomOf="@+id/condefense">
 
             <TextView
                 android:id="@+id/textView75"
@@ -218,13 +218,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/consafety"
             android:layout_width="350dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_users"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout17">
+            app:layout_constraintTop_toBottomOf="@+id/conterms">
 
             <TextView
                 android:id="@+id/textView76"
@@ -247,6 +248,42 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/shield"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/conregister"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_users"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/consafety">
+
+            <TextView
+                android:id="@+id/textView77"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="ลงชื่อเข้าใช้งาน"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView26"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView26"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/signin2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
