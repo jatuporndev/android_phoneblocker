@@ -6,18 +6,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"  />
-    <uses-permission android:name = "android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.WRITE_SMS" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -25,11 +25,9 @@
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-
     <uses-permission
         android:name="android.permission.INTERACT_ACROSS_USERS"
         tools:ignore="ProtectedPermissions" />
-
 
     <uses-feature
         android:name="android.hardware.wifi"
@@ -44,12 +42,18 @@
         android:roundIcon="@drawable/logoghome"
         android:supportsRtl="true"
         android:theme="@style/Theme.PhoneBlockerProject">
-
-
-        <activity android:name=".SplashScreenActivity"
-            android:launchMode="singleTask"
+        <activity
+            android:name=".Fragment.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Fragment.LoginActivity"
             android:theme="@style/Theme.PhoneBlockerProject.NoActionBar"
-            android:exported="true">
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,16 +64,12 @@
         <service
             android:name=".MyService"
             android:enabled="true"
-            android:exported="true">
-
-        </service>
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar" />
 
         <receiver
             android:name=".Detector.CallReciver"
@@ -90,7 +90,6 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".Detector.WIfiReciver"
             android:enabled="true"
@@ -99,7 +98,6 @@
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
