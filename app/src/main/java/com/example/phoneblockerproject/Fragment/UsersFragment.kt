@@ -1,5 +1,6 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 
 
@@ -17,7 +19,6 @@ class UsersFragment : Fragment() {
     var condefense: ConstraintLayout?=null
     var conterms: ConstraintLayout?=null
     var consafety: ConstraintLayout?=null
-    var conregister: ConstraintLayout?=null
     var imgback: ImageView?=null
 
     override fun onCreateView(
@@ -34,6 +35,9 @@ class UsersFragment : Fragment() {
         }
 
         consignin = root.findViewById(R.id.consignin)
+        consignin?.setOnClickListener{
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
 
         conpackage = root.findViewById(R.id.conpackage)
 
@@ -56,7 +60,7 @@ class UsersFragment : Fragment() {
             fragmentTransient.commit()
 
         }
-        conregister = root.findViewById(R.id.conregister)
+
 
 
 
