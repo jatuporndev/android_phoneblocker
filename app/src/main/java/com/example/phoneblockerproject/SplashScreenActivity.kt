@@ -25,7 +25,6 @@ class SplashScreenActivity : AppCompatActivity() {
                 // Start your app main activity
 
                 startActivity(Intent(this, MainActivity::class.java))
-
                 // close this activity
                 finish()
             }, time)
