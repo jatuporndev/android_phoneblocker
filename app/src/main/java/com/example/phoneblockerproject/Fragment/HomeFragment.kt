@@ -32,12 +32,13 @@ class HomeFragment : Fragment() {
         imgsettings?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, SettingsFragment())
+            fragmentTransaction.replace(R.id.nav_host_fragment, UsersFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
 
         conphone = root.findViewById(R.id.conphone)
+        conphone?.isEnabled = false
         conphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
@@ -46,6 +47,7 @@ class HomeFragment : Fragment() {
             fragmentTransaction.commit()
         }
         conmessage = root.findViewById(R.id.conmessage)
+        conmessage?.isEnabled = false
         conmessage?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
@@ -54,6 +56,7 @@ class HomeFragment : Fragment() {
             fragmentTransaction.commit()
         }
         conwifi=root.findViewById(R.id.conwifi)
+        conwifi?.isEnabled = false
         conwifi?.setOnClickListener {
             val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransient.replace(R.id.nav_host_fragment,WifiFragment())
