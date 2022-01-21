@@ -40,7 +40,13 @@ class UsersFragment : Fragment() {
         }
 
         conpackage = root.findViewById(R.id.conpackage)
-
+        conpackage?.setOnClickListener{
+            val fragmentTransaction = requireActivity().
+            supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.nav_host_fragment, PackageFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
         condefense = root.findViewById(R.id.condefense)
         condefense?.setOnClickListener{
             val fragmentTransaction = requireActivity().

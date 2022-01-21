@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 
 class LoginActivity : AppCompatActivity() {
@@ -22,7 +23,9 @@ class LoginActivity : AppCompatActivity() {
 
         val imgback = findViewById<ImageView>(R.id.imgback)
         imgback.setOnClickListener{
-            startActivity(Intent(this, UsersFragment::class.java))
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }

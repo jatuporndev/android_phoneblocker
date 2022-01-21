@@ -56,7 +56,6 @@ class HomeFragment : Fragment() {
             fragmentTransaction.commit()
         }
         conwifi=root.findViewById(R.id.conwifi)
-        conwifi?.isEnabled = false
         conwifi?.setOnClickListener {
             val fragmentTransient = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransient.replace(R.id.nav_host_fragment,WifiFragment())
