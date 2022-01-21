@@ -83,11 +83,12 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:text="Login"
-                android:textSize="30sp"
+                android:textAllCaps="false"
+                android:textSize="20sp"
                 app:backgroundTint="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,19 +102,19 @@
                 android:text="Create an Account"
                 app:layout_constraintEnd_toStartOf="@+id/textView79"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
             <TextView
                 android:id="@+id/textView79"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="15dp"
                 android:text="Forgot Password?"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/txtregister"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
             <TextView
                 android:id="@+id/textView80"
@@ -123,7 +124,18 @@
                 android:text="/"
                 app:layout_constraintEnd_toStartOf="@+id/textView79"
                 app:layout_constraintStart_toEndOf="@+id/txtregister"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="ต้องเขียนว่าไรวะ"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -160,6 +172,18 @@
             app:layout_constraintStart_toStartOf="@+id/constraintLayout13"
             app:layout_constraintTop_toBottomOf="@+id/textView77"
             app:srcCompat="@drawable/person2" />
+
+        <ImageView
+            android:id="@+id/imgback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
