@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 
 
@@ -27,7 +28,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-
+        (activity as MainActivity).setTransparentStatusBar(1)
         imgsettings = root.findViewById(R.id.imgsettings)
         imgsettings?.setOnClickListener{
             val fragmentTransaction = requireActivity().
