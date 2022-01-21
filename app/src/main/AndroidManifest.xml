@@ -44,6 +44,7 @@
         android:theme="@style/Theme.PhoneBlockerProject">
         <activity
             android:name=".Fragment.RegisterActivity"
+            android:theme="@style/Theme.PhoneBlockerProject.NoActionBar"
             android:exported="false" />
         <activity
             android:name=".Fragment.LoginActivity"
