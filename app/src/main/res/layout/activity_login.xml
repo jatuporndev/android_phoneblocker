@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/editTextName"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView78" />
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/editTextPassword"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -75,10 +75,10 @@
                 android:inputType="textPassword"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnLogin"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -92,7 +92,7 @@
                 app:backgroundTint="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword2" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
             <TextView
                 android:id="@+id/txtregister"
@@ -134,7 +134,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="ต้องเขียนว่าไรวะ"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
