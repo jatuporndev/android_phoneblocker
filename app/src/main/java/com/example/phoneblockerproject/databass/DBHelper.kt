@@ -55,7 +55,6 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
     }
 
 
-
     override fun onCreate(db: SQLiteDatabase?) {
         //Table Phone adding
         val CREATE_CONTACTS_TABLE = ("CREATE TABLE " + TABLE_PHONEBLOCKER + "("
@@ -91,8 +90,6 @@ class DBHelper(context: Context): SQLiteOpenHelper(context,DATABASE_NAME,null,DA
                 + TABLE_WIFI_id + " INTEGER PRIMARY KEY," + TABLE_WIFI_ssid + " TEXT,"
                 + TABLE_WIFI_bssid + " TEXT" + ")")
         db?.execSQL(CREATE_WIFI_TABLE)
-
-
 
     }
 

@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), WIfiReciver.NetworkStateReceiverListen
     companion object {
          var dataphone = ArrayList<Data>()
         var datasms = ArrayList<DataSms>()
+
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,11 +43,12 @@ class MainActivity : AppCompatActivity(), WIfiReciver.NetworkStateReceiverListen
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
         noti = NotificationWIfi()
+
         dataServer()
         dataSmsServer()
         permission_fn();
         setNetworkStateReceiver()
-        setTransparentStatusBar()
+        setTransparentStatusBar(1)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
             val transaction = supportFragmentManager.beginTransaction()
@@ -70,13 +72,21 @@ class MainActivity : AppCompatActivity(), WIfiReciver.NetworkStateReceiverListen
 
 
     }
-    fun Activity.setTransparentStatusBar() {
-        window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+    fun setTransparentStatusBar(sta :Int) {
+        if(sta == 0){
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }else{
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.statusBarColor = Color.TRANSPARENT
         }
     }
+
 
 
     private fun permission_fn() {

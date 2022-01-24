@@ -47,6 +47,7 @@ class HistoryFragment : Fragment() {
         recyclerView = root.findViewById(R.id.recyclerView)
         btnhisphone = root.findViewById(R.id.btnhisphone)
         search = root.findViewById(R.id.search)
+        (activity as MainActivity).setTransparentStatusBar(0)
         btnhisphone?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
