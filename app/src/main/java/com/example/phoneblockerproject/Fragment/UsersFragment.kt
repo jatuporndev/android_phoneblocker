@@ -137,9 +137,9 @@ class UsersFragment : Fragment() {
         }
             // ล็อกอิน
         consignin?.setOnClickListener{
+            startActivity(Intent(context, LoginActivity::class.java))
             val fragmentTransaction = requireActivity().supportFragmentManager
             fragmentTransaction.popBackStack()
-            startActivity(Intent(context, LoginActivity::class.java))
 
         }
             // กลับ
