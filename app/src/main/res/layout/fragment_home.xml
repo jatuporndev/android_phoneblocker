@@ -211,6 +211,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <ImageView
+                android:id="@+id/imgpk1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/pkhome"
+                app:layout_constraintEnd_toEndOf="@+id/conphone"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
                 android:id="@+id/imageView8"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
@@ -220,6 +231,17 @@
                 android:src="@drawable/mail"
                 app:layout_constraintStart_toStartOf="@+id/conmessage"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <ImageView
+                android:id="@+id/imgpk2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="85dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/pkhome"
+                app:layout_constraintEnd_toEndOf="@+id/conmessage"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
