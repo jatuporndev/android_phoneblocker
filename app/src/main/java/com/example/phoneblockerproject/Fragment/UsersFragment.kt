@@ -55,7 +55,8 @@ class UsersFragment : Fragment() {
         conlogout = root.findViewById(R.id.conlogout)
 
         consignin?.visibility = View.VISIBLE
-        if (userstatus == "0") {
+
+        if (userstatus == "1") {
           consignin?.visibility = View.GONE
 
         }else {
@@ -136,7 +137,10 @@ class UsersFragment : Fragment() {
         }
             // ล็อกอิน
         consignin?.setOnClickListener{
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            val fragmentTransaction = requireActivity().supportFragmentManager
+            fragmentTransaction.popBackStack()
+            startActivity(Intent(context, LoginActivity::class.java))
+
         }
             // กลับ
         imgback?.setOnClickListener {

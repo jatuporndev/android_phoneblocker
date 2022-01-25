@@ -73,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
 
                         editor.putString(memberIdPreference, userID)
                         editor.putString(usernamePreference, username)
-                        editor.putString(userstatus, "0")
+                        editor.putString(userstatus, "1")
                         editor.commit()
 
                         //return to login page
