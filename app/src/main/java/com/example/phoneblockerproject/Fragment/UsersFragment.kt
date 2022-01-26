@@ -3,6 +3,7 @@ package com.example.phoneblockerproject.Fragment
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.CallLog
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
@@ -42,7 +45,7 @@ class UsersFragment : Fragment() {
             LoginActivity().appPreference, Context.MODE_PRIVATE)
         userstatus = sharedPrefer?.getString(LoginActivity().userstatus, null)
         memberID = sharedPrefer?.getString(LoginActivity().memberIdPreference, null)
-
+        (activity as MainActivity).setTransparentStatusBar(0)
 
         var root =  inflater.inflate(R.layout.fragment_users, container, false)
         txtusername = root.findViewById(R.id.txtusername)
@@ -96,20 +99,7 @@ class UsersFragment : Fragment() {
         }
             // ออกจากระบบ
         conlogout?.setOnClickListener {
-            val sharePrefer = requireContext().getSharedPreferences(
-                LoginActivity().appPreference,
-                Context.MODE_PRIVATE
-            )
-            val editor = sharePrefer.edit()
-            editor.clear() // ทำการลบข้อมูลทั้งหมดจาก preferences
-
-            editor.commit() // ยืนยันการแก้ไข preferences
-            //return to login page
-            val fragmentTransaction = requireActivity().
-            supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            confrimDialogLogout()
         }
             // ตั้งค่าความปลอดภัย
         consafety?.setOnClickListener {
@@ -138,8 +128,8 @@ class UsersFragment : Fragment() {
             // ล็อกอิน
         consignin?.setOnClickListener{
             startActivity(Intent(context, LoginActivity::class.java))
-            val fragmentTransaction = requireActivity().supportFragmentManager
-            fragmentTransaction.popBackStack()
+           // val fragmentTransaction = requireActivity().supportFragmentManager
+           // fragmentTransaction.popBackStack()
 
         }
             // กลับ
@@ -150,5 +140,34 @@ class UsersFragment : Fragment() {
 
     }
 
+    fun confrimDialogLogout(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("ต้องการจะจากระะบบหรือไม่?")
+            .setCancelable(false)
+            .setPositiveButton("ใช่") { _, _ ->
+                val sharePrefer = requireContext().getSharedPreferences(
+                    LoginActivity().appPreference,
+                    Context.MODE_PRIVATE
+                )
+                val editor = sharePrefer.edit()
+                editor.clear() // ทำการลบข้อมูลทั้งหมดจาก preferences
+
+                editor.commit() // ยืนยันการแก้ไข preferences
+                //return to login page
+                val fragmentTransaction = requireActivity().
+                supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+
+            }
+            .setNegativeButton("ยกเลิก") { dialog, id ->
+
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+
+    }
 
 }

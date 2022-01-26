@@ -10,9 +10,6 @@
         android:name="com.example.phoneblockerproject.Fragment.HomeFragment"
         android:label="หน้าแรก"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_nav_his"
-            app:destination="@id/nav_his" />
 
     </fragment>
     <fragment

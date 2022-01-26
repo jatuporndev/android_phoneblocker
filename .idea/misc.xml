@@ -5,14 +5,18 @@
       <map>
         <entry key="..\:/AppAndroid/android_phoneblocker/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable-v24/bg_wifi3.xml" value="0.2703125" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/bg_login.xml" value="0.209375" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/bg_login2.xml" value="0.209375" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/de.xml" value="0.2703125" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.2703125" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.20260416666666667" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/item_background.xml" value="0.24427083333333333" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/drawable/layout_bgmenu5.xml" value="0.24427083333333333" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/activity_login.xml" value="0.6" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/activity_main.xml" value="0.20742753623188406" />
-        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/activity_register.xml" value="0.4" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/activity_splash_screen.xml" value="0.22239583333333332" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/cardview_chat.xml" value="0.21822916666666667" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_blocker_message.xml" value="0.16145833333333334" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_history.xml" value="0.20625" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_history_message.xml" value="0.19293478260869565" />
@@ -26,7 +30,7 @@
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_security.xml" value="0.16" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_settings.xml" value="0.11822916666666666" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_testroot.xml" value="0.3012633624878523" />
-        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_users.xml" value="0.264" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_users.xml" value="0.2" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/fragment_wifi.xml" value="0.4" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_blockermessage.xml" value="0.4" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/item_blockphone.xml" value="0.22708333333333333" />
@@ -39,6 +43,7 @@
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/popup_add_phone.xml" value="0.21014492753623187" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/popup_add_sms.xml" value="0.20260416666666667" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/popup_menu_history.xml" value="0.1721014492753623" />
+        <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/layout/read.xml" value="0.176" />
         <entry key="..\:/This/Android_project/phoneBlockerProject/app/src/main/res/menu/munu_delete.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/drawable-v24/bg_wifi.xml" value="0.20052083333333334" />
         <entry key="..\:/Users/MSI/AndroidStudioProjects/android_phoneblocker/app/src/main/res/drawable-v24/bg_wifi2.xml" value="0.20052083333333334" />
