@@ -35,7 +35,9 @@ class UsersFragment : Fragment() {
     var imgback: ImageView?=null
     var memberID:String?=null
     var userstatus: String? = null
+    var packstatus: String? = null
     var txtusername: TextView? = null
+    var txtstatus:TextView?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,6 +47,8 @@ class UsersFragment : Fragment() {
             LoginActivity().appPreference, Context.MODE_PRIVATE)
         userstatus = sharedPrefer?.getString(LoginActivity().userstatus, null)
         memberID = sharedPrefer?.getString(LoginActivity().memberIdPreference, null)
+        packstatus = sharedPrefer?.getString(LoginActivity().pac, null)
+       val username = sharedPrefer?.getString(LoginActivity().usernamePreference, null)
         (activity as MainActivity).setTransparentStatusBar(0)
 
         var root =  inflater.inflate(R.layout.fragment_users, container, false)
@@ -56,21 +60,29 @@ class UsersFragment : Fragment() {
         conterms = root.findViewById(R.id.conterms)
         consafety = root.findViewById(R.id.consafety)
         conlogout = root.findViewById(R.id.conlogout)
+        txtstatus = root.findViewById(R.id.txtstatus)
 
         consignin?.visibility = View.VISIBLE
 
-        if (userstatus == "1") {
+//        Log.d("twtwss",userstatus!!)
+
+        if (userstatus == "true") {
           consignin?.visibility = View.GONE
+            txtusername?.text = username
+            if (packstatus =="1"){
+                dataMember()
+            }
+
 
         }else {
             conlogout?.visibility = View.GONE
         }
-        viewmember(memberID)
+        viewmember()
         return root
 
     }
 
-    private fun viewmember(memberID: String?) {
+    fun dataMember(){
         var url: String = getString(R.string.root_url) + getString(R.string.viewmember_url) + memberID
         val okHttpClient = OkHttpClient()
         val request: Request = Request.Builder()
@@ -85,7 +97,7 @@ class UsersFragment : Fragment() {
                     val data = JSONObject(response.body!!.string())
                     if (data.length() > 0) {
 
-                        txtusername?.text = data.getString("username")
+                        txtstatus?.text ="ทดลองใช้งานถึง "+ data.getString("exp_date")
                     }
 
                 } catch (e: JSONException) {
@@ -97,6 +109,10 @@ class UsersFragment : Fragment() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    private fun viewmember() {
+
             // ออกจากระบบ
         conlogout?.setOnClickListener {
             confrimDialogLogout()

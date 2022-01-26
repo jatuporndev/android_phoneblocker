@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class HomeFragment : Fragment() {
     var consecurity:ConstraintLayout?=null
     var memberID:String?=null
     var userstatus: String? = null
+    var packageStatus:String?=null
     var imgpk1: ImageView? = null
     var imgpk2: ImageView? = null
 
@@ -36,8 +38,11 @@ class HomeFragment : Fragment() {
 
         val sharedPrefer = requireContext().getSharedPreferences(
             LoginActivity().appPreference, Context.MODE_PRIVATE)
+
+        packageStatus = sharedPrefer?.getString(LoginActivity().pac, null)
         userstatus = sharedPrefer?.getString(LoginActivity().userstatus, null)
         memberID = sharedPrefer?.getString(LoginActivity().memberIdPreference, null)
+
 
 
         val root = inflater.inflate(R.layout.fragment_home, container, false)
@@ -53,7 +58,10 @@ class HomeFragment : Fragment() {
         conphone?.isEnabled = false
         conmessage?.isEnabled = false
 
-        if(userstatus == "1"){
+        Log.d("sdfsd","pac$packageStatus")
+        Log.d("sdfsd","u$userstatus")
+
+        if(userstatus == "true" && packageStatus =="1"){
             imgpk1?.visibility = View.GONE
             imgpk2?.visibility = View.GONE
             conphone?.isEnabled = true
