@@ -11,8 +11,7 @@ import com.example.phoneblockerproject.R
 import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import com.example.phoneblockerproject.MainActivity
-import com.example.phoneblockerproject.SplashScreenActivity
+import com.example.phoneblockerproject.Activity.SplashScreenActivity
 import com.example.phoneblockerproject.databass.DBHelper
 import org.json.JSONArray
 import okhttp3.OkHttpClient

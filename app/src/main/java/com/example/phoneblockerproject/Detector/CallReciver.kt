@@ -11,7 +11,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
-import android.net.wifi.WifiManager
 import android.os.Build
 import android.provider.Telephony.Sms
 import android.telecom.TelecomManager
@@ -21,22 +20,12 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import com.example.phoneblockerproject.MainActivity
+import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import android.net.wifi.WifiInfo
-
-import android.net.NetworkInfo
-import android.widget.Toast
-
-
-
-
-
-
 
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)

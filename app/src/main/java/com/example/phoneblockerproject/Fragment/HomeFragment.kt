@@ -1,7 +1,6 @@
 package com.example.phoneblockerproject.Fragment
 
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,7 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.phoneblockerproject.MainActivity
+import com.example.phoneblockerproject.Activity.LoginActivity
+import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.R
 
 

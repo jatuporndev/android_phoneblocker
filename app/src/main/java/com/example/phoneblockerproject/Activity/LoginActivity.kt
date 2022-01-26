@@ -1,4 +1,4 @@
-package com.example.phoneblockerproject.Fragment
+package com.example.phoneblockerproject.Activity
 
 import android.content.Context
 import android.content.Intent
@@ -7,11 +7,9 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
-import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import okhttp3.FormBody
 import okhttp3.OkHttpClient

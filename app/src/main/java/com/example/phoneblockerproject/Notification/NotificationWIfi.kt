@@ -2,12 +2,9 @@ package com.example.phoneblockerproject.Notification
 
 import android.content.Context
 import android.content.Intent
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.getSystemService
 
-import com.example.phoneblockerproject.MainActivity
+import com.example.phoneblockerproject.Activity.MainActivity
 
-import android.R
 import android.annotation.SuppressLint
 import android.app.*
 import android.graphics.BitmapFactory
@@ -15,11 +12,6 @@ import android.graphics.Color
 import android.net.wifi.WifiInfo
 import android.net.wifi.WifiManager
 import android.os.Build
-import android.util.Log
-import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
-import com.example.phoneblockerproject.Detector.CallReciver
-import com.example.phoneblockerproject.Fragment.WifiFragment
 import com.example.phoneblockerproject.databass.DBHelper
 import android.app.PendingIntent
 

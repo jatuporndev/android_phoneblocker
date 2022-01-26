@@ -1,4 +1,4 @@
-package com.example.phoneblockerproject.Fragment
+package com.example.phoneblockerproject.Activity
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -10,7 +10,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
-import com.example.phoneblockerproject.MainActivity
 import com.example.phoneblockerproject.R
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
