@@ -138,11 +138,11 @@ class UsersFragment : Fragment() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
-            // ซ์้อแพ็กแก็จ
+            // ซ์้อแพ็กเกจ
         conpackage?.setOnClickListener{
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, PackageFragment())
+            fragmentTransaction.replace(R.id.nav_host_fragment, PackagePaymentFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
