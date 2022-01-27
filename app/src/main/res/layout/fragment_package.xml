@@ -38,10 +38,10 @@
 
             <ImageView
                 android:id="@+id/imageView27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
                 android:src="@drawable/password3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView28"
@@ -49,7 +49,7 @@
 
             <ImageView
                 android:id="@+id/imageView28"
-                android:layout_width="wrap_content"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
@@ -73,10 +73,10 @@
 
             <ImageView
                 android:id="@+id/imageView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
                 android:src="@drawable/password3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/imageView30"
@@ -84,8 +84,8 @@
 
             <ImageView
                 android:id="@+id/imageView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/tick"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView94">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/btntrial"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginStart="40dp"
@@ -125,15 +125,15 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginRight="40dp"
-                android:text="เริ่มทดลองใช้งานฟรี 7 วัน"
+                android:text="เริ่มทดลองใช้งานฟรี 30 วัน"
                 android:textSize="16sp"
-                app:backgroundTint="#13B83C"
+                app:backgroundTint="@color/teal_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView95"
+                android:id="@+id/btnlater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -141,30 +141,17 @@
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button4" />
+                app:layout_constraintTop_toBottomOf="@+id/btntrial" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/textView82"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="95dp"
-            android:text="ใช้ Phoneblocker"
+            android:layout_marginTop="6dp"
+            android:text="ใช้ Phoneblocker premium"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView87"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="399/ต่อปี"
-            android:textColor="@color/black"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -174,20 +161,20 @@
             android:id="@+id/textView88"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="8dp"
+
             android:text="เพื่อการใช้งานที่ดีกว่าเดิม"
-            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView87" />
+            app:layout_constraintTop_toBottomOf="@+id/textView82" />
 
         <TextView
             android:id="@+id/textView89"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:text="พื้นฐาน"
@@ -198,11 +185,11 @@
             android:id="@+id/textView90"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="30dp"
             android:layout_marginRight="30dp"
             android:text="พรีเมี่ยม"
-            android:textColor="#13B83C"
+            android:textColor="@color/teal_200"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView88" />
 
@@ -223,36 +210,43 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:text="ใส่ไรดีวะ"
+            android:layout_marginTop="8dp"
+            android:text="หลังจากสมัครสมาชิคแล้ว สามารถทดลองใช้ฟรี 30 วัน "
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView93" />
 
         <ImageView
             android:id="@+id/imageView16"
-            android:layout_width="118dp"
-            android:layout_height="118dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
             android:src="@drawable/pk"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView87" />
+
+        <ImageView
+            android:id="@+id/imgBackPre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/ic_baseline_arrow_back_ios_10000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView96"
+            android:id="@+id/textView87"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="95dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:text="พรีเมี่ยม"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="50dp"
+            android:text="แพ็กเกจ"
+            app:layout_constraintStart_toEndOf="@+id/imgBackPre"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

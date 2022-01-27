@@ -1,12 +1,15 @@
-package com.example.phoneblockerproject.Fragment
+package com.example.phoneblockerproject.Activity
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
-import com.example.phoneblockerproject.MainActivity
+import androidx.annotation.RequiresApi
 import com.example.phoneblockerproject.R
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -21,11 +24,16 @@ class LoginActivity : AppCompatActivity() {
     val appPreference:String = "appPrefer"
     val memberIdPreference:String = "memberIdPref"
     val usernamePreference:String = "usernamePref"
-    val userstatus:String ="0"
+    val userstatus:String ="false"
+    val pac:String="0"
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        window.statusBarColor = Color.TRANSPARENT
+        window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         val txtregister = findViewById<TextView>(R.id.txtregister)
         txtregister.setOnClickListener{
@@ -65,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
                         val obj = JSONObject(response.body!!.string())
                         val userID = obj["id"].toString()
                         val username = obj["username"].toString()
+                        val packageS = obj["package"].toString()
 
                         //Create shared preference to store user data
                         val sharedPrefer: SharedPreferences =
@@ -73,7 +82,9 @@ class LoginActivity : AppCompatActivity() {
 
                         editor.putString(memberIdPreference, userID)
                         editor.putString(usernamePreference, username)
-                        editor.putString(userstatus, "1")
+                        editor.putString(userstatus, "true")
+                        editor.putString(pac, packageS)
+
                         editor.commit()
 
                         //return to login page

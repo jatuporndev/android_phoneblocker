@@ -23,7 +23,7 @@ import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.phoneblockerproject.MainActivity
+import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.databass.DBHelper
 import okhttp3.FormBody
 import okhttp3.OkHttpClient

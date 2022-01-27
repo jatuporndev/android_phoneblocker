@@ -2,6 +2,7 @@ package com.example.phoneblockerproject.Fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,15 +11,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.phoneblockerproject.MainActivity
+import com.example.phoneblockerproject.Activity.LoginActivity
+import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.R
+import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
-import kotlin.math.log
 
 
 class UsersFragment : Fragment() {
@@ -32,7 +37,9 @@ class UsersFragment : Fragment() {
     var imgback: ImageView?=null
     var memberID:String?=null
     var userstatus: String? = null
+    var packstatus: String? = null
     var txtusername: TextView? = null
+    var txtstatus:TextView?=null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +49,9 @@ class UsersFragment : Fragment() {
             LoginActivity().appPreference, Context.MODE_PRIVATE)
         userstatus = sharedPrefer?.getString(LoginActivity().userstatus, null)
         memberID = sharedPrefer?.getString(LoginActivity().memberIdPreference, null)
-
+        packstatus = sharedPrefer?.getString(LoginActivity().pac, null)
+       val username = sharedPrefer?.getString(LoginActivity().usernamePreference, null)
+        (activity as MainActivity).setTransparentStatusBar(0)
 
         var root =  inflater.inflate(R.layout.fragment_users, container, false)
         txtusername = root.findViewById(R.id.txtusername)
@@ -53,21 +62,32 @@ class UsersFragment : Fragment() {
         conterms = root.findViewById(R.id.conterms)
         consafety = root.findViewById(R.id.consafety)
         conlogout = root.findViewById(R.id.conlogout)
+        txtstatus = root.findViewById(R.id.txtstatus)
 
         consignin?.visibility = View.VISIBLE
 
-        if (userstatus == "1") {
+//        Log.d("twtwss",userstatus!!)
+
+        if (userstatus == "true") {
           consignin?.visibility = View.GONE
+            txtusername?.text = username
+            if (packstatus =="1"){
+                dataMember()
+                updateExp()
+            }else{
+                txtstatus?.text="ฟรี"
+            }
+
 
         }else {
             conlogout?.visibility = View.GONE
         }
-        viewmember(memberID)
+        viewmember()
         return root
 
     }
 
-    private fun viewmember(memberID: String?) {
+    fun dataMember(){
         var url: String = getString(R.string.root_url) + getString(R.string.viewmember_url) + memberID
         val okHttpClient = OkHttpClient()
         val request: Request = Request.Builder()
@@ -82,7 +102,7 @@ class UsersFragment : Fragment() {
                     val data = JSONObject(response.body!!.string())
                     if (data.length() > 0) {
 
-                        txtusername?.text = data.getString("username")
+                        txtstatus?.text ="ทดลองใช้งานถึง "+ data.getString("exp_date")
                     }
 
                 } catch (e: JSONException) {
@@ -94,22 +114,13 @@ class UsersFragment : Fragment() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
+    }
+
+    private fun viewmember() {
+
             // ออกจากระบบ
         conlogout?.setOnClickListener {
-            val sharePrefer = requireContext().getSharedPreferences(
-                LoginActivity().appPreference,
-                Context.MODE_PRIVATE
-            )
-            val editor = sharePrefer.edit()
-            editor.clear() // ทำการลบข้อมูลทั้งหมดจาก preferences
-
-            editor.commit() // ยืนยันการแก้ไข preferences
-            //return to login page
-            val fragmentTransaction = requireActivity().
-            supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            confrimDialogLogout()
         }
             // ตั้งค่าความปลอดภัย
         consafety?.setOnClickListener {
@@ -138,8 +149,8 @@ class UsersFragment : Fragment() {
             // ล็อกอิน
         consignin?.setOnClickListener{
             startActivity(Intent(context, LoginActivity::class.java))
-            val fragmentTransaction = requireActivity().supportFragmentManager
-            fragmentTransaction.popBackStack()
+           // val fragmentTransaction = requireActivity().supportFragmentManager
+           // fragmentTransaction.popBackStack()
 
         }
             // กลับ
@@ -150,5 +161,76 @@ class UsersFragment : Fragment() {
 
     }
 
+    fun confrimDialogLogout(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("ต้องการจะจากระะบบหรือไม่?")
+            .setCancelable(false)
+            .setPositiveButton("ใช่") { _, _ ->
+                val sharePrefer = requireContext().getSharedPreferences(
+                    LoginActivity().appPreference,
+                    Context.MODE_PRIVATE
+                )
+                val editor = sharePrefer.edit()
+                editor.clear() // ทำการลบข้อมูลทั้งหมดจาก preferences
 
+                editor.commit() // ยืนยันการแก้ไข preferences
+                //return to login page
+                val fragmentTransaction = requireActivity().
+                supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.nav_host_fragment, HomeFragment())
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+
+            }
+            .setNegativeButton("ยกเลิก") { dialog, id ->
+
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
+
+    }
+    fun updateExp(){
+        var url: String = getString(R.string.root_url) + getString(R.string.updateExpurl)+memberID
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Log.d("sdfdsf",(data.getString("status") =="true").toString())
+                        if(data.getString("status") =="true"){
+                            val sharedPrefer: SharedPreferences =
+                                requireActivity().getSharedPreferences(LoginActivity().appPreference, Context.MODE_PRIVATE)
+                            val editor: SharedPreferences.Editor = sharedPrefer.edit()
+
+                            editor.putString(LoginActivity().pac, "0")
+
+                            editor.commit()
+                            Toast.makeText(requireContext(), "วันใช้งานของคุณหมดอายุแล้ว", Toast.LENGTH_LONG).show()
+                            packstatus ="0"
+                            txtstatus?.text="ฟรี"
+                        }
+
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            } else {
+                response.code
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
 }

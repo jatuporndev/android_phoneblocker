@@ -1,8 +1,7 @@
-package com.example.phoneblockerproject
+package com.example.phoneblockerproject.Activity
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.ActivityManager
 import android.content.IntentFilter
 import android.content.pm.PackageManager
@@ -24,6 +23,7 @@ import com.example.phoneblockerproject.Fragment.HistoryFragment
 import com.example.phoneblockerproject.Fragment.HomeFragment
 import com.example.phoneblockerproject.Fragment.SMSFragment
 import com.example.phoneblockerproject.Notification.NotificationWIfi
+import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
