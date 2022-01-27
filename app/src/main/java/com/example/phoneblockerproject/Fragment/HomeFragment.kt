@@ -58,6 +58,7 @@ class HomeFragment : Fragment() {
             imgpk2?.visibility = View.GONE
             conphone?.isEnabled = true
             conmessage?.isEnabled = true
+
         }
 
         //รักษาความปลอดภัย
