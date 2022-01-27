@@ -22,86 +22,59 @@
             android:background="@drawable/de"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintVertical_bias="1.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <View
-                    android:id="@+id/viewLine"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:background="#ECEBEB"
-                    app:layout_constraintBottom_toTopOf="@+id/imageView38"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView116" />
-
-                <TextView
-                    android:id="@+id/textView109"
+                <RadioGroup
+                    android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="40dp"
-                    android:text="แจ้งการใช้พรีเมี่ยม"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout17" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView117">
 
-                <TextView
-                    android:id="@+id/textView110"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="8dp"
-                    android:text="หลังจากสมัครสมาชิคแล้ว สามารถทดลองใช้ฟรี 30 วัน "
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView109" />
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp" />
+                </RadioGroup>
 
                 <TextView
                     android:id="@+id/textView107"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
                     android:text="พรีเมี่ยม"
                     android:textColor="@color/teal_200"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
                 <TextView
                     android:id="@+id/textView108"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="33dp"
+                    android:layout_marginRight="33dp"
                     android:text="พื้นฐาน"
                     app:layout_constraintEnd_toStartOf="@+id/textView107"
-                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
-
-                <TextView
-                    android:id="@+id/textView106"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="เพื่อการใช้งานที่ดีกว่าเดิม"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView96" />
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
                 <TextView
                     android:id="@+id/textView95"
@@ -125,40 +98,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imageView34"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="32dp"
-                    android:src="@drawable/pk"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView95" />
-
-                <TextView
-                    android:id="@+id/textView96"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="ใช้ Phoneblocker premium"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView34" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout16"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/bg_pk"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView108">
 
@@ -244,48 +195,28 @@
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radioButton3" />
-
-                <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView117" />
-
                 <TextView
                     android:id="@+id/textView111"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="35dp"
                     android:text="1 เดือน THB 59.0"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/radioButton3"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup"
                     app:layout_constraintTop_toBottomOf="@+id/textView117" />
 
                 <TextView
                     android:id="@+id/textView112"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
                     android:layout_marginTop="47dp"
                     android:text="1 ปี THB 599.0"
                     android:textSize="14sp"
-                    app:layout_constraintStart_toEndOf="@+id/radioButton2"
+                    app:layout_constraintStart_toEndOf="@+id/radioGroup"
                     app:layout_constraintTop_toBottomOf="@+id/textView111" />
 
                 <Button
@@ -331,33 +262,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView113" />
 
-                <Button
-                    android:id="@+id/button4"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginRight="40dp"
-                    android:text="เริ่มทดลองใช้งานฟรี 30 วัน"
-                    android:textSize="16sp"
-                    app:backgroundTint="@color/teal_200"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView110" />
-
-                <TextView
-                    android:id="@+id/textView116"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="ใช้งานเวอร์ชันฟรีต่อ"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button4" />
-
                 <TextView
                     android:id="@+id/textView117"
                     android:layout_width="wrap_content"
@@ -380,7 +284,7 @@
                     android:src="@drawable/error"
                     app:layout_constraintBottom_toTopOf="@+id/button2"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView121" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
 
                 <TextView
                     android:id="@+id/textView118"
@@ -403,7 +307,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/button2"
                     app:layout_constraintEnd_toStartOf="@+id/imageView37"
                     app:layout_constraintStart_toEndOf="@+id/imageView35"
-                    app:layout_constraintTop_toBottomOf="@+id/textView121" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
 
                 <ImageView
                     android:id="@+id/imageView37"
@@ -414,7 +318,7 @@
                     android:src="@drawable/vpn"
                     app:layout_constraintBottom_toTopOf="@+id/button2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView121" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
 
                 <TextView
                     android:id="@+id/textView119"
@@ -447,34 +351,31 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="50dp"
-                    android:text="Note :"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:layout_marginTop="40dp"
+                    android:text="แจ้งการใช้พรีเมี่ยม"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView112" />
-
-                <TextView
-                    android:id="@+id/textView122"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="50dp"
-                    android:text="ใส่ไรดีวะ"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toEndOf="@+id/textView121"
-                    app:layout_constraintTop_toBottomOf="@+id/textView112" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout17" />
 
                 <ImageView
                     android:id="@+id/imageView38"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="32dp"
                     android:src="@drawable/team"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView116" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView95" />
+
+                <TextView
+                    android:id="@+id/textView106"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="8dp"
+                    android:text="หลังจากสมัครสมาชิคแล้ว สามารถทดลองใช้ฟรี 30 วัน "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView121" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
