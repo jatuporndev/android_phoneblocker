@@ -1,6 +1,8 @@
 package com.example.phoneblockerproject.Fragment
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +11,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentTransaction
 import com.example.phoneblockerproject.Activity.LoginActivity
 import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.R
-
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class HomeFragment : Fragment() {
@@ -58,10 +70,9 @@ class HomeFragment : Fragment() {
         conphone?.isEnabled = false
         conmessage?.isEnabled = false
 
-        Log.d("sdfsd","pac$packageStatus")
-        Log.d("sdfsd","u$userstatus")
 
         if(userstatus == "true" && packageStatus =="1"){
+            updateExp()
             imgpk1?.visibility = View.GONE
             imgpk2?.visibility = View.GONE
             conphone?.isEnabled = true
@@ -109,6 +120,56 @@ class HomeFragment : Fragment() {
             fragmentTransaction.commit()
         }
         return root
+    }
+
+    fun updateExp(){
+        var url: String = getString(R.string.root_url) + getString(R.string.updateExpurl)+memberID
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Log.d("sdfdsf",(data.getString("status") =="true").toString())
+                        if(data.getString("status") =="true"){
+                            val sharedPrefer: SharedPreferences =
+                                requireActivity().getSharedPreferences(LoginActivity().appPreference, Context.MODE_PRIVATE)
+                            val editor: SharedPreferences.Editor = sharedPrefer.edit()
+
+                            editor.putString(LoginActivity().pac, "0")
+
+                            editor.commit()
+                            Toast.makeText(requireContext(), "วันใช้งานของคุณหมดอายุแล้ว", Toast.LENGTH_LONG).show()
+                            packageStatus="0"
+                            if(userstatus == "true" && packageStatus =="0"){
+                                updateExp()
+                                imgpk1?.visibility = View.VISIBLE
+                                imgpk2?.visibility = View.VISIBLE
+                                conphone?.isEnabled = false
+                                conmessage?.isEnabled = false
+                            }
+                        }
+
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            } else {
+                response.code
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 
     }

@@ -2,20 +2,25 @@ package com.example.phoneblockerproject.Fragment
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.phoneblockerproject.Activity.LoginActivity
 import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.R
+import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -68,6 +73,9 @@ class UsersFragment : Fragment() {
             txtusername?.text = username
             if (packstatus =="1"){
                 dataMember()
+                updateExp()
+            }else{
+                txtstatus?.text="ฟรี"
             }
 
 
@@ -182,5 +190,47 @@ class UsersFragment : Fragment() {
         alert.show()
 
     }
+    fun updateExp(){
+        var url: String = getString(R.string.root_url) + getString(R.string.updateExpurl)+memberID
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .build()
 
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Log.d("sdfdsf",(data.getString("status") =="true").toString())
+                        if(data.getString("status") =="true"){
+                            val sharedPrefer: SharedPreferences =
+                                requireActivity().getSharedPreferences(LoginActivity().appPreference, Context.MODE_PRIVATE)
+                            val editor: SharedPreferences.Editor = sharedPrefer.edit()
+
+                            editor.putString(LoginActivity().pac, "0")
+
+                            editor.commit()
+                            Toast.makeText(requireContext(), "วันใช้งานของคุณหมดอายุแล้ว", Toast.LENGTH_LONG).show()
+                            packstatus ="0"
+                            txtstatus?.text="ฟรี"
+                        }
+
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            } else {
+                response.code
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
 }
