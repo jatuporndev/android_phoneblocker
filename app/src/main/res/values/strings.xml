@@ -16,6 +16,7 @@
 
     <string name="updateFree_url">api/updatemember/</string>
     <string name="updateExpurl">api/updatememberExp/</string>
+    <string name="updateExpPay_url">api/updatedaymember/</string>
 
     <string name="viewmember_url">api/viewMember/</string>
 

@@ -40,6 +40,7 @@ class UsersFragment : Fragment() {
     var packstatus: String? = null
     var txtusername: TextView? = null
     var txtstatus:TextView?=null
+    var free_tiral:String = "0"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,15 +71,7 @@ class UsersFragment : Fragment() {
 
         if (userstatus == "true") {
           consignin?.visibility = View.GONE
-            txtusername?.text = username
-            if (packstatus =="1"){
-                dataMember()
-                updateExp()
-            }else{
-                txtstatus?.text="ฟรี"
-            }
-
-
+            dataMember()
         }else {
             conlogout?.visibility = View.GONE
         }
@@ -102,7 +95,13 @@ class UsersFragment : Fragment() {
                     val data = JSONObject(response.body!!.string())
                     if (data.length() > 0) {
 
-                        txtstatus?.text ="ทดลองใช้งานถึง "+ data.getString("exp_date")
+                        txtusername?.text = data.getString("username")
+                        free_tiral = data.getString("free_trial")
+                        if(data.getString("package")=="1") {
+                            txtstatus?.text = "ทดลองใช้งานถึง " + data.getString("exp_date")
+                        }else{
+                            txtstatus?.text = "ฟรี"
+                        }
                     }
 
                 } catch (e: JSONException) {
@@ -140,9 +139,18 @@ class UsersFragment : Fragment() {
         }
             // ซ์้อแพ็กเกจ
         conpackage?.setOnClickListener{
+            Log.d("test23","b"+free_tiral)
+            var fm :Fragment = PackageFragment()
+            fm = if(free_tiral == "0"){
+                PackageFragment()
+            }else{
+                PackagePaymentFragment()
+            }
+
+
             val fragmentTransaction = requireActivity().
             supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.nav_host_fragment, PackagePaymentFragment())
+            fragmentTransaction.replace(R.id.nav_host_fragment, fm)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }

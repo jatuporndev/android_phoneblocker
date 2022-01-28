@@ -70,13 +70,12 @@ class HomeFragment : Fragment() {
         conphone?.isEnabled = false
         conmessage?.isEnabled = false
 
-
         if(userstatus == "true" && packageStatus =="1"){
-            updateExp()
             imgpk1?.visibility = View.GONE
             imgpk2?.visibility = View.GONE
             conphone?.isEnabled = true
             conmessage?.isEnabled = true
+            updateExp()
 
         }
 
@@ -139,7 +138,6 @@ class HomeFragment : Fragment() {
                 try {
                     val data = JSONObject(response.body!!.string())
                     if (data.length() > 0) {
-                        Log.d("sdfdsf",(data.getString("status") =="true").toString())
                         if(data.getString("status") =="true"){
                             val sharedPrefer: SharedPreferences =
                                 requireActivity().getSharedPreferences(LoginActivity().appPreference, Context.MODE_PRIVATE)
@@ -149,14 +147,11 @@ class HomeFragment : Fragment() {
 
                             editor.commit()
                             Toast.makeText(requireContext(), "วันใช้งานของคุณหมดอายุแล้ว", Toast.LENGTH_LONG).show()
-                            packageStatus="0"
-                            if(userstatus == "true" && packageStatus =="0"){
-                                updateExp()
-                                imgpk1?.visibility = View.VISIBLE
-                                imgpk2?.visibility = View.VISIBLE
-                                conphone?.isEnabled = false
-                                conmessage?.isEnabled = false
-                            }
+                            imgpk1?.visibility = View.VISIBLE
+                            imgpk2?.visibility = View.VISIBLE
+                            conphone?.isEnabled = false
+                            conmessage?.isEnabled = false
+
                         }
 
                     }

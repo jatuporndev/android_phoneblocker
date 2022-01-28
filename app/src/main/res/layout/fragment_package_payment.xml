@@ -13,12 +13,8 @@
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="64dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/de"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,28 +25,28 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView117">
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/radioButtonM"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:id="@+id/radioButton"
+                        android:id="@+id/radioButtonY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp" />
+                        android:layout_marginTop="10dp" />
                 </RadioGroup>
 
                 <TextView
@@ -84,11 +80,11 @@
                     android:layout_marginLeft="4dp"
                     android:layout_marginTop="50dp"
                     android:text="แพ็กเกจ"
-                    app:layout_constraintStart_toEndOf="@+id/imageView33"
+                    app:layout_constraintStart_toEndOf="@+id/imgback3"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/imageView33"
+                    android:id="@+id/imgback3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -213,54 +209,30 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginTop="47dp"
+                    android:layout_marginTop="38dp"
                     android:text="1 ปี THB 599.0"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/radioGroup"
                     app:layout_constraintTop_toBottomOf="@+id/textView111" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/btnre"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginStart="40dp"
                     android:layout_marginLeft="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="40dp"
                     android:layout_marginRight="40dp"
+                    android:layout_marginBottom="40dp"
                     android:text="สมัครสมาชิก"
                     android:textSize="16sp"
                     app:backgroundTint="@color/teal_200"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView118" />
-
-                <TextView
-                    android:id="@+id/textView113"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:text="คุณจะถูกเก็บเงินโดยอัตโนมัติในแต่ละรอบของการต่ออายุ"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-                <TextView
-                    android:id="@+id/textView114"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="โดยขึ้นอยู่กับเงี่อนไขสมัครของคุณ เช่น รายเดือน หรือรายปี"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView113" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
 
                 <TextView
                     android:id="@+id/textView117"
@@ -275,76 +247,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageView38" />
 
-                <ImageView
-                    android:id="@+id/imageView35"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/error"
-                    app:layout_constraintBottom_toTopOf="@+id/button2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
-
-                <TextView
-                    android:id="@+id/textView118"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="1dp"
-                    android:text="การป้องกันไวรัส"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView35" />
-
-                <ImageView
-                    android:id="@+id/imageView36"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/realtime"
-                    app:layout_constraintBottom_toTopOf="@+id/button2"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView37"
-                    app:layout_constraintStart_toEndOf="@+id/imageView35"
-                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
-
-                <ImageView
-                    android:id="@+id/imageView37"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
-                    android:src="@drawable/vpn"
-                    app:layout_constraintBottom_toTopOf="@+id/button2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
-
-                <TextView
-                    android:id="@+id/textView119"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:text="การป้องกันแบบเรียลไม์"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toStartOf="@+id/textView120"
-                    app:layout_constraintStart_toEndOf="@+id/textView118"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView36" />
-
-                <TextView
-                    android:id="@+id/textView120"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="1dp"
-                    android:layout_marginEnd="12dp"
-                    android:layout_marginRight="12dp"
-                    android:text="Wi-Fi ที่ปลอดภัย"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView37" />
-
                 <TextView
                     android:id="@+id/textView121"
                     android:layout_width="wrap_content"
@@ -358,8 +260,8 @@
 
                 <ImageView
                     android:id="@+id/imageView38"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginTop="32dp"
                     android:src="@drawable/team"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -376,6 +278,17 @@
                     android:text="หลังจากสมัครสมาชิคแล้ว สามารถทดลองใช้ฟรี 30 วัน "
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView121" />
+
+                <TextView
+                    android:id="@+id/txtstatusPac"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:text="คุณกำลังใช้พรีเมียมอยู่"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView106" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
