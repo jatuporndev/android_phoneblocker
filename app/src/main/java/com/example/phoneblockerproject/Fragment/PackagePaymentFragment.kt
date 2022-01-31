@@ -1,6 +1,7 @@
 package com.example.phoneblockerproject.Fragment
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,13 @@ import android.widget.*
 import androidx.core.view.isVisible
 import com.example.phoneblockerproject.Activity.LoginActivity
 import com.example.phoneblockerproject.R
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 
 class PackagePaymentFragment : Fragment() {
     var imgback:ImageView?=null
@@ -45,11 +53,11 @@ class PackagePaymentFragment : Fragment() {
         }
         radioButtonM?.isChecked=true
         btnregis?.setOnClickListener {
-            var pac="m"
             if (radioButtonM?.isChecked == true){
-                pac="1M"
-            }else if(radioButtonY?.isChecked == true){
-                pac="1Y"
+                update("1")
+            }
+            if(radioButtonY?.isChecked == true){
+                update("0")
             }
 
         }
@@ -62,6 +70,47 @@ class PackagePaymentFragment : Fragment() {
 
 
         return root
+    }
+
+    fun update(f:String){
+        var url: String = getString(R.string.root_url) + getString(R.string.updateExpPay_url)+memberID+"/"+f
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Toast.makeText(requireContext(), "เริ่มใช้งานพรีเมียมแล้ว", Toast.LENGTH_LONG).show()
+                        val sharedPrefer: SharedPreferences =
+                            requireActivity().getSharedPreferences(LoginActivity().appPreference, Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPrefer.edit()
+
+                        editor.putString(LoginActivity().pac, "1")
+
+                        editor.commit()
+
+                        val fragmentTransaction = requireActivity().supportFragmentManager
+                        fragmentTransaction.popBackStack()
+                    }
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
+                }
+            } else {
+                response.code
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 
 }
