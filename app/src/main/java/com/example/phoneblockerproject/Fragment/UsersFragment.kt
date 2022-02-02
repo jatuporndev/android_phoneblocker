@@ -3,6 +3,7 @@ package com.example.phoneblockerproject.Fragment
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,10 +13,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.phoneblockerproject.Activity.LoginActivity
 import com.example.phoneblockerproject.Activity.MainActivity
+import com.example.phoneblockerproject.Detector.StatusDevice
 import com.example.phoneblockerproject.R
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
@@ -41,6 +44,8 @@ class UsersFragment : Fragment() {
     var txtusername: TextView? = null
     var txtstatus:TextView?=null
     var free_tiral:String = "0"
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -51,7 +56,8 @@ class UsersFragment : Fragment() {
         userstatus = sharedPrefer?.getString(LoginActivity().userstatus, null)
         memberID = sharedPrefer?.getString(LoginActivity().memberIdPreference, null)
         packstatus = sharedPrefer?.getString(LoginActivity().pac, null)
-       val username = sharedPrefer?.getString(LoginActivity().usernamePreference, null)
+        val username = sharedPrefer?.getString(LoginActivity().usernamePreference, null)
+        val isonline = StatusDevice().isOnline(requireContext())
         (activity as MainActivity).setTransparentStatusBar(0)
 
         var root =  inflater.inflate(R.layout.fragment_users, container, false)
@@ -69,7 +75,7 @@ class UsersFragment : Fragment() {
 
 //        Log.d("twtwss",userstatus!!)
 
-        if (userstatus == "true") {
+        if (userstatus == "true" && isonline) {
           consignin?.visibility = View.GONE
             dataMember()
         }else {
@@ -99,6 +105,7 @@ class UsersFragment : Fragment() {
                         free_tiral = data.getString("free_trial")
                         if(data.getString("package")=="1") {
                             txtstatus?.text = "ทดลองใช้งานถึง " + data.getString("exp_date")
+                            updateExp()
                         }else{
                             txtstatus?.text = "ฟรี"
                         }
@@ -109,6 +116,7 @@ class UsersFragment : Fragment() {
                 }
             } else {
                 response.code
+                Toast.makeText(requireContext(), "เชื่อมต่อ serve ล้มเหลว", Toast.LENGTH_LONG).show()
             }
         } catch (e: IOException) {
             e.printStackTrace()
@@ -214,7 +222,6 @@ class UsersFragment : Fragment() {
                 try {
                     val data = JSONObject(response.body!!.string())
                     if (data.length() > 0) {
-                        Log.d("sdfdsf",(data.getString("status") =="true").toString())
                         if(data.getString("status") =="true"){
                             val sharedPrefer: SharedPreferences =
                                 requireActivity().getSharedPreferences(LoginActivity().appPreference, Context.MODE_PRIVATE)
@@ -224,8 +231,7 @@ class UsersFragment : Fragment() {
 
                             editor.commit()
                             Toast.makeText(requireContext(), "วันใช้งานของคุณหมดอายุแล้ว", Toast.LENGTH_LONG).show()
-                            packstatus ="0"
-                            txtstatus?.text="ฟรี"
+
                         }
 
                     }
