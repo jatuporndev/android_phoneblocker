@@ -1,15 +1,18 @@
 package com.example.phoneblockerproject.Fragment
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.system.Os.open
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -27,6 +30,8 @@ import okhttp3.RequestBody
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
+import java.io.InputStream
+import java.nio.channels.AsynchronousFileChannel.open
 
 
 class UsersFragment : Fragment() {
@@ -35,8 +40,8 @@ class UsersFragment : Fragment() {
     var conlogout: ConstraintLayout?=null
     var conpackage: ConstraintLayout?=null
     var condefense: ConstraintLayout?=null
-    var conterms: ConstraintLayout?=null
     var consafety: ConstraintLayout?=null
+    var conread: ConstraintLayout?=null
     var imgback: ImageView?=null
     var memberID:String?=null
     var userstatus: String? = null
@@ -44,6 +49,7 @@ class UsersFragment : Fragment() {
     var txtusername: TextView? = null
     var txtstatus:TextView?=null
     var free_tiral:String = "0"
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
@@ -66,10 +72,11 @@ class UsersFragment : Fragment() {
         consignin = root.findViewById(R.id.consignin)
         conpackage = root.findViewById(R.id.conpackage)
         condefense = root.findViewById(R.id.condefense)
-        conterms = root.findViewById(R.id.conterms)
         consafety = root.findViewById(R.id.consafety)
         conlogout = root.findViewById(R.id.conlogout)
+        conread = root.findViewById(R.id.conread)
         txtstatus = root.findViewById(R.id.txtstatus)
+
 
         consignin?.visibility = View.VISIBLE
 
@@ -175,7 +182,40 @@ class UsersFragment : Fragment() {
             fragmentTransaction.popBackStack()
         }
 
+            // ข้อตกลง
+        conread?.setOnClickListener {
+            ReadRule()
+        }
+
     }
+
+    fun ReadRule(){
+        var view: View = layoutInflater.inflate(R.layout.read,null)
+        var txtpp:TextView=view.findViewById(R.id.txtpp)
+        var btnreaded:Button=view.findViewById(R.id.btnreaded)
+        var text:String=""
+        try {
+            var io: InputStream = requireContext().assets.open("pp.txt")
+            var size:Int = io.available()
+            var buffer=ByteArray(size)
+            io.read(buffer)
+            io.close()
+            text= String(buffer)
+        }catch (ex : IOException){
+            ex.printStackTrace()
+        }
+        txtpp.text=text
+
+        var dialog: Dialog = Dialog(requireContext(),android.R.style.ThemeOverlay_DeviceDefault_Accent_DayNight)
+        dialog.setContentView(view)
+        conread?.setOnClickListener {
+            dialog.show()
+        }
+        btnreaded?.setOnClickListener {
+        }
+
+    }
+
 
     fun confrimDialogLogout(){
         val builder = AlertDialog.Builder(requireContext())
