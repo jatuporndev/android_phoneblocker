@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.phoneblockerproject.Activity.LoginActivity
 import com.example.phoneblockerproject.Activity.MainActivity
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
@@ -38,14 +39,27 @@ class CallReciver : BroadcastReceiver() {
     val NOTIFICATION_ID = 0
 
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onReceive(context: Context?, intent: Intent?) {
 
+        val sharedPrefer = context?.getSharedPreferences(
+            LoginActivity().appPreference, Context.MODE_PRIVATE)
+        val userstatus = sharedPrefer?.getString(LoginActivity().userstatus, null)
+        val memberID = sharedPrefer?.getString(LoginActivity().memberIdPreference, null)
+        val packstatus = sharedPrefer?.getString(LoginActivity().pac, null)
+        val isonline = StatusDevice().isOnline(context!!)
+
         allPhone(context)
-        if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE) != null){
-            callblocker(context, intent)
-        }else{
-            smsCheck(context,intent)
+
+        if(userstatus=="true" && packstatus=="1"){
+            if (intent?.getStringExtra(TelephonyManager.EXTRA_STATE) != null){
+                callblocker(context, intent)
+            }else{
+                smsCheck(context,intent)
+            }
         }
+
+
 
 
 
