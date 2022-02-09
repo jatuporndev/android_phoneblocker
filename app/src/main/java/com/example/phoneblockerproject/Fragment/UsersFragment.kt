@@ -212,6 +212,7 @@ class UsersFragment : Fragment() {
             dialog.show()
         }
         btnreaded?.setOnClickListener {
+            dialog.dismiss()
         }
 
     }

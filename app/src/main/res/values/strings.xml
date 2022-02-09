@@ -6,7 +6,7 @@
 
     <string name="root_url">http://192.168.1.14:8000/</string>
     <string name="getphone_url">api/phone/</string>
-    <string name="getsms_url">api/sms/</string>
+    <string name="getsms_url">api/message/</string>
 
     <string name="AddReport_url">api/AddReport/</string>
     <string name="AddNumber_url">api/AddNumber/</string>

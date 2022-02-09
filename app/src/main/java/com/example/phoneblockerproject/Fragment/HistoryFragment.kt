@@ -315,6 +315,7 @@ class HistoryFragment : Fragment() {
         return call
     }
 
+
     fun blockcall(name:String,phone:String){
 
         val builder = AlertDialog.Builder(requireContext())

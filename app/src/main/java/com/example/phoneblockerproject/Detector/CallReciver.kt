@@ -60,9 +60,6 @@ class CallReciver : BroadcastReceiver() {
         }
 
 
-
-
-
     }
 
     fun callblocker(context: Context?, intent: Intent?){
