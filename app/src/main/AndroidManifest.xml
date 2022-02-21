@@ -71,7 +71,7 @@
             android:name=".Activity.MainActivity"
             android:launchMode="singleTask"
             android:exported="true"
-            android:noHistory="true"
+
             android:theme="@style/Theme.PhoneBlockerProject.NoActionBar" />
 
         <receiver
