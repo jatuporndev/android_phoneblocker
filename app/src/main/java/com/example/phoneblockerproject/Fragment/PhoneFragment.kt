@@ -24,6 +24,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.phoneblockerproject.R
 import com.example.phoneblockerproject.databass.DBHelper
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.IOException
 import java.lang.Long
 import java.text.SimpleDateFormat
 import java.util.*
@@ -151,7 +158,7 @@ class PhoneFragment : Fragment() {
                 deletePhone(data.phoneNumber, data.id)
             }
             holder.con.setOnLongClickListener() {
-                Dialogmenu(data.phoneNumber,data.id)
+                Dialogmenu(data.phoneNumber,data.id,data.name)
                 return@setOnLongClickListener true
             }
 
@@ -379,12 +386,18 @@ class PhoneFragment : Fragment() {
         }
     }
     private lateinit var alertDialomenug: AlertDialog
-    fun Dialogmenu(phoneNumber:String,id:String) {
+    fun Dialogmenu(phoneNumber:String,id:String,name: String) {
         val inflater: LayoutInflater = this.getLayoutInflater()
         val dialogView: View = inflater.inflate(R.layout.popup_menu_history, null)
         var conDelete:ConstraintLayout=dialogView.findViewById(R.id.constraintdelete)
         var conReport:ConstraintLayout=dialogView.findViewById(R.id.conreport)
         var conGolist:ConstraintLayout=dialogView.findViewById(R.id.constraintgolist)
+
+        conReport.setOnClickListener {
+            Dialogreport(phoneNumber,name)
+            //addnumber(number,name)
+        }
+
 
         conGolist.visibility=View.GONE
         conDelete.setOnClickListener {
@@ -400,5 +413,82 @@ class PhoneFragment : Fragment() {
         alertDialomenug.show()
     }
 
+    private lateinit var alertDialomenug1: AlertDialog
+    fun Dialogreport(number: String,name: String) {
+        val inflater: LayoutInflater = this.getLayoutInflater()
+        val dialogView: View = inflater.inflate(R.layout.popup_report_phone, null)
+        var txtname:TextView=dialogView.findViewById(R.id.txtname)
+        var txtnumber:TextView=dialogView.findViewById(R.id.txtnumber)
+        var spinner:Spinner=dialogView.findViewById(R.id.spinner)
+        var btncon:Button=dialogView.findViewById(R.id.btncon)
+        var btnback:Button=dialogView.findViewById(R.id.btnback)
+        txtname.setText(name)
+        txtnumber.setText(number)
 
+        val adapter = ArrayAdapter.createFromResource(requireContext(),
+            R.array.city_list, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item)
+
+        spinner.adapter = adapter
+
+
+        btncon.setOnClickListener {
+            val text: String = spinner.getSelectedItem().toString()
+            addnumber(number,text)
+            alertDialomenug1.dismiss()
+        }
+        btnback.setOnClickListener {
+            alertDialomenug1.dismiss()
+        }
+
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setOnDismissListener { }
+        dialogBuilder.setView(dialogView)
+
+        alertDialomenug1 = dialogBuilder.create();
+        alertDialomenug1.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialomenug1.show()
+    }
+    private fun addnumber(number:String,text: String)
+    {
+        var url: String = getString(R.string.root_url) + getString(R.string.AddNumber_url)
+        val okHttpClient = OkHttpClient()
+        val formBody: RequestBody = FormBody.Builder()
+            .add("address",number)
+            .add("detail",text)
+            .build()
+
+        val request: Request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+        try {
+            val response = okHttpClient.newCall(request).execute()
+            if (response.isSuccessful) {
+                try {
+                    val data = JSONObject(response.body!!.string())
+                    if (data.length() > 0) {
+                        Toast.makeText(context, "รายงานสำเร็จ", Toast.LENGTH_LONG).show()
+                        response.code
+                        alertDialomenug.dismiss()
+                    }
+                    else{
+
+                    }
+
+                } catch (e: JSONException) {
+
+                    e.printStackTrace()
+                }
+            } else {
+                Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+                response.code
+            }
+        } catch (e: IOException) {
+            Toast.makeText(context, "ไม่มีการเชื่อมต่ออินเตอร์เน็ต", Toast.LENGTH_LONG).show()
+            e.printStackTrace()
+        }
+
+    }
 }
