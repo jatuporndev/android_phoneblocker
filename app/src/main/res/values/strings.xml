@@ -23,7 +23,7 @@
     <string-array name="city_list">
         <item>แสปม</item>
         <item>ขายประกัน</item>
-        <item>มิจฉาชีพ1</item>
+        <item>มิจฉาชีพ</item>
 
     </string-array>
 </resources>
